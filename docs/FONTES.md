@@ -15,6 +15,98 @@ Catálogo único das afirmações factuais do site e de suas fontes. Consolida q
 
 ---
 
+## Mapa — onde cada afirmação do site se apoia
+
+Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos do jogo (TUTORIAL, PAUTAS, BREVES) feita em 13 nov. 2026. Cada linha é uma afirmação factual do site; exemplos declarados ilustrativos e contas aritméticas ficaram de fora. "—" na coluna Fato(s) quer dizer que não há fato correspondente na Parte A. Quando o status do fato é misto, vale aqui o da parte que o site usa. "Divergência" marca diferença de número, redação ou sentido entre o site e o fato.
+
+| Seção do site (âncora) | Afirmação (resumida, com o número) | Fato(s) | Status |
+|---|---|---|---|
+| `#problema` | O QALY é a medida comum de saúde "mais usada no mundo" | — | sem fato |
+| `#qaly` | QALY = quality-adjusted life year; peso com dois pontos fixos: 1 = saúde plena, 0 = morte | F1 | verificada |
+| `#qaly` | Há estados avaliados como piores que a morte, com peso negativo | F2 | verificada |
+| `#qaly` | "A ideia tomou forma nos anos 1970" (Weinstein e Stason, 1977) | F3, F4 | parcial (F3); verificada (F4). F3 registra trabalhos anteriores (1968, 1970) |
+| `#desenhe`, `#decisao`, `#lim-7`, `#glossario`, jogo | Diretriz brasileira: desconto de 5% ao ano, para custos e para saúde | F53 | verificada |
+| `#peso` | O EQ-5D é o questionário "mais usado no mundo" | — | sem fato |
+| `#peso`, `#glossario` | EQ-5D: cinco dimensões (mobilidade, cuidados pessoais, atividades habituais, dor ou mal-estar, ansiedade ou depressão) | F7, F8 | verificada (nomes da diretriz); redação oficial PT-BR não verificada |
+| `#peso`, `#eq5d` | 3L: três respostas por pergunta ("sem problemas, alguns problemas, problemas extremos"); 243 estados | F7, F8 | verificada. Divergência de redação: a diretriz usa "nenhum problema / algum problema / problema grave" |
+| `#peso` | A tarifa sai da "média das respostas"; cada país faz a sua porque os valores diferem entre povos | F16 (em parte) | verificada quanto ao estudo; F16 fala em modelo de efeitos mistos, não em média; a razão "povos diferentes" não tem fato |
+| `#peso`, `#glossario` | TTO: horizonte de 10 anos; 7 anos em saúde plena → peso 7 ÷ 10 = 0,7 | F9 | verificada |
+| `#peso`, `#glossario` | Aposta padrão: escolha entre ficar como está ou tratamento que pode curar ou matar; mais risco aceito, menor o peso | F12 | conceito verificado; descrição operacional **não verificada** (Parte C, item 4) |
+| `#peso`, `#glossario` | DCE: a pessoa vê dois estados e diz qual prefere | F13 | verificada |
+| `#peso` | TTO, aposta padrão e DCE são "as três mais usadas" | — | sem fato |
+| `#peso`, `#lim-7` | Métodos e instrumentos diferentes dão pesos diferentes para o mesmo estado | F10, F33, F83 | verificada |
+| `#peso`, `#vantagens` | Tarifa brasileira do EQ-5D-3L, publicada em 2016; 9.148 pessoas de 18 a 64 anos, entrevista em casa, TTO (Santos 2016) | F16 | verificada |
+| `#peso` | Coleta "nas regiões de Belo Horizonte, Rio de Janeiro, Porto Alegre e Recife" (atribuída a Santos 2016) | F17 | verificada em fontes secundárias; divergência "MG" × "Belo Horizonte" registrada no fato; a fonte do fato não é o artigo de 2016 |
+| `#peso`, `#lim-5` | É a tarifa que as diretrizes do Ministério da Saúde indicam | F26 | verificada |
+| `#peso` | Melhor estado = 1; pior (33333) = −0,177 | F20, F21 | verificada (−0,177); a literatura cita −0,176 |
+| `#peso`, `#meu-peso` | 10 dos 243 estados ficam abaixo de zero ("pior que a morte" na pesquisa brasileira) | F22 | verificada |
+| `#peso`, `#glossario` | EQ-5D-5L tem cinco respostas por pergunta; até nov. 2026 sem tarifa brasileira; "em fase de valoração", segundo o Ministério | F28 | verificada (Parte C, item 1: redação dos níveis e nº de estados do 5L fora das notas) |
+| `#peso` | Versão para crianças e adolescentes, com tarifa brasileira publicada em 2024 (Espirito Santo 2024) | F29, F30 | verificada |
+| `#peso`, `#lim-5` | Quem respondeu à pesquisa brasileira foi a população geral | F16, F31 | verificada |
+| `#peso`, `#lim-5` | Quem vive a condição tende a dar peso maior que o público; meta-análise confirmou (Peeters e Stiggelbout 2010) | F32, F33 | verificada |
+| `#eq5d` | Coeficientes: constante 0,149; mobilidade 0,120/0,363; cuidados pessoais 0,112/0,218; atividades habituais 0,097/0,184; dor 0,064/0,168; ansiedade 0,050/0,095; saúde plena = 1 | F18, F19 | verificada |
+| `#eq5d` | Coeficientes conferidos nos arquivos de cálculo da EuroQol, fundação responsável pelo questionário | F18, F15 | verificada |
+| `#eq5d`, `#sobre` | O questionário oficial pertence à EuroQol; as frases do site são próprias | F15 | verificada |
+| `#decisao`, `#glossario` | Conitec = Comissão Nacional de Incorporação de Tecnologias no SUS; avalia os pedidos e recomenda ao Ministério | F46, F48 | parcial |
+| `#decisao`, `#rcei`, `#glossario`, `#lim-8` | Em 2022 a Conitec definiu R$ 40 mil por QALY como valor de referência | F37, F45 | verificada |
+| `#decisao`, `#lim-3` | R$ 35 mil por ano de vida ganho, em situações excepcionais em que o QALY é indisponível ou inadequado | F37, F38 | verificada |
+| `#decisao`, `#rcei`, `#lim-6`, `#glossario` | Até 3 vezes o valor de referência (R$ 120 mil por QALY), a critério da comissão | F39 | verificada |
+| `#decisao`, `#lim-1`, `#lim-2`, `#lim-6` | Quatro situações: doenças raras, de crianças, doença grave, doença endêmica em populações de baixa renda com poucas alternativas | F40 | verificada |
+| `#decisao` | Citação: a custo-efetividade "não deve ser um parâmetro isolado dos demais fatores envolvidos na discussão" | F42 | verificada até "demais fatores"; divergência: "envolvidos na discussão" não consta do fato |
+| `#decisao`, `#lim-8` | Lei 14.313/2022: parâmetros de custo-efetividade "utilizados em combinação com outros critérios" | F47 | parcial (redação montada de trechos de busca; Parte C, item 7) |
+| `#decisao`, `#lim-6` | Ultrarraras e terapias gênicas ficaram fora da regra | F41 | verificada (o fato inclui também as "curativas") |
+| `#decisao` | Os valores são de 2022; a diretriz de 2026 repete R$ 40 mil e R$ 35 mil | F44, F52 | verificada |
+| `#decisao` | NICE: desde abril de 2026, faixa de 25 mil a 35 mil libras por QALY | F64, F65 | verificada (dia exato não confirmado; o site só diz "abril") |
+| `#decisao` | Custo de oportunidade no Brasil: 20% a 63% do PIB per capita, estimativa citada no relatório da Conitec (Woods 2016) | F60 | verificada como citação da Conitec |
+| `#decisao` | O valor da Conitec é "referência de política", acima do que o sistema gasta para produzir um QALY | F43, F60, F61 | verificada; divergência de sentido: F43 diz que o valor foi calculado a partir do documento do BID; F61 dá 0,88 a 1,02 PIB per capita; a comparação com o PIB depende de F59 (parcial) |
+| `#decisao` | NICE usa desconto de 3,5% | F69 | verificada |
+| `#decisao`, `#lim-7` | A diretriz "pede" um cenário sem desconto | F54 | verificada; divergência de redação: o fato diz "sugere" |
+| `#vantagens` | O QALY é usado "há décadas por órgãos de avaliação de vários países" | F4, F65, F79 (indireto) | sem fato específico |
+| `#lim-1`, `#alternativas` | Análise de custo-efetividade distributiva mostra quem ganha e quem perde (Asaria 2016; Cookson 2017) | F103 | verificada |
+| `#lim-2` | Fair innings: prioridade a quem ainda não chegou a uma vida completa (Williams 1997) | F72 | verificada |
+| `#lim-2` | Harris 1987: os anos que restam valem igual para cada pessoa; medir assim é discriminar pela idade | F73 | verificada só quanto a "fatalmente falho"; o argumento descrito no site não está no fato |
+| `#lim-2` | A regra da Conitec não tem peso por idade | F40 (indireto) | sem fato explícito (ausência) |
+| `#lim-2` | EUA: a lei da negociação de preços (2022) veda tratar o prolongamento da vida de idoso como de menor valor | F76 | verificada (lei) |
+| `#lim-3` | "Dupla penalização"; Singer 1995 conclui que o defensor do QALY tem resposta; Nord 1999: um ano ganho deve contar como um | F74 | verificada |
+| `#lim-3` | "São raras as análises que separam os pacientes por deficiência" | F81 | verificada, mas só para análises em oncologia; divergência de alcance |
+| `#lim-3` | EUA: a lei não proíbe o QALY; lei de 2010 veda ao programa público para idosos usar custo por QALY como limiar | F75 | verificada (o fato cita também o PCORI) |
+| `#lim-3`, `#alternativas`, `#glossario`, jogo | evLY, criado por instituto americano (ICER): mesmo valor para cada ano de vida acrescentado; não capta melhora de qualidade nos anos acrescentados; usado ao lado do QALY | F78, F80 | verificada |
+| `#lim-4`, jogo | O EQ-5D não tem pergunta sobre ouvir nem sobre enxergar | F7 | verificada |
+| `#lim-4` | Em crianças, os métodos de valoração variam muito (Rowen 2020) | F85 | verificada |
+| `#lim-4` | Cuidados paliativos: o QALY "parece não funcionar bem" (Normand 2009) | F86 | verificada (resumo; o fato restringe a "intervenções complexas") |
+| `#lim-4` | Só 3% das avaliações na Inglaterra incluíram a qualidade de vida do cuidador (Pennington 2020) | F87 | verificada (12 de 414) |
+| `#lim-4` | Saúde mental: razoável em ansiedade e depressão, pior na esquizofrenia (Mulhern 2014) | F82 | verificada |
+| `#lim-4` | Perguntas extras para audição, visão e cansaço (Longworth 2014) | F84 | parcial |
+| `#lim-4` | Questionário novo, mais amplo, que inclui cuidadores (Brazier 2022) | F88 | verificada |
+| `#lim-4` | A Conitec pede que as análises descrevam outros resultados que os pacientes consideram importantes | F42 (aproximado) | sem fato com esse teor; o fato só diz não "limitar suas discussões ao QALY" |
+| `#lim-4`, `#alternativas` | Pacientes e cuidadores relatam experiência nas reuniões (Perspectiva do Paciente) | F104 | verificada |
+| `#lim-5` | As pessoas se adaptam e quem está de fora não prevê (Ubel 2003) | F34 | verificada |
+| `#lim-5` | "A pergunta é se a adaptação deve contar" (atribuída a Menzel 2002) | F34 | verificada; divergência de atribuição: o fato dá essa tese a Dolan (R39) e, a Menzel, "nem só pacientes reais nem só hipotéticos" |
+| `#lim-5` | A Suécia dá preferência aos valores dos pacientes (Brazier 2018) | F35 | parcial |
+| `#lim-5` | Alguns pesquisadores defendem usar a experiência de quem vive o estado; caminho do meio: informar melhor o público | F32 | verificada |
+| `#lim-6`, `#glossario` | "Regra do resgate" (Jonsen 1986) | F89 | parcial quanto ao texto de Jonsen (verificada via McKie e Richardson) |
+| `#lim-6`, jogo | Em 2022 a Conitec avaliou terapia gênica para AME com custo por QALY acima de R$ 880 mil, contra o tratamento existente; sem limiar definido para ultrarraras (Relatório 793) | F106 | verificada (R$ 883.587 contra nusinersena) |
+| `#lim-6` | Ser identificável não é razão para prioridade (McKie e Richardson 2003) | F89 | verificada |
+| `#lim-6` | Mais de 4 mil britânicos: apoio a priorizar doenças graves, não a fim de vida nem a raras (Linley e Hughes 2013) | F91 | verificada (4.118) |
+| `#lim-6` | NICE multiplica os QALYs por 1,2 ou 1,7 conforme a gravidade | F66 | verificada |
+| `#lim-7` | Premissas do modelo: todo ano vale igual; a ordem não importa | F93, F94, F95 | parcial (F93); verificada (F94, F95) |
+| `#lim-7` | Agregadas, as respostas sustentam bem melhor as premissas (Tsuchiya e Dolan 2005) | F94 | verificada |
+| `#lim-7` | Debate sobre taxa de desconto menor para a saúde (Claxton 2011) | F96 | verificada |
+| `#lim-8` | O limiar estima o custo de produzir saúde no sistema, não o preço de uma vida | F63, F97 | verificada |
+| `#lim-8` | Estudos de disposição a pagar por QALY chegam a valores muito diferentes (Ryen e Svensson 2015) | F97 | verificada |
+| `#limitacoes` | Boa parte das críticas éticas vale para qualquer medida (Rand e Kesselheim 2021) | F6 | verificada |
+| `#alternativas` | O QALY costuma ser complementado, não trocado (Rand 2023) | F6 | verificada |
+| `#alternativas`, `#glossario` | DALY: mede saúde perdida; usado para carga de doença (Murray 1994) | F99 | verificada |
+| `#alternativas` | WELLBY: um ponto na satisfação com a vida, escala de 0 a 10, por um ano | F101 | parcial; sem referência na lista do site |
+| `#alternativas` | Análise de decisão multicritério: vários critérios com pesos (Thokala 2016) | F102 | verificada |
+| `#alternativas` | "Toda recomendação da Conitec passa por consulta pública" | F104 | parcial (consulta pública e base legal) |
+| `#refs` | "Todas foram conferidas em novembro de 2026, no documento original ou no registro do PubMed" | Parte B | divergência: a Lei 14.313 (R6, `r-lei`) é [parcial], pois o Planalto não abriu |
+| `#sobre` | São "reais, com fonte" a tarifa, os valores da Conitec, o desconto, os dados do NICE, "o que dizem as leis citadas" e os resultados dos estudos | F16–F22, F37–F44, F53, F64–F69, F47, F75, F76 | verificada, exceto a lei brasileira (F47, parcial) |
+| jogo (PAUTAS, `insp`) | Imunização contra o vírus sincicial respiratório "avaliada pela Conitec" | F107 | verificada |
+| jogo (PAUTAS, `insp`) | "O antigo critério de fim de vida e o atual modificador de gravidade do NICE" | F66, F67 | parcial (a substituição) |
+| jogo (PAUTAS, `insp`) | Artroplastia de quadril, "uma das cirurgias com melhor custo por QALY na literatura" | F110 | verificada só para um estudo (US$ 7.307 por QALY aos 80 anos); o superlativo não tem fato |
+| jogo (PAUTAS) | Ansiedade e depressão são uma das cinco perguntas do questionário | F7 | verificada |
+
 ## Parte A — Fatos
 
 ### 1. QALY e origem

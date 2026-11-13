@@ -1,10 +1,10 @@
 # Portão automático
 
-Gerado por `node tests/pagina.js` em 2026-11-13 20:50 UTC (28 s). Antes dele rodam `tests/calc.js`, `tests/dados.js` e `tests/equilibrio.js` (`npm test`).
+Gerado por `node tests/pagina.js` em 2026-11-13 20:55 UTC (29 s). Antes dele rodam `tests/calc.js`, `tests/dados.js` e `tests/equilibrio.js` (`npm test`).
 
 **Resultado: tudo verde**
 
-- [x] carga da página em 781 ms (arquivo de 174 kB, sem imagens nem bibliotecas)
+- [x] carga da página em 782 ms (arquivo de 175 kB, sem imagens nem bibliotecas)
 - [x] 375 px: sem rolagem horizontal no guia (sobra 0 px)
 - [x] Desenhe uma vida: "Só mais tempo" dá +2,00 QALYs e +4,00 anos
 - [x] Desenhe uma vida: prótese 5,50 → 8,25 (+2,75)
@@ -23,18 +23,18 @@ Gerado por `node tests/pagina.js` em 2026-11-13 20:50 UTC (28 s). Antes dele rod
 - [x] Custo por QALY: caso dominado
 - [x] Custo por QALY: mais barato e pior = R$ 800.000 por QALY perdido
 - [x] Custo por QALY: campo vazio não gera NaN
-- [x] links internos: 69 âncoras, todas com destino
+- [x] links internos: 77 âncoras, todas com destino
 - [x] axe, guia, tema claro: nenhuma violação séria ou crítica
 - [x] axe, guia, tema escuro: nenhuma violação séria ou crítica
-- [x] 375 px, partida 1234: 6 reuniões até o jornal (Plenário de quem está pior; Contador 4,4, Ouvidora 5,6, Praça 3,3; 3722 ms de máquina)
+- [x] 375 px, partida 1234: 6 reuniões até o jornal (Plenário de quem está pior; Contador 4,4, Ouvidora 5,6, Praça 3,3; 3904 ms de máquina)
 - [x] 375 px: sem rolagem horizontal no jogo (sobra 0 px)
 - [x] axe, jogo, jornal final: nenhuma violação séria ou crítica
 - [x] axe, jogo, jornal final, tema escuro: nenhuma violação séria ou crítica
 - [x] axe, jogo, reunião sem a régua: nenhuma violação séria ou crítica
 - [x] jogo: a primeira reunião não mostra os QALYs
 - [x] jogo: mesmo código e mesmas escolhas dão as mesmas notas (4,4 5,6 3,3)
-- [x] 375 px, partida 2718: 6 reuniões até o jornal (Plenário de quem está pior; Contador 3,3, Ouvidora 5,8, Praça 2,3; 2010 ms de máquina)
-- [x] 375 px, partida 4242: 6 reuniões até o jornal (Plenário equilibrista; Contador 5,0, Ouvidora 5,0, Praça 3,2; 2219 ms de máquina)
+- [x] 375 px, partida 2718: 6 reuniões até o jornal (Plenário de quem está pior; Contador 3,3, Ouvidora 5,8, Praça 2,3; 1882 ms de máquina)
+- [x] 375 px, partida 4242: 6 reuniões até o jornal (Plenário equilibrista; Contador 5,0, Ouvidora 5,0, Praça 3,2; 2237 ms de máquina)
 - [x] axe, jogo, tela inicial: nenhuma violação séria ou crítica
 - [x] axe, jogo, ata: nenhuma violação séria ou crítica
 - [x] axe, jogo, reunião com a régua: nenhuma violação séria ou crítica
@@ -45,7 +45,7 @@ Gerado por `node tests/pagina.js` em 2026-11-13 20:50 UTC (28 s). Antes dele rod
 - [x] teclado: foco visível (contorno de 2 px) nos links
 - [x] teclado: votar com espaço e setas habilita "Encerrar a reunião"
 - [x] teclado: ao trocar de tela, o foco vai para o título da nova tela
-- [x] 1280 px, partida 1234: 6 reuniões até o jornal (Plenário de quem está pior; Contador 4,4, Ouvidora 5,6, Praça 3,3; 3378 ms de máquina)
+- [x] 1280 px, partida 1234: 6 reuniões até o jornal (Plenário de quem está pior; Contador 4,4, Ouvidora 5,6, Praça 3,3; 3564 ms de máquina)
 - [x] 1280 px: zero erros no console
 
 Capturas nesta pasta: `<largura>-<seção>.png` e `<largura>-jogo-*.png`.
