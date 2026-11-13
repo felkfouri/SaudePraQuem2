@@ -1,5 +1,13 @@
 # Registro de mudanças
 
+## Rodada 4 (13 nov. 2026)
+
+Vereditos: A e C aprovaram; B e D reprovaram pelo mesmo item importante. Triagem em `review/rodada-4/TRIAGEM.md`.
+
+- **Custo por QALY:** "referência" é sempre R$ 40 mil e R$ 120 mil é "limite de 3 vezes", no selo, no veredito e na legenda; a escolha de prioridade é marcada nos dois sentidos (aceitar acima da referência, recusar uma economia acima dela). Testes novos (166 verificações; três itens no portão).
+- Limitação 8: condição do Supremo completa. Limitação 3: bloco da defesa em dois parágrafos. Cartão e glossário de equidade. "Dominado" com definição simétrica.
+- Jogo: frase do bônus de coerência; aviso quando nenhum pedido cabe.
+
 ## Rodada 3 (13 nov. 2026)
 
 Vereditos: C e D aprovaram; A e B reprovaram por um item importante cada. Triagem em `review/rodada-3/TRIAGEM.md`.

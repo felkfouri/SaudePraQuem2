@@ -399,7 +399,7 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 
 **F122.** Réplica a Singer et al.: Harris J. Double jeopardy and the veil of ignorance--a reply. J Med Ethics. 1995;21(3):151-7. doi:10.1136/jme.21.3.151. PMID 7674279. Segundo o resumo no PubMed, o artigo sustenta que o QALY e medidas parecidas "remain vulnerable to the charge of double jeopardy" e critica o uso do "véu da ignorância" por Singer et al. — *Status:* verificada (resumo no PubMed). É daí que vem a descrição do argumento de Singer et al. como de imparcialidade.
 
-**F123.** Supremo Tribunal Federal e medicamentos fora das listas do SUS: a página "Judicialização" da Conitec lista as condições fixadas pelo Supremo, entre elas provar "que a decisão da Conitec de não incluir o medicamento nas listas do SUS é ilegal". — *Fonte:* https://www.gov.br/conitec/pt-br/judicializacao (conferida pelo Juiz D nas rodadas 2 e 3). — *Status:* verificada. O site não afirma data nem cronologia.
+**F123.** Supremo Tribunal Federal e medicamentos fora das listas do SUS: a página "Judicialização" da Conitec lista seis condições fixadas pelo Supremo; a segunda é provar "que a decisão da Conitec de não incluir o medicamento nas listas do SUS é ilegal, que não houve pedido de inclusão ou houve demora excessiva na sua análise" (reconferida pelo construtor em 13 nov. 2026, depois dos pareceres da rodada 4). — *Fonte:* https://www.gov.br/conitec/pt-br/judicializacao (conferida pelo Juiz D nas rodadas 2 e 3). — *Status:* verificada. O site não afirma data nem cronologia.
 
 **F124.** Consulta pública: a página "Consultas públicas" da Conitec diz que qualquer cidadão pode participar, por formulário eletrônico (conferida pelo Juiz D na rodada 3). — *Status:* verificada.
 

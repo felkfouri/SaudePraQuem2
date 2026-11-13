@@ -651,7 +651,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <h3 style="margin-top:1.6rem">Dois casos em que nem precisa dividir</h3>
       <ul>
         <li>Se o tratamento novo é <strong>melhor e mais barato</strong> (ou igual numa coisa e melhor na outra), ele é chamado de <strong>dominante</strong>. Não há o que pesar.</li>
-        <li>Se é <strong>pior e mais caro</strong>, ele é <strong>dominado</strong>. Também não há o que pesar.</li>
+        <li>Se é <strong>pior e mais caro</strong> (ou igual numa coisa e pior na outra), ele é <strong>dominado</strong>. Também não há o que pesar.</li>
       </ul>
       <p>O difícil é o caso comum: melhor <em>e</em> mais caro. Aí é preciso dizer até quanto vale a pena pagar por um QALY.</p>
 
@@ -724,7 +724,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
           <p class="verdict" id="rcVerd" aria-live="polite"></p>
           <div class="chart">
             <h4>Plano de custo-efetividade</h4>
-            <p class="sub">Para a direita, mais saúde. Para cima, mais caro. O ponto é o tratamento novo. A linha tracejada é o valor de referência; a área verde é o que a regra aceita.</p>
+            <p class="sub">Para a direita, mais saúde. Para cima, mais caro. O ponto é o tratamento novo. A linha tracejada é o limiar escolhido (a referência ou o limite de 3 vezes); a área verde é o que a regra aceita.</p>
             <div id="rcPlane"></div>
           </div>
           <p class="hint">"Saúde que sai de outro lugar" é o custo de oportunidade: o custo a mais dividido por R$ 40 mil, sempre, mesmo quando você escolhe o limite de R$ 120 mil. É uma hipótese didática: supõe que cada R$ 40 mil gastos aqui deixam de produzir 1 QALY em outro lugar do sistema.</p>
@@ -775,7 +775,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <h3><span class="num">3.</span> Deficiência e doenças crônicas: os mesmos anos, menos QALYs</h3>
       <div class="lb"><h4>O problema</h4><p>Se a tabela dá peso menor que 1 a um estado de saúde, prolongar a vida de quem vive nesse estado rende menos QALYs do que prolongar, pelo mesmo tempo, a vida de quem não vive. Isso vale para qualquer doença crônica ou deficiência que o tratamento não cura. Movimentos de pessoas com deficiência fazem a crítica em primeira pessoa: rejeitam que uma tabela, feita em grande parte por quem só imaginou a vida delas, diga que seus anos contam menos.</p></div>
       <div class="lb"><h4>Um exemplo</h4><p><span class="tag-ilu">números ilustrativos</span> Um remédio acrescenta 2 anos de vida. Para pessoas cujo estado de saúde tem peso 0,85, são 1,7 QALY. Para pessoas com uma deficiência cujo estado tem peso 0,5, é 1 QALY. Mesmo remédio, mesmo efeito, e ele rende bem menos na conta do segundo grupo. Os críticos chamam isso de dupla penalização: a pessoa já vive com a condição e ainda fica atrás na prioridade.</p></div>
-      <div class="lb def"><h4>O que responde quem defende</h4><p>O peso é de um estado de saúde, não de uma pessoa: ninguém "vale" 0,5. A regra é a mesma para todos: o dinheiro vai para onde produz mais saúde, e é o ganho que se mede, não quem recebe. A mesma tabela faz com que tratamentos que <em>melhoram</em> a vida de quem tem deficiência rendam muitos QALYs. Um artigo de autores favoráveis à medida examinou a objeção da dupla penalização, reconheceu o que ela tem de certo e sustentou que o defensor do QALY tem resposta adequada para ela (<a href="#r-singer">Singer e colaboradores, 1995</a>). O artigo usa um argumento de imparcialidade: que regra cada um escolheria sem saber se terá ou não uma deficiência. Os críticos não aceitam essa resposta, e a réplica saiu no mesmo número da revista: para ela, o QALY continua sujeito à acusação de dupla penalização (<a href="#r-harris95">Harris, 1995</a>). E um levantamento de análises de remédios de câncer encontrou poucos casos em que os pacientes eram separados por idade ou deficiência (<a href="#r-raymakers">Raymakers e colaboradores, 2025</a>).</p></div>
+      <div class="lb def"><h4>O que responde quem defende</h4><p>O peso é de um estado de saúde, não de uma pessoa: ninguém "vale" 0,5. A regra é a mesma para todos: o dinheiro vai para onde produz mais saúde, e é o ganho que se mede, não quem recebe. A mesma tabela faz com que tratamentos que <em>melhoram</em> a vida de quem tem deficiência rendam muitos QALYs. Um levantamento de análises de remédios de câncer encontrou poucos casos em que os pacientes eram separados por idade ou deficiência (<a href="#r-raymakers">Raymakers e colaboradores, 2025</a>).</p><p>Um artigo de autores favoráveis à medida examinou a objeção da dupla penalização, reconheceu o que ela tem de certo e sustentou que o defensor do QALY tem resposta adequada para ela (<a href="#r-singer">Singer e colaboradores, 1995</a>). O artigo usa um argumento de imparcialidade: que regra cada um escolheria sem saber se terá ou não uma deficiência. Os críticos não aceitam essa resposta. A réplica saiu no mesmo número da revista e sustenta que o QALY continua sujeito à acusação de dupla penalização (<a href="#r-harris95">Harris, 1995</a>).</p></div>
       <div class="lb"><h4>O que se faz na prática</h4><p>Uma proposta simples: para essas pessoas, um ano de vida ganho deve contar como um, e não menos (<a href="#r-nord">Nord e colaboradores, 1999</a>). Nos Estados Unidos, a lei não proíbe o QALY, como às vezes se diz. Uma lei de 2010 proíbe o programa público de saúde para idosos de usar o custo por QALY <em>como limiar</em> para decidir o que cobre (<a href="#r-usc10">42 U.S.C. § 1320e-1</a>). Um instituto americano de avaliação, o Institute for Clinical and Economic Review, criou uma medida complementar, o <strong>evLY</strong> (ano de vida de igual valor), que dá o mesmo valor a cada ano de vida que o tratamento acrescenta, seja qual for a idade, a deficiência ou a gravidade da doença (<a href="#r-icer">Institute for Clinical and Economic Review</a>). O custo: o evLY não conta a melhora de qualidade nos anos acrescentados. No Brasil, a Conitec aceita o custo por ano de vida ganho quando o QALY não é adequado.</p></div>
     </article>
 
@@ -816,7 +816,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <div class="lb"><h4>O problema</h4><p>Ao comparar um ano de vida saudável com um valor em reais, a conta aceita que existe um ponto em que ajudar alguém "custa caro demais". Para os críticos, o erro está aí, e não num detalhe técnico: cada pessoa tem direito ao cuidado de que precisa, e o benefício somado de muitas outras não compensa negar a ela esse cuidado. É uma objeção antiga a toda a ideia de maximizar a saúde total.</p></div>
       <div class="lb"><h4>Um exemplo</h4><p>Um tratamento é recusado porque custa R$ 200 mil por QALY. Para quem precisava dele, a mensagem que chega é "a sua vida não vale R$ 200 mil". A recusa cai sobre uma pessoa com nome; o ganho prometido em troca, sobre desconhecidos.</p></div>
       <div class="lb def"><h4>O que responde quem defende</h4><p>O valor de referência não é preço de ninguém. É uma estimativa de quanto custa, para o sistema, produzir um ano de vida saudável com o que ele já faz, e serve para comparar usos do mesmo dinheiro. Recusar a conta não faz o limite desaparecer: alguém continua ficando sem, só que sem regra conhecida. Quanto as pessoas <em>pagariam</em> por um QALY é outra pergunta, e os estudos que a fazem chegam a valores muito diferentes entre si (<a href="#r-ryen">Ryen e Svensson, 2015</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>No Brasil, a lei e o relatório da Conitec dizem que a custo-efetividade se combina com outros critérios. Na Justiça, pedidos de tratamento são discutidos a partir do direito de cada pessoa à saúde. O Supremo Tribunal Federal fixou condições para o fornecimento de medicamentos que não estão nas listas do SUS; uma delas é mostrar que a decisão da Conitec de não incluir o medicamento é ilegal (<a href="#r-jud">Conitec, Judicialização</a>). A lógica do direito de cada pessoa e a lógica da conta para todos convivem, em tensão permanente.</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>No Brasil, a lei e o relatório da Conitec dizem que a custo-efetividade se combina com outros critérios. Na Justiça, pedidos de tratamento são discutidos a partir do direito de cada pessoa à saúde. O Supremo Tribunal Federal fixou condições para o fornecimento de medicamentos que não estão nas listas do SUS; uma delas é mostrar que a decisão da Conitec de não incluir o medicamento é ilegal, que não houve pedido de inclusão ou que a análise demorou demais (<a href="#r-jud">Conitec, Judicialização</a>). A lógica do direito de cada pessoa e a lógica da comparação entre todos os pedidos convivem, em tensão permanente.</p></div>
     </article>
 
     <div class="note">
@@ -837,7 +837,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <div><h3>DALY</h3><p>Sigla em inglês de "ano de vida ajustado por incapacidade". É o espelho do QALY: em vez de saúde ganha, mede saúde perdida, por morte precoce ou por doença. Muito usado para medir o peso das doenças em países inteiros (<a href="#r-murray">Murray, 1994</a>). Os pesos têm outra origem, e as críticas são parecidas.</p></div>
       <div><h3>WELLBY</h3><p>Sigla em inglês de "ano de vida ajustado pelo bem-estar". Mede bem-estar em vez de saúde: um ponto a mais na satisfação com a vida, numa escala de 0 a 10, por um ano (<a href="#r-frijters">Frijters e colaboradores, 2020</a>). Capta o que o questionário de saúde não vê, como solidão e renda. Em troca, depende de uma única pergunta, e as pessoas se adaptam também na satisfação com a vida.</p></div>
       <div><h3>Análise de decisão multicritério</h3><p>Em vez de um número, uma lista de critérios com pesos: gravidade, ganho de saúde, custo, inovação, justiça na distribuição (<a href="#r-thokala">Thokala e colaboradores, 2016</a>). Deixa os valores à mostra. Em troca, alguém precisa escolher os critérios e os pesos, e o custo de oportunidade pode sumir da conta.</p></div>
-      <div><h3>Pesos de justiça (equidade) e análise distributiva</h3><p>Equidade é justiça na distribuição: olhar quem ganha e quem perde. Estes métodos mantêm o QALY e acrescentam a pergunta "para quem?". É o tema do site <a href="https://felkfouri.github.io/saudepraquem/">Saúde para quem?</a></p></div>
+      <div><h3>Pesos de justiça (equidade) e análise distributiva</h3><p>Equidade é justiça na distribuição: olhar quem ganha e quem perde. Estes métodos mantêm o QALY e acrescentam a pergunta "para quem?". É o tema do site <a href="https://felkfouri.github.io/saudepraquem/">Saúde para quem?</a> Em troca, alguém precisa escolher quais grupos pesam mais e quanto, e essa escolha é política.</p></div>
       <div><h3>Deliberação com participação social</h3><p>Nenhuma conta substitui a discussão aberta. No Brasil, as recomendações da Conitec vão a consulta pública, e pacientes e cuidadores podem relatar sua experiência nas reuniões, na chamada Perspectiva do Paciente (<a href="#r-pp">Conitec</a>). A régua informa a conversa; não a encerra.</p></div>
     </div>
     <h3 style="margin-top:2rem">Para pensar</h3>
@@ -873,7 +873,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
     <dl class="gloss">
       <dt>QALY (AVAQ)</dt><dd>Ano de vida ajustado pela qualidade. Um ano com saúde plena vale 1; um ano com peso 0,5 vale meio QALY.</dd>
       <dt>Peso (utilidade)</dt><dd>Número que diz quanto vale um estado de saúde, numa escala em que 1 é a saúde plena e 0 é a morte. Pode ser negativo em estados avaliados como piores que a morte.</dd>
-      <dt>Equidade</dt><dd>Justiça na distribuição: dar mais atenção a quem tem menos saúde ou menos acesso.</dd>
+      <dt>Equidade</dt><dd>Justiça na distribuição: olhar quem ganha e quem perde. Para muita gente, quer dizer dar mais atenção a quem tem menos saúde ou menos acesso.</dd>
       <dt>EQ-5D</dt><dd>Questionário de cinco perguntas (mobilidade, cuidados pessoais, atividades habituais, dor ou mal-estar, ansiedade ou depressão) usado para descrever a saúde de uma pessoa. Tem versões com três (3L) e com cinco (5L) respostas por pergunta.</dd>
       <dt>Valoração</dt><dd>Pesquisa em que pessoas dizem quanto vale cada estado de saúde, comparando-o com a saúde plena e com a morte.</dd>
       <dt>Tarifa</dt><dd>Tabela com o peso de cada estado de saúde de um questionário, obtida numa pesquisa de valoração com a população de um país.</dd>
@@ -882,7 +882,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <dt>Experimento de escolha (DCE)</dt><dd>Pergunta de valoração em que a pessoa só escolhe, entre dois estados de saúde, o que prefere.</dd>
       <dt>Análise de custo-efetividade</dt><dd>Comparação entre dois tratamentos que olha, ao mesmo tempo, quanto cada um custa e quanta saúde produz.</dd>
       <dt>RCEI (ICER)</dt><dd>Razão de custo-efetividade incremental: o custo a mais dividido pela saúde a mais. Em reais por QALY.</dd>
-      <dt>Dominante / dominado</dt><dd>Dominante é o tratamento melhor e mais barato que o outro (ou igual numa das duas coisas e melhor na outra). Dominado é o pior e mais caro.</dd>
+      <dt>Dominante / dominado</dt><dd>Dominante é o tratamento melhor e mais barato que o outro (ou igual numa das duas coisas e melhor na outra). Dominado é o pior e mais caro (ou igual numa das duas coisas e pior na outra).</dd>
       <dt>Limiar de custo-efetividade</dt><dd>Valor de referência, em reais por QALY, com o qual se compara a RCEI. Na Conitec, R$ 40 mil por QALY, com até 3 vezes em situações específicas.</dd>
       <dt>Consulta pública</dt><dd>Período em que qualquer pessoa pode opinar sobre uma recomendação da Conitec antes da decisão final.</dd>
       <dt>Custo de oportunidade</dt><dd>A saúde que deixa de ser produzida pelos serviços que perdem dinheiro para pagar um tratamento novo.</dd>
@@ -1113,14 +1113,15 @@ const Calc=(function(){
      rcei só existe quando dC e dE têm o mesmo sinal; ok compara a rcei com lim.
      O custo de oportunidade usa sempre a referência de base (REF), não o limiar escolhido: o limiar maior é uma escolha de
      prioridade, não outra estimativa de quanto o sistema rende. deslocada = dC / REF; bls = dE − dC / REF.
-     prioridade = true quando a regra aceita (ok) mas, pela hipótese do custo de oportunidade, o saldo de saúde é negativo. */
+     prioridade = true quando a regra (com o limiar escolhido) e o saldo de saúde pela hipótese (com a referência de base)
+     discordam: a regra aceita com saldo negativo, ou recusa com saldo positivo. Só acontece com lim diferente de REF. */
   const REF=40000;
   function avaliar(dC,dE,lim){
     const o={dC,dE,lim,rcei:null,deslocada:dC/REF,bls:dE-dC/REF,prioridade:false};
     if(dC===0&&dE===0){o.tipo='igual';o.ok=null;}
     else if(dE>=0&&dC<=0){o.tipo='dominante';o.ok=true;}
     else if(dE<=0&&dC>=0){o.tipo='dominada';o.ok=false;}
-    else{o.rcei=dC/dE;o.tipo=dE>0?'troca':'economia';o.ok=dE>0?o.rcei<=lim:o.rcei>=lim;o.prioridade=o.ok===true&&o.bls<-1e-12;}
+    else{o.rcei=dC/dE;o.tipo=dE>0?'troca':'economia';o.ok=dE>0?o.rcei<=lim:o.rcei>=lim;o.prioridade=o.ok!==(o.bls>=-1e-12);}
     return o;
   }
 
@@ -1346,7 +1347,7 @@ const Calc=(function(){
     for(const h of G.hist)if(h.c.virada){const d=h.ok?h.c.virada.sim:h.c.virada.nao;praca+=d;fim.push({d,t:h.c.virada.t+(h.ok?' O comitê tinha aprovado.':' O comitê tinha recusado.')});}
     const base=G.B*1e6/K_JOGO;
     const nOk=G.hist.filter(h=>h.ok).length,nNao=G.hist.length-nOk;
-    if(G.incoer===0&&nOk>0&&nNao>0){praca+=8;fim.push({d:8,t:'Desde que a régua apareceu, o comitê foi coerente nas suas escolhas.'});}
+    if(G.incoer===0&&nOk>0&&nNao>0){praca+=8;fim.push({d:8,t:'Nas reuniões com a régua, o comitê não aprovou um pedido mais caro por QALY depois de recusar outro mais barato e de igual prioridade.'});}
     praca=Math.max(0,Math.min(100,praca));
     const gC=nota(S.C,L.minC,L.maxC),gO=nota(S.O,0,L.maxO),gP=praca/10;
     const acima=G.hist.filter(h=>h.ok&&rceiCaso(h.c)!==null&&rceiCaso(h.c)>K_JOGO).length;
@@ -1549,17 +1550,25 @@ const Calc=(function(){
     $('rcDC').textContent=(o.dC>0?'+ ':'')+brl(o.dC);$('rcDE').textContent=sgn(o.dE,fmt2);
     const T={dominante:['Dominante','ok'],dominada:['Dominada','no'],igual:['Sem diferença','eq']};
     if(o.rcei===null){$('rcR').textContent='—';$('rcRS').textContent='não se calcula a razão neste caso';$('rcSelo').innerHTML=badge(T[o.tipo][1],T[o.tipo][0]);}
-    else{$('rcR').textContent=brl(o.rcei);$('rcRS').textContent=o.tipo==='troca'?'por QALY ganho':'economizados por QALY perdido';$('rcSelo').innerHTML=badge(o.ok?'ok':'no',o.tipo==='troca'?(o.ok?'abaixo da referência':'acima da referência'):(o.ok?'economia acima da referência':'economia abaixo da referência'));}
+    else{
+      const alto=lim>Calc.REF,nome=alto?'limite de 3 vezes':'referência'; // a Conitec só chama de referência os R$ 40 mil
+      $('rcR').textContent=brl(o.rcei);$('rcRS').textContent=o.tipo==='troca'?'por QALY ganho':'economizados por QALY perdido';
+      $('rcSelo').innerHTML=o.tipo==='troca'
+        ?(o.prioridade?badge('eq','acima da referência, dentro do limite de 3 vezes'):badge(o.ok?'ok':'no',o.ok?(alto?'abaixo da referência e do limite':'abaixo da referência'):'acima do'+(alto?' limite de 3 vezes':' valor de referência')))
+        :(o.prioridade?badge('eq','economia acima da referência, abaixo do limite de 3 vezes'):badge(o.ok?'ok':'no','economia '+(o.ok?'acima':'abaixo')+(alto?' do '+nome:' da '+nome)));
+    }
     $('rcDesl').textContent=o.dC>0?fmt2.format(o.deslocada):o.dC<0?fmt2.format(-o.deslocada):'0';$('rcDeslT').textContent=o.dC<0?'Saúde que o dinheiro poupado pode render':'Saúde que sai de outro lugar';
     $('rcDeslS').textContent=o.dC>0?'QALYs que o mesmo dinheiro renderia em outro lugar (hipótese)':o.dC<0?'QALYs que o dinheiro poupado pode render em outro lugar (hipótese)':'nenhum dinheiro muda de lugar';
     const v={
       dominante:(o.dE>0&&o.dC<0?'<strong>Mais saúde por menos dinheiro.</strong>':o.dE>0?'<strong>Mais saúde pelo mesmo dinheiro.</strong>':'<strong>A mesma saúde por menos dinheiro.</strong>')+' Não há o que pesar: o tratamento novo não perde em nada e ganha em pelo menos uma coisa. Os economistas chamam isso de tecnologia <em>dominante</em>.',
-      dominada:'<strong>Custa mais (ou o mesmo) e não rende mais saúde.</strong> Também não há o que pesar: a tecnologia nova é <em>dominada</em> pela atual.',
+      dominada:'<strong>Custa mais (ou o mesmo) e não rende mais saúde.</strong> Também não há o que pesar: o tratamento novo é <em>dominado</em> pela atual.',
       igual:'Custo e saúde iguais: a conta não distingue as duas opções.',
-      troca:'Cada QALY a mais custa <strong>'+brl(o.rcei||0)+'</strong>. '+(o.prioridade?'Fica <strong>abaixo</strong> do limite de '+rmil(lim)+' que a Conitec admite em situações específicas, mas acima da referência de '+rmil(Calc.REF)+'. Pela hipótese desta página, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+'). Aceitar, neste caso, é uma <strong>escolha de prioridade</strong> (doença rara, grave, de crianças), não um resultado da conta.'
-        :o.ok?'Fica <strong>abaixo</strong> do valor de referência de '+rmil(lim)+': pela regra, o gasto rende mais saúde ('+fmt2.format(o.dE)+' QALYs) do que o mesmo dinheiro renderia em outro lugar ('+fmt2.format(o.deslocada)+').'
+      troca:'Cada QALY a mais custa <strong>'+brl(o.rcei||0)+'</strong>. '+(o.prioridade?'Fica <strong>abaixo</strong> do limite de '+rmil(lim)+' que a Conitec admite em situações específicas, mas acima da referência de '+rmil(Calc.REF)+'. Pela hipótese desta página, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+'). Aceitar, neste caso, é uma <strong>escolha de prioridade</strong> (por exemplo, por ser uma doença rara ou grave), não um resultado da conta.'
+        :o.ok?'Fica <strong>'+(Math.abs(o.rcei-Calc.REF)<1e-9?'exatamente no':'abaixo do')+'</strong> valor de referência de '+rmil(Calc.REF)+': pela regra, o gasto rende '+(o.bls>1e-9?'mais saúde':'a mesma saúde')+' ('+fmt2.format(o.dE)+' QALYs) '+(o.bls>1e-9?'do que':'que')+' o mesmo dinheiro renderia em outro lugar ('+fmt2.format(o.deslocada)+').'
         :'Fica <strong>acima</strong> '+(lim>Calc.REF?'até do limite de '+rmil(lim)+' admitido em situações específicas':'do valor de referência de '+rmil(lim))+': pela regra, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+').'),
-      economia:'O tratamento novo poupa dinheiro e perde um pouco de saúde: <strong>'+brl(o.rcei||0)+'</strong> economizados para cada QALY perdido. '+(o.ok?'Como isso é mais que o valor de referência, a regra diz que o dinheiro poupado pode render mais saúde em outro lugar do que a perdida aqui. É o caso mais desconfortável: a conta aceita, e muita gente não.':'Como isso é menos que o valor de referência, a economia não compensa a saúde perdida.')
+      economia:'O tratamento novo poupa dinheiro e perde um pouco de saúde: <strong>'+brl(o.rcei||0)+'</strong> economizados para cada QALY perdido. '+(o.prioridade?'Isso é mais que a referência de '+rmil(Calc.REF)+' e menos que o limite de '+rmil(lim)+'. Pela hipótese desta página, o dinheiro poupado renderia mais saúde em outro lugar ('+fmt2.format(-o.deslocada)+' QALYs) do que a perdida aqui ('+fmt2.format(-o.dE)+'). Recusar a troca, neste caso, é uma <strong>escolha de prioridade</strong> (proteger mais a saúde de quem tem uma doença rara ou grave, por exemplo), não um resultado da conta.'
+        :o.ok?'Como isso é mais que '+(lim>Calc.REF?'o limite de '+rmil(lim):'o valor de referência de '+rmil(lim))+', a regra diz que o dinheiro poupado pode render mais saúde em outro lugar do que a perdida aqui. É o caso mais desconfortável: a conta aceita, e muita gente não.'
+        :'Como isso é menos que o valor de referência de '+rmil(Calc.REF)+', a economia não compensa a saúde perdida.')
     }[o.tipo];
     $('rcVerd').innerHTML=v+(o.tipo==='troca'||o.tipo==='economia'?' O valor de referência orienta; a decisão final considera outros critérios.':'');
     $('rcPlane').innerHTML=rcPlane(o);
@@ -1693,7 +1702,7 @@ const Calc=(function(){
   function renderReuniao(){
     const P=Calc.pautaAtual(G),sr=Calc.semRegua(G),L=$('gameLeft');
     L.innerHTML='<div class="yr"><h2 class="y">Reunião '+(G.i+1)+' de '+G.pautas.length+'</h2>'+(G.i===0?'<span class="of">partida nº '+cfg.seed+' · '+DIFN[cfg.dif]+'</span>':'')+'</div>'+
-      coach(sr)+(P.casos.every(c=>Calc.semDinheiro(G,c))?'<div class="coach"><p style="margin:0">O orçamento acabou: nenhum pedido desta reunião cabe. É o custo de oportunidade aparecendo. Leia os pedidos e encerre a reunião.</p></div>':'')+'<h3 style="font-size:1.3rem">'+esc(P.tema)+'</h3><p>'+esc(P.intro)+'</p>'+
+      coach(sr)+(P.casos.every(c=>Calc.semDinheiro(G,c))?'<div class="coach"><p style="margin:0">O que resta do orçamento não paga nenhum pedido desta reunião. É o custo de oportunidade aparecendo: o dinheiro já foi para outras escolhas. Leia os pedidos e encerre a reunião.</p></div>':'')+'<h3 style="font-size:1.3rem">'+esc(P.tema)+'</h3><p>'+esc(P.intro)+'</p>'+
       '<div class="casos">'+P.casos.map((c,k)=>casoHtml(c,k,sr)).join('')+'</div>'+
       '<div class="fecha"><p id="gSobra" class="sobra"></p><p id="gAviso" class="hint" role="status"></p><button class="btn" id="gFechar" type="button">Encerrar a reunião</button></div>';
     L.querySelectorAll('.voto input').forEach(i=>i.addEventListener('change',updSobra));

@@ -55,7 +55,7 @@ O produto foi escrito com apoio de inteligência artificial generativa (Claude, 
 A validação teve duas partes, e é importante dizer o que cada uma é.
 
 **Testes automáticos (verificação objetiva).**
-- Cálculos: 149 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
+- Cálculos: 166 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
 - Jogo: consistência dos dados e equilíbrio, com 32.400 partidas simuladas por seis estratégias fixas; nenhuma estratégia simples agrada aos três jurados.
 - Página real: nenhum erro no console, interativos com os valores esperados, links internos, navegação por teclado, três partidas completas, acessibilidade (axe-core, sem violação séria ou crítica, nos temas claro e escuro) e capturas de tela em 375 px e 1280 px.
 

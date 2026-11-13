@@ -97,7 +97,7 @@ Não há nota única (DECISOES D12).
 
 No fim (`resultado`): virada do caso com campanha paga pelo fabricante (`−12` se aprovou, `+12` se recusou); `+8` se não houve nenhuma incoerência e houve ao menos uma aprovação e uma recusa. Nota = medidor / 10. Na rodada 1 havia uma penalidade de `−10` quando o Contador ficava abaixo do que a rede renderia ("as filas cresceram"); foi retirada, porque fazia a Praça julgar pelo critério do Contador e tratava como fato a hipótese de que a rede rende 1 QALY por R$ 40 mil.
 
-A regra de incoerência aceita a exceção justificada: aprovar um caso mais caro por QALY não conta como incoerência se ele tem prioridade maior que o recusado. É a versão de jogo da ideia de "modificador" (gravidade, raridade).
+A reunião jogada sem a régua (tutorial) fica fora da regra de coerência, nos dois sentidos: o jogador não via o custo por QALY. A regra de incoerência aceita a exceção justificada: aprovar um caso mais caro por QALY não conta como incoerência se ele tem prioridade maior que o recusado. É a versão de jogo da ideia de "modificador" (gravidade, raridade).
 
 ### Por que a Ouvidora não usa pesos sobre os QALYs
 

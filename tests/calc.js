@@ -58,6 +58,12 @@ igual(C.ttoPeso(7).fim,true);igual(C.ttoPeso(3).fim,false);perto(C.ttoPeso(7).ci
   o=C.avaliar(80000,1,120000);igual(o.ok,true);igual(o.prioridade,true);perto(o.deslocada,2);perto(o.bls,-1);
   o=C.avaliar(80000,1,40000);igual(o.ok,false);igual(o.prioridade,false);perto(o.deslocada,2);
   o=C.avaliar(20000,1,120000);igual(o.ok,true);igual(o.prioridade,false);perto(o.deslocada,0.5);
+  // quadrante de economia com o limite de 3 vezes: poupar R$ 80 mil por QALY perdido é recusado pela regra,
+  // embora o saldo pela hipótese seja positivo (2 QALYs rendidos contra 1 perdido): escolha de prioridade
+  o=C.avaliar(-80000,-1,120000);igual(o.tipo,'economia');igual(o.ok,false);igual(o.prioridade,true);perto(o.bls,1);perto(o.deslocada,-2);
+  o=C.avaliar(-80000,-1,40000);igual(o.ok,true);igual(o.prioridade,false);
+  o=C.avaliar(-20000,-1,120000);igual(o.ok,false);igual(o.prioridade,false);
+  o=C.avaliar(-200000,-1,120000);igual(o.ok,true);igual(o.prioridade,false);
   o=C.avaliar(40000,1,40000);igual(o.ok,true);perto(o.bls,0);                // exatamente no limiar
   o=C.avaliar(-600,0.2,40000);igual(o.tipo,'dominante');igual(o.ok,true);igual(o.rcei,null);
   o=C.avaliar(0,0.2,40000);igual(o.tipo,'dominante');
@@ -70,14 +76,15 @@ igual(C.ttoPeso(7).fim,true);igual(C.ttoPeso(3).fim,false);perto(C.ttoPeso(7).ci
   // o benefício líquido em saúde e a RCEI concordam no veredito, nos dois quadrantes em que há troca
   for(const dC of [-90000,-5000,5000,39000,41000,500000])for(const dE of [-2,-0.1,0.1,1,3]){const x=C.avaliar(dC,dE,40000);if(x.rcei!==null){n++;assert.strictEqual(x.ok,x.bls>=-1e-12,'BLS e RCEI discordam em '+dC+', '+dE);}}
   // com o limite de 3 vezes, ok e BLS só podem discordar quando há escolha de prioridade
-  for(const dC of [5000,39000,41000,100000,130000])for(const dE of [0.5,1,3]){const x=C.avaliar(dC,dE,120000);n++;assert.strictEqual(x.ok&&!x.prioridade,x.bls>=-1e-12&&x.ok,'prioridade mal marcada em '+dC+', '+dE);}
+  for(const dC of [5000,39000,41000,100000,130000])for(const dE of [0.5,1,3]){const x=C.avaliar(dC,dE,120000);n++;assert.strictEqual(x.prioridade,x.ok!==(x.bls>=-1e-12),'prioridade mal marcada em '+dC+', '+dE);}
+  for(const lim of [40000])for(const dC of [-90000,5000,41000])for(const dE of [-2,1]){const x=C.avaliar(dC,dE,lim);if(x.rcei!==null){n++;assert.strictEqual(x.prioridade,false,'com a referência de base não há escolha de prioridade');}}
 }
 // ---- os números escritos no texto do site batem com o código
 { const {html}=require('./carregar.js');const tem=(t,msg)=>{n++;assert.ok(html.includes(t),'o texto do site deveria conter: '+(msg||t));};
   const br=x=>x.toFixed(3).replace('.',',');
   for(const d of C.TARIFA.d)tem('<td class="num">'+br(d[1])+'</td><td class="num">'+br(d[2])+'</td>','linha da tabela de coeficientes '+br(d[1])+' / '+br(d[2]));
   tem('perde 0,149 de saída');tem('vale −0,177');tem('10 ficaram abaixo de zero');tem('conta como 0,61 hoje');tem('como 0,23');
-  tem('26.000 − 6.000 = <b>R$ 20.000</b>');tem('<strong>R$ 40 mil por QALY</strong>');tem('<strong>R$ 35 mil por ano de vida ganho</strong>');tem('5% ao ano');tem('(R$ 120 mil por QALY)');tem('9.148 pessoas');tem('No caso brasileiro, 9.148');
+  tem('26.000 − 6.000 = <b>R$ 20.000</b>');tem('<strong>R$ 40 mil por QALY</strong>');tem('<strong>R$ 35 mil por ano de vida ganho</strong>');tem('5% ao ano');tem('(R$ 120 mil por QALY)');tem('dividido por R$ 40 mil, sempre');tem('quatro situações');tem('que não houve pedido de inclusão ou que a análise demorou demais');tem('9.148 pessoas');tem('No caso brasileiro, 9.148');
   igual(C.K_JOGO,40000);
   // caso da vacina no jogo: 7.000 QALYs em 30 anos, com 5% ao ano = 1.620
   perto(Math.round(7000*C.fatorDesconto(31,0.05)/10)*10,1620,0,'7.000 × 1,05^-30');

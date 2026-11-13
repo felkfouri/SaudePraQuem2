@@ -80,3 +80,9 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D29. Custo de oportunidade sempre pela referência de base.** No interativo de custo por QALY, a saúde deslocada usa R$ 40 mil mesmo quando o limiar escolhido é R$ 120 mil (parecer B, rodada 3). O limiar maior é escolha de prioridade, e a tela passou a dizer isso.
 
 **D30. Juízes na rodada 4.** Os quatro voltam, porque o site mudou depois dos pareceres de C e D.
+
+## Rodada 4 — triagem (13 nov. 2026)
+
+**D31. "Referência" e "limite".** Em todo o interativo de custo por QALY, "valor de referência" é só R$ 40 mil; R$ 120 mil é "limite de 3 vezes". A discordância entre a regra (com o limiar escolhido) e o saldo pela hipótese (com a referência de base) é apresentada como escolha de prioridade, nos dois sentidos (pareceres B e D, rodada 4).
+
+**D32. Rodada 5 é a última.** Pelo critério de saída, se os quatro não aprovarem na rodada 5, o trabalho para e o que ficou pendente vai para o relatório.
