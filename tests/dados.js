@@ -37,5 +37,9 @@ if(!todas.some(p=>p.casos.some(c=>c.virada)))bad('PAUTAS','falta o caso com vira
 // os números citados nos textos dos casos batem com cost e q
 const chk=(id,esperado)=>{const c=todas.flatMap(p=>p.casos).find(x=>x.id===id),r=C.rceiCaso(c);if(Math.abs(r-esperado)>1)bad(id,'custo por QALY '+r+', o texto diz '+esperado);};
 chk('t3',200000);chk('p6a',400000);chk('p7a',250000);
+// a documentação do jogo traz os mesmos orçamentos do código
+{const fs=require('fs'),path=require('path'),doc=fs.readFileSync(path.join(__dirname,'..','docs','JOGO.md'),'utf8');
+ for(const n of [3,4,6]){const o=C.ORC[n],t=o.facil+'/'+o.normal+'/'+o.dificil;if(!doc.includes(t))bad('JOGO.md','orçamento de '+n+' reuniões no código ('+t+') não está na documentação');}
+ if(C.TETO!==0.5)bad('TETO','a documentação e o texto do jogo dizem "metade do orçamento"');}
 if(P.length){console.error(P.join('\n'));process.exit(1);}
 console.log('dados.js: '+todas.length+' pautas, '+ids.size+' casos, tudo consistente.');

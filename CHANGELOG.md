@@ -1,5 +1,14 @@
 # Registro de mudanças
 
+## Rodada 2 (13 nov. 2026)
+
+Vereditos: B e D aprovaram; A e C reprovaram por um item importante cada. Triagem em `review/rodada-2/TRIAGEM.md`.
+
+- Defesa da limitação 3 sem argumento de autoridade; "consulta pública" e "deslocar" explicados; glossário ampliado.
+- Jogo: a reunião sem a régua não conta para a regra de coerência; limites das notas calculados reunião a reunião; rótulos e textos da ata corrigidos.
+- Interativos: veredito "dominante" correto quando a saúde é igual; campo de QALYs lê o ponto como decimal; exemplos escritos à brasileira; margem do gráfico no celular.
+- Documentação: aplicabilidade no memorial; fontes de F116, F119 e F121 corrigidas; teste que confere os orçamentos do jogo contra `JOGO.md`.
+
 ## Rodada 1, correções após a bancada (13 nov. 2026)
 
 Vereditos da rodada 1: A, B, C e D reprovaram (1 bloqueante, 28 importantes no total). Triagem em `review/rodada-1/TRIAGEM.md`.

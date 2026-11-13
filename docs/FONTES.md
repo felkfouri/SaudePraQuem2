@@ -385,17 +385,17 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 
 **F115.** Relatório da Conitec de 2022, Quadro 1: "Outros desfechos relevantes, preferencialmente desfechos relatados como importantes pelo paciente, devem ser descritos na análise das evidências". — *Fonte:* R1 (p. PDF 52). — *Status:* verificada (reconferida pelo Juiz D na rodada 1).
 
-**F116.** Aposta padrão (standard gamble): a pessoa escolhe entre ficar no estado de saúde com certeza e uma aposta com chance p de saúde plena e 1 − p de morte; o peso é o p em que ela fica indiferente. — *Fonte:* R3 (glossário), localizada pelo Juiz D. — *Status:* verificada pelo Juiz D; o exemplo "20% de risco → peso 0,8" é aritmética sobre a definição.
+**F116.** Aposta padrão (standard gamble): a pessoa escolhe entre ficar no estado de saúde com certeza e uma aposta com chance p de saúde plena e 1 − p de morte; o peso é o p em que ela fica indiferente. — *Fonte:* artigo aberto indicado pelo Juiz D na rodada 2 (PMID 20920309); a diretriz R3 define o método no glossário, sem a fórmula. — *Status:* verificada pelo Juiz D; o exemplo "20% de risco → peso 0,8" é aritmética sobre a definição.
 
 **F117.** O EQ-5D está entre os "instrumentos mais utilizados no mundo", segundo a diretriz de Qualidade de Vida do Ministério da Saúde. — *Fonte:* R3, localizada pelo Juiz D. — *Status:* verificada pelo Juiz D.
 
 **F118.** As recomendações preliminares da Conitec são submetidas a consulta pública. — *Fonte:* R11 (Relatório 793, p. 4), localizada pelo Juiz D. — *Status:* verificada pelo Juiz D. O prazo em dias não é afirmado no site.
 
-**F119.** WELLBY: Frijters P, Clark AE, Krekel C, Layard R. A happy choice: wellbeing as the goal of government. Behav Public Policy. 2020;4(2):126-65. doi:10.1017/bpp.2019.39. Dados bibliográficos conferidos no Crossref (título, quatro autores, volume, número, páginas). A definição (um ponto de satisfação com a vida, de 0 a 10, por um ano) vem de fontes secundárias concordantes. — *Status:* referência verificada; definição parcial. O site não dá o valor em libras.
+**F119.** WELLBY: Frijters P, Clark AE, Krekel C, Layard R. A happy choice: wellbeing as the goal of government. Behav Public Policy. 2020;4(2):126-65. doi:10.1017/bpp.2019.39. Dados bibliográficos conferidos no Crossref (título, quatro autores, volume, número, páginas). A definição (um ponto de satisfação com a vida, de 0 a 10, por um ano) foi confirmada pelo Juiz D na rodada 2 em dois artigos indexados (PMID 40566377 e 39352886); o artigo de Frijters não foi lido na íntegra. — *Status:* referência verificada; definição verificada em fontes secundárias indexadas. O site não dá o valor em libras.
 
 **F120.** Em revisão de análises de custo-efetividade em oncologia, subgrupos por idade, doença ou deficiência foram raros. — *Fonte:* R54 (Raymakers et al., 2025; resumo no PubMed). — *Status:* verificada. É o mesmo F81; o site cita a referência.
 
-**F121.** "A saúde é direito de todos e dever do Estado" (Constituição de 1988, art. 196), e há fornecimento de tratamentos por decisão judicial no Brasil. — *Fonte:* R9. — *Status:* parcial (o portal da legislação não abriu; a judicialização é citada como fato geral, sem número).
+**F121.** "A saúde é direito de todos e dever do Estado" (Constituição de 1988, art. 196), e há fornecimento de tratamentos por decisão judicial no Brasil. — *Fonte:* R9; páginas oficiais conferidas pelo Juiz D na rodada 2: https://www.gov.br/saude/pt-br/sus (texto do art. 196) e https://www.gov.br/conitec/pt-br/judicializacao (fornecimento por decisão judicial e critérios do STF que consideram a avaliação da Conitec). — *Status:* verificada em páginas oficiais do governo; o texto da Constituição no portal da legislação não abriu.
 
 ## Parte B — Referências
 
@@ -547,6 +547,8 @@ Marcas: **[PubMed]** registro lido; **[Crossref]** metadados no Crossref; **[abe
 ---
 
 ## Parte C — O que não foi possível verificar
+
+> Atualização da rodada 2: os itens 4 (aposta padrão), 7 (Constituição e leis brasileiras, no que toca ao art. 196) e 15 (Longworth, quanto ao desenvolvimento de itens extras) foram superados pelos fatos F116, F121 e F84; o site afirma só o que esses fatos sustentam. Afirmações qualitativas sem fato próprio, aceitas como conhecimento geral e sem número: gastos da família fora da perspectiva do SUS e impacto orçamentário (conferidas pelo Juiz D na diretriz e na Portaria 8.817); consulta pública pela internet; a crítica de movimentos de pessoas com deficiência; o uso de outras medidas ao lado do QALY.
 
 O site não deve afirmar como fato:
 
