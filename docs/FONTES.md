@@ -17,6 +17,8 @@ Catálogo único das afirmações factuais do site e de suas fontes. Consolida q
 
 ## Mapa — onde cada afirmação do site se apoia
 
+> Atualizado na rodada 1. Afirmações acrescentadas depois da tabela abaixo: orçamento como decisão política e direito à saúde (#problema, #lim-8) → F121, parcial; exemplo numérico da aposta padrão (#peso) → F116; "outros desfechos… importantes pelo paciente" (#lim-4) → F115; consulta pública (#vantagens, #alternativas) → F118; WELLBY (#alternativas) → F119; subgrupos em oncologia (#lim-3) → F120; EQ-5D "um dos mais usados" (#peso) → F117; ultrarrara = até 1 em 50 mil (#decisao) → F41; perspectiva do SUS e impacto orçamentário (#decisao) → F55 (perspectiva) e R4 (a portaria de 2025 prevê um valor de referência de impacto orçamentário). Linhas da tabela que apontavam divergências já corrigidas foram mantidas como registro.
+
 Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos do jogo (TUTORIAL, PAUTAS, BREVES) feita em 13 nov. 2026. Cada linha é uma afirmação factual do site; exemplos declarados ilustrativos e contas aritméticas ficaram de fora. "—" na coluna Fato(s) quer dizer que não há fato correspondente na Parte A. Quando o status do fato é misto, vale aqui o da parte que o site usa. "Divergência" marca diferença de número, redação ou sentido entre o site e o fato.
 
 | Seção do site (âncora) | Afirmação (resumida, com o número) | Fato(s) | Status |
@@ -378,6 +380,22 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 **F114.** Catarata bilateral no mesmo dia: não inferior e € 403 mais barata para a sociedade (é "não inferior e mais barata", não dominância estrita). Custo por QALY de operar versus não operar: não localizado. Oficina da Conitec (2021) lista como "Dominante" ranibizumabe, vacina de hepatite A e pegvisomanto. — *Fonte:* R114 (resumo); R119. — *Status:* verificada (R114); parcial (R119).
 
 ---
+
+### 21. Acréscimos da rodada 1 (13 nov. 2026)
+
+**F115.** Relatório da Conitec de 2022, Quadro 1: "Outros desfechos relevantes, preferencialmente desfechos relatados como importantes pelo paciente, devem ser descritos na análise das evidências". — *Fonte:* R1 (p. PDF 52). — *Status:* verificada (reconferida pelo Juiz D na rodada 1).
+
+**F116.** Aposta padrão (standard gamble): a pessoa escolhe entre ficar no estado de saúde com certeza e uma aposta com chance p de saúde plena e 1 − p de morte; o peso é o p em que ela fica indiferente. — *Fonte:* R3 (glossário), localizada pelo Juiz D. — *Status:* verificada pelo Juiz D; o exemplo "20% de risco → peso 0,8" é aritmética sobre a definição.
+
+**F117.** O EQ-5D está entre os "instrumentos mais utilizados no mundo", segundo a diretriz de Qualidade de Vida do Ministério da Saúde. — *Fonte:* R3, localizada pelo Juiz D. — *Status:* verificada pelo Juiz D.
+
+**F118.** As recomendações preliminares da Conitec são submetidas a consulta pública. — *Fonte:* R11 (Relatório 793, p. 4), localizada pelo Juiz D. — *Status:* verificada pelo Juiz D. O prazo em dias não é afirmado no site.
+
+**F119.** WELLBY: Frijters P, Clark AE, Krekel C, Layard R. A happy choice: wellbeing as the goal of government. Behav Public Policy. 2020;4(2):126-65. doi:10.1017/bpp.2019.39. Dados bibliográficos conferidos no Crossref (título, quatro autores, volume, número, páginas). A definição (um ponto de satisfação com a vida, de 0 a 10, por um ano) vem de fontes secundárias concordantes. — *Status:* referência verificada; definição parcial. O site não dá o valor em libras.
+
+**F120.** Em revisão de análises de custo-efetividade em oncologia, subgrupos por idade, doença ou deficiência foram raros. — *Fonte:* R54 (Raymakers et al., 2025; resumo no PubMed). — *Status:* verificada. É o mesmo F81; o site cita a referência.
+
+**F121.** "A saúde é direito de todos e dever do Estado" (Constituição de 1988, art. 196), e há fornecimento de tratamentos por decisão judicial no Brasil. — *Fonte:* R9. — *Status:* parcial (o portal da legislação não abriu; a judicialização é citada como fato geral, sem número).
 
 ## Parte B — Referências
 

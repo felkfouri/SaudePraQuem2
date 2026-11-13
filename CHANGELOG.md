@@ -1,5 +1,16 @@
 # Registro de mudanças
 
+## Rodada 1, correções após a bancada (13 nov. 2026)
+
+Vereditos da rodada 1: A, B, C e D reprovaram (1 bloqueante, 28 importantes no total). Triagem em `review/rodada-1/TRIAGEM.md`.
+
+- **Jogo:** partida padrão de 3 reuniões (cerca de 10 minutos; o portão conta as palavras); teto de gasto por reunião; pedido que não cabe aparece marcado; painel final coerente com o jornal; termos explicados; "hipótese do jogo" no texto visível; penalidade da fila retirada da Praça; depoimentos reescritos para dar argumento aos dois lados.
+- **Cálculo:** mesma saúde e mais barato é dominante; com desconto, os anos vividos não são mais descontados na frase; vacina do jogo com 1.620 QALYs.
+- **Guia:** ressalva em cada vantagem; limitações 2, 3, 6 e 8 reescritas com a crítica na versão forte; fecho e perguntas finais neutros; orçamento como decisão política; qualificadores das situações do limiar de 3 vezes; perspectiva do SUS, incerteza e impacto orçamentário; termos explicados; "sugere" em vez de "pede".
+- **Celular:** gráficos com letra legível; instrução junto do gráfico; campos que aceitam "26.000".
+- **Fontes e testes:** fatos F115 a F121; referências de Raymakers (2025) e Frijters (2020); os números escritos no texto são conferidos contra o código; capturas conferem a posição da seção; fontes externas não bloqueiam a página.
+- **Em aberto:** autoria completa (depende do autor).
+
 ## Rodada 1 (13 nov. 2026)
 
 Construção do site conforme `docs/PLANO.md`.

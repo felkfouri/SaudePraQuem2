@@ -13,6 +13,7 @@ Dez colunas de um ano. Para cada cenário (sem e com o tratamento): `q[t]`, a qu
 | Fator de desconto | `d(t) = 1 / (1 + r)^(t − 1)` | `fatorDesconto(t, r)` |
 | QALYs de um cenário | `Σ q[t] · d(t)`, para `t = 1..vive` | `qalyPerfil(q, vive, r)` |
 | Anos de vida | `Σ d(t)`, para `t = 1..vive` | `anosVida(vive, r)` |
+| Anos vividos a mais (o que a tela mostra) | `vive_com − vive_sem`, sempre sem desconto | `dvRender` |
 | Ganhos | diferença entre os cenários | `compararVidas(sem, com, r)` |
 
 - `r = 0` por padrão; a caixa "Aplicar desconto" usa `r = 0,05`, a taxa da Diretriz de Avaliação Econômica do Ministério da Saúde (3ª ed., 2026; FONTES F53).
@@ -38,6 +39,8 @@ Tarifa brasileira do EQ-5D-3L de Santos et al. (2016), método TTO (FONTES F17 a
 
 Não há termo adicional (N3) nem interações. Os coeficientes foram conferidos no arquivo de cálculo publicado pela EuroQol ("Brazil 3L (Santos TTO 2016)") e coincidem, nos 243 estados, com dois pacotes estatísticos independentes. O artigo original é de acesso fechado e não foi aberto.
 
+O valor do pior estado sai −0,177 pelo cálculo oficial; parte da literatura cita −0,176, diferença de arredondamento que não foi possível resolver sem o artigo original (DECISOES D17).
+
 Esperados: 11111 = 1; 21111 = 0,731; 11211 = 0,754; 11121 = 0,787; 11113 = 0,756; 11112 = 0,801 (segundo melhor); 22222 = 0,408; 21232 = 1 − 0,149 − 0,120 − 0,097 − 0,168 − 0,050 = 0,416; 33333 = −0,177 (mínimo); 10 estados abaixo de zero.
 
 O texto das perguntas e respostas no site é próprio, não o do instrumento oficial (ver DECISOES D10).
@@ -62,7 +65,7 @@ Estados oferecidos e seu valor na tarifa: leve 11121 (0,787), moderado 21222 (0,
 Por paciente: custo e QALYs do tratamento atual e do novo; `lim`, o valor de referência. Função `avaliar(dC, dE, lim)`.
 
 - `ΔC = C_novo − C_atual`; `ΔE = E_novo − E_atual`.
-- `ΔE > 0` e `ΔC ≤ 0`: **dominante**. `ΔE ≤ 0` e `ΔC ≥ 0` (não ambos zero): **dominada**. Nos dois casos não se calcula a razão.
+- `ΔE ≥ 0` e `ΔC ≤ 0` (não ambos zero): **dominante** (inclui "mesma saúde, mais barato"). `ΔE ≤ 0` e `ΔC ≥ 0` (não ambos zero): **dominada**. Nos dois casos não se calcula a razão.
 - `ΔE > 0` e `ΔC > 0`: `RCEI = ΔC / ΔE`; aceita pela regra se `RCEI ≤ lim`.
 - `ΔE < 0` e `ΔC < 0`: `RCEI = ΔC / ΔE` é a economia por QALY perdido; aceita pela regra se `RCEI ≥ lim`.
 - Saúde deslocada: `D = ΔC / lim`. Benefício líquido em saúde: `BLS = ΔE − ΔC / lim`. Nos dois quadrantes com troca, `BLS ≥ 0` equivale ao veredito da RCEI (o teste confere).
@@ -71,7 +74,9 @@ Por paciente: custo e QALYs do tratamento atual e do novo; `lim`, o valor de ref
 
 **Hipótese didática:** `D` trata o valor de referência como se fosse o custo de oportunidade do sistema (quanto custa produzir 1 QALY na margem). O valor da Conitec é uma referência de política; estimativas pelo lado da oferta para o Brasil são mais baixas (FONTES F60 a F62). O site diz isso no próprio interativo.
 
-Esperados: ΔC 60.000 e ΔE 2 → 30.000 (D = 1,5; BLS = 0,5). Prótese: 20.000 / 1 = 20.000. Câncer: 60.000 / 0,25 = 240.000. Rara: 2.400.000 / 8 = 300.000 (acima também de 120.000). Economia: −40.000 / −0,05 = 800.000 por QALY perdido.
+Esperados: ΔC 60.000 e ΔE 2 → 30.000 (D = 1,5; BLS = 0,5). Prótese: 20.000 / 1 = 20.000. Câncer: 60.000 / 0,25 = 240.000. Rara: 2.400.000 / 8 = 300.000 (acima também de 120.000). Economia: −40.000 / −0,05 = 800.000 por QALY perdido. Mesma saúde e R$ 1.000 a menos: dominante, BLS = +0,025.
+
+Os campos aceitam números escritos à brasileira ("26.000", "1,05"); valor que não é número gera aviso e esconde o resultado.
 
 ## 5. Jogo Plenário
 
@@ -81,5 +86,8 @@ Regras e dados em [`JOGO.md`](JOGO.md). Em resumo:
 - **Contador:** `Σ ganho real dos aprovados + (orçamento − gasto) × 10⁶ / 40.000`. Nota de 0 a 10 por interpolação entre o pior e o melhor resultado possíveis na partida, achados por enumeração de todas as combinações que cabem no orçamento (`limites`).
 - **Ouvidora:** pontos dos pedidos atendidos (2 para prioridade alta, 1 para alguma, 0 para comum), menos 2 por episódio de tratamento desigual. Nota = 10 × pontos / máximo possível.
 - **Praça:** medidor de 0 a 100, começa em 60; nota = medidor / 10.
+- Caso da vacina (`p9a`): 7.000 QALYs daqui a 30 anos, com 5% ao ano, = 7.000 × 0,231377 ≈ 1.620.
+
+`tests/calc.js` também confere que os números escritos no texto do site (coeficientes da tabela, 0,61, 0,23, R$ 40 mil, R$ 35 mil, 5%) batem com o código.
 
 Todos os números do jogo são ilustrativos.

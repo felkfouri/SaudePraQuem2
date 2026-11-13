@@ -56,3 +56,17 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D19. Playwright.** O ambiente já traz Playwright e Chromium; o `npm install` do projeto baixa outra versão, sem navegador. A cópia local foi removida de `node_modules` para o teste usar a instalada. Em outra máquina: `npm install` e `npx playwright install chromium`, ou `CHROMIUM_PATH`. O axe-core foi instalado sem problema.
 
 **D20. Como citar e autoria.** O site traz só "Felipe", como no original. O sobrenome e o endereço público definitivo (GitHub Pages) dependem do autor; a citação aponta para o repositório, que existe.
+
+## Rodada 1 — triagem (13 nov. 2026)
+
+**D21. Conflito A × C: jogo curto × os dois lados em cada caso.** A Juíza A reprovou o jogo por não caber em 10 minutos; o Juiz C quer que cada caso mostre o que a régua viu e o que não viu. Pela ordem de prioridade (compreensão do leigo acima do equilíbrio), a partida padrão passou a 3 reuniões e a ata mostra um parágrafo por caso: "fora da conta", quando há, ou "o que a régua mostrou". A revisão completa, com os dois lados e a inspiração de cada caso, fica recolhida na tela final. O equilíbrio é preservado pelo sorteio (todo jogo tem casos dos dois tipos) e pelo teste de equilíbrio.
+
+**D22. Parecer rejeitado (B4).** O Juiz B considerou sem lastro a frase sobre os desfechos importantes para o paciente. O Juiz D encontrou o trecho literal no Quadro 1 do relatório da Conitec. A frase ficou, com redação mais próxima do original; o erro estava no Mapa de `FONTES.md`.
+
+**D23. Teto por reunião e partida de 3 reuniões.** Duas regras novas no jogo, não previstas no plano, para resolver problemas apontados pela Juíza A (duração e falta de escolha no fim). Detalhe em `JOGO.md`.
+
+**D24. A Praça deixou de punir pelo critério do Contador.** A penalidade "as filas cresceram" foi retirada (pareceres B5 e C8).
+
+**D25. Autoria (B6) fica em aberto.** Nome completo, programa, docente ou orientador, contato e endereço público dependem do autor.
+
+**D26. Dominância estendida e outros instrumentos (SF-6D, HUI) não entram.** Sugeridos pela banca como polimento; aumentariam o texto para leigos. Ficam em `IDEIAS.md`.

@@ -10,9 +10,9 @@ O jogador é membro de um comitê nacional de incorporação de tecnologias. A i
 
 | Opção | Valores | Efeito |
 |---|---|---|
-| Duração | 6 reuniões (padrão) ou 4 | número de pautas |
-| Dificuldade | fácil, normal, difícil | orçamento de R$ 700, 600 ou 500 milhões (`ORC`); no fácil o cartão traz selo e dica; no difícil não traz o custo por QALY |
-| Tutorial | ligado (padrão) | a primeira reunião é a pauta fixa `TUTORIAL`, sem os QALYs, e as duas primeiras têm dicas |
+| Duração | 3 reuniões (padrão, cerca de 10 minutos), 4 ou 6 | número de pautas |
+| Dificuldade | fácil, normal, difícil | orçamento (`ORC`, em R$ milhões): 480/420/400 com 3 reuniões, 560/480/440 com 4, 700/600/500 com 6; no fácil o cartão traz selo e dica; no difícil não traz o custo por QALY |
+| Tutorial | ligado (padrão) | a primeira reunião é a pauta fixa `TUTORIAL`, sem os QALYs, com uma dica; a ata dela mostra os três pedidos na escala comum |
 | Código da partida | 1 a 9999 | semente |
 
 ### Semente e reprodutibilidade
@@ -20,6 +20,10 @@ O jogador é membro de um comitê nacional de incorporação de tecnologias. A i
 `rng(seed)` é um gerador mulberry32 (o mesmo do Cobertor Curto). A partida usa `rng(código × 7919 + reuniões)`. Em `novaPartida`, nesta ordem: sorteia o **ganho real** de todos os casos do baralho (para todos, sempre, na ordem do código) e depois embaralha as pautas. Nenhum sorteio depende das escolhas do jogador: com o mesmo código, duração e tutorial, a partida é idêntica. O jornal usa um gerador próprio (`G.jr`) para data, manchete, cartas e breves.
 
 Acrescentar ou reordenar pautas ou casos muda o que cada código produz.
+
+**Garantia de conteúdo:** toda partida mostra pelo menos duas limitações diferentes. Se o sorteio não der, a última pauta é trocada pela seguinte da ordem sorteada (`novaPartida`); `tests/equilibrio.js` confere.
+
+**Teto por reunião (`TETO`):** numa reunião, o comitê pode comprometer no máximo metade do orçamento do mandato (ou o que resta, se for menos). Sem o teto, quem aprovava tudo na primeira reunião passava o resto da partida sem escolha. Um pedido que sozinho já não cabe aparece marcado "não cabe nesta reunião"; a recusa dele pesa metade na Praça e não conta para a regra de coerência.
 
 ## Ciclo
 
@@ -58,7 +62,7 @@ Cada pauta (`PAUTAS`, mais a `TUTORIAL`) tem tema, introdução e dois ou três 
 
 | Pauta | Casos | O que está em jogo |
 |---|---|---|
-| Tutorial: três pedidos, uma verba | proteção de bebês (R$ 20 mil/QALY), próteses de quadril (20 mil), remédio de câncer (200 mil) | **Vantagem:** sem a régua, não há como comparar; ganha a história mais forte |
+| Tutorial: três pedidos, uma verba | proteção de bebês (R$ 110 milhões, 20 mil/QALY), próteses de quadril (90 milhões, 20 mil), remédio de câncer (150 milhões, 200 mil); o teto deixa aprovar no máximo dois | **Vantagem:** sem a régua, não há como comparar; ganha a história mais forte |
 | Mesma conta, pessoas diferentes | dois programas idênticos em custo e QALYs | Limitação 1 (distribuição) |
 | Quantos anos pela frente | válvula para maiores de 85 (80 mil); reabilitação pós-AVC (35 mil) | Limitação 2 (idade) |
 | O mesmo remédio, duas contas | mesmo remédio, 2 anos a mais: 60 mil/QALY em quem tem peso 0,5; 35 mil em quem tem 0,85 | Limitação 3 (deficiência) |
@@ -86,12 +90,12 @@ Não há nota única (DECISOES D12).
 | Evento | Efeito |
 |---|---|
 | Aprovar caso com comoção `c` | `+4c` |
-| Recusar caso com comoção `c` | `−6c` |
+| Recusar caso com comoção `c` | `−6c` (`−3c` se o pedido não cabia no teto) |
 | Aprovar caso dominante | `+3` |
 | Incoerência: aprovar um caso acima da referência depois de recusar outro com custo por QALY menor e prioridade igual ou maior | `−5` |
 | Aprovar para um grupo e negar ao "irmão" | `−10` |
 
-No fim (`resultado`): virada do caso com patrocínio escondido (`−12` se aprovou, `+12` se recusou); `−10` se o Contador ficou abaixo do que a rede renderia sozinha ("as filas cresceram"); `+8` se não houve nenhuma incoerência e houve ao menos uma aprovação e uma recusa. Nota = medidor / 10.
+No fim (`resultado`): virada do caso com campanha paga pelo fabricante (`−12` se aprovou, `+12` se recusou); `+8` se não houve nenhuma incoerência e houve ao menos uma aprovação e uma recusa. Nota = medidor / 10. Na rodada 1 havia uma penalidade de `−10` quando o Contador ficava abaixo do que a rede renderia ("as filas cresceram"); foi retirada, porque fazia a Praça julgar pelo critério do Contador e tratava como fato a hipótese de que a rede rende 1 QALY por R$ 40 mil.
 
 A regra de incoerência aceita a exceção justificada: aprovar um caso mais caro por QALY não conta como incoerência se ele tem prioridade maior que o recusado. É a versão de jogo da ideia de "modificador" (gravidade, raridade).
 
@@ -105,7 +109,7 @@ Descritivo, sem ranking. Em ordem: nada incorporado → "de portas fechadas"; as
 
 ## Equilíbrio
 
-`tests/equilibrio.js` joga 300 códigos em cada combinação de dificuldade, duração e tutorial com seis estratégias fixas (só a régua; só o depoimento; aprova tudo; nada; prioriza os graves até 3 vezes a referência; ao acaso) e exige: nenhuma tira 9 ou mais nos três jurados; a régua vence no Contador e perde na Praça e na Ouvidora; o depoimento vence a régua na Praça; nenhuma estratégia tem as três médias acima de 7,5.
+`tests/equilibrio.js` joga 300 códigos em cada combinação (32.400 partidas) de dificuldade, duração e tutorial com seis estratégias fixas (só a régua; só o depoimento; aprova tudo; nada; prioriza os graves até 3 vezes a referência; ao acaso) e exige: nenhuma tira 9 ou mais nos três jurados; a régua vence no Contador e perde na Praça e na Ouvidora; o depoimento vence a régua na Praça; nenhuma estratégia tem as três médias acima de 7,5.
 
 ## Como acrescentar uma pauta
 

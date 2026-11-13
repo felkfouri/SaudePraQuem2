@@ -4,7 +4,7 @@
    Uso: node tests/equilibrio.js [sementes=300] */
 const {Calc:C}=require('./carregar.js');
 const N=+process.argv[2]||300;
-function greedy(G,P,f,ord){let s=G.orc;const dec=P.casos.map(()=>false),idx=P.casos.map((_,i)=>i);if(ord)idx.sort((a,b)=>ord(P.casos[a],P.casos[b]));
+function greedy(G,P,f,ord){let s=C.teto(G);const dec=P.casos.map(()=>false),idx=P.casos.map((_,i)=>i);if(ord)idx.sort((a,b)=>ord(P.casos[a],P.casos[b]));
   for(const i of idx){const c=P.casos[i];if(f(c)&&c.cost<=s+1e-9){dec[i]=true;s-=c.cost;}}return dec;}
 const rc=c=>C.rceiCaso(c);
 const E={
@@ -16,13 +16,14 @@ const E={
   acaso:(G,P,r)=>greedy(G,P,()=>r()<.5)
 };
 const falhas=[];let partidas=0;
-for(const dif of ['facil','normal','dificil'])for(const reunioes of [6,4])for(const tutorial of [true,false]){
+for(const dif of ['facil','normal','dificil'])for(const reunioes of [6,4,3])for(const tutorial of [true,false]){
   const med={};
   for(const k in E){const a=[0,0,0];
     for(let s=1;s<=N;s++){
       const G=C.novaPartida({seed:s,reunioes,dif,tutorial}),r=C.rng(s*31+7);let passos=0;
       while(!G.fim){C.fecharReuniao(G,E[k](G,C.pautaAtual(G),r));if(++passos>20)throw new Error('partida não termina');}
       if(G.hist.length<reunioes*2)falhas.push('partida curta demais');
+      if(new Set(G.pautas.flatMap(p=>p.casos.map(c=>c.lim)).filter(Boolean)).size<2)falhas.push('partida com menos de duas limitações diferentes (semente '+s+', '+reunioes+(tutorial?'':', sem tutorial')+')');
       if(G.orc<-1e-9)falhas.push('orçamento negativo');
       const R=C.resultado(G);partidas++;
       for(const x of [R.gC,R.gO,R.gP])if(!(x>=0&&x<=10))falhas.push('nota fora de 0 a 10: '+x);

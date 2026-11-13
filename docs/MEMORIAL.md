@@ -31,7 +31,7 @@ Site estático de um arquivo, com três camadas:
 
 - **Guia** em sete partes: o problema; o que é o QALY; de onde vem o peso (EQ-5D, métodos de valoração, tarifa brasileira); como vira decisão (RCEI, dominância, limiar da Conitec, desconto); cinco vantagens; oito limitações; alternativas e complementos. Cada limitação segue a mesma estrutura: o problema, um exemplo, a resposta de quem defende o QALY, o que se faz na prática. Glossário, referências e nota de transparência.
 - **Quatro interativos:** desenhar a curva de qualidade de vida e ver o QALY como área; converter um estado do EQ-5D em peso pela tarifa brasileira; responder a uma escada de time trade-off e comparar o próprio peso com o da tarifa; calcular o custo por QALY de uma tecnologia e vê-la no plano de custo-efetividade.
-- **Jogo Plenário:** o jogador integra um comitê de incorporação por seis reuniões, com orçamento fixo. A primeira reunião é jogada sem os QALYs, só com custo e depoimentos; em seguida o jogo mostra os mesmos pedidos na escala comum (a vantagem é sentida). Nas reuniões seguintes, cada pauta opõe a conta a um depoimento que expõe uma limitação, e há casos em que a conta acerta contra a pressão. Três jurados com critérios diferentes, sem nota única.
+- **Jogo Plenário:** o jogador integra um comitê de incorporação por três reuniões (partida padrão, cerca de 10 minutos), com orçamento fixo. A primeira reunião é jogada sem os QALYs, só com custo e depoimentos; em seguida o jogo mostra os mesmos pedidos na escala comum (a vantagem é sentida). Nas reuniões seguintes, cada pauta opõe a conta a um depoimento que expõe uma limitação, e há casos em que a conta acerta contra a pressão. Três jurados com critérios diferentes, sem nota única.
 
 ## 5. Método de construção
 
@@ -48,8 +48,8 @@ O produto foi escrito com apoio de inteligência artificial generativa (Claude, 
 A validação teve duas partes, e é importante dizer o que cada uma é.
 
 **Testes automáticos (verificação objetiva).**
-- Cálculos: 98 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
-- Jogo: consistência dos dados e equilíbrio, com 21.600 partidas simuladas por seis estratégias fixas; nenhuma estratégia simples agrada aos três jurados.
+- Cálculos: 119 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
+- Jogo: consistência dos dados e equilíbrio, com 32.400 partidas simuladas por seis estratégias fixas; nenhuma estratégia simples agrada aos três jurados.
 - Página real: nenhum erro no console, interativos com os valores esperados, links internos, navegação por teclado, três partidas completas, acessibilidade (axe-core, sem violação séria ou crítica, nos temas claro e escuro) e capturas de tela em 375 px e 1280 px.
 
 **Bancada de avaliadores simulados por IA (revisão por critérios).** Quatro avaliadores independentes, que não acompanharam a construção, leram o site e as capturas de tela e emitiram parecer em formato fixo: uma leitora leiga (que responde a cinco perguntas de compreensão e precisa acertar quatro), uma banca de economia da saúde, um crítico do QALY "dos dois lados" e um checador de fatos. Cada item dos pareceres foi aceito ou rejeitado com justificativa (`review/rodada-N/TRIAGEM.md`). O critério de saída era a aprovação dos quatro, sem pendência bloqueante ou importante. O resultado de cada rodada está em `review/` e no `CHANGELOG.md`.

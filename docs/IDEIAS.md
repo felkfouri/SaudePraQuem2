@@ -10,3 +10,6 @@ Ideias que surgiram e não entram nesta entrega. Nada daqui é implementado dura
 - **Modo "sala de aula"** do Plenário: o professor escolhe os casos e a turma vota.
 - **Versão para impressão** do guia (PDF de 4 páginas) para distribuir em conselhos de saúde.
 - **Validação com pessoas reais** do público-alvo (usuários do SUS, conselheiros de saúde), com as perguntas de `COMPREENSAO.md`.
+- **Dominância estendida** e fronteira de eficiência, para comparar mais de duas opções (sugestão da banca, rodada 1).
+- **Outros questionários** (SF-6D, HUI) e por que dão pesos diferentes (sugestão da banca, rodada 1).
+- **Citação em primeira pessoa** de organizações de pessoas com deficiência sobre o QALY, quando houver fonte primária aberta (sugestão do Juiz C, rodada 1).

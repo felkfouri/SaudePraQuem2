@@ -17,7 +17,7 @@ Pessoas sem formação em economia da saúde: usuários do SUS, conselheiros de 
 - **Um estado de saúde, um número:** cinco respostas viram o peso da tarifa brasileira do EQ-5D-3L (Santos et al., 2016).
 - **Qual é o seu peso?:** uma escada de troca de tempo (time trade-off) que compara o peso do leitor com o da tarifa.
 - **Quanto custa um QALY?:** custo e QALYs do tratamento novo contra o atual; custo por QALY, dominância, plano de custo-efetividade, saúde deslocada.
-- **Plenário:** o jogador integra um comitê de incorporação por seis reuniões. A primeira é jogada sem a régua (só custo e depoimentos); nas seguintes, cada pedido traz custo, QALYs e um depoimento que expõe o que a conta não vê, ou em que ela acerta contra a pressão. Três jurados (Contador, Ouvidora, Praça) sem nota única, jornal no fim, três dificuldades, tutorial e partidas reproduzíveis por código. De 8 a 10 minutos.
+- **Plenário:** o jogador integra um comitê de incorporação por três reuniões (ou quatro, ou seis). A primeira é jogada sem a régua (só custo e depoimentos); nas seguintes, cada pedido traz custo, QALYs e um depoimento que expõe o que a conta não vê, ou em que ela acerta contra a pressão. Três jurados (Contador, Ouvidora, Praça) sem nota única, jornal no fim, três dificuldades, tutorial e partidas reproduzíveis por código. Cerca de 10 minutos na partida padrão.
 
 ## Como usar
 

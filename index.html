@@ -7,7 +7,7 @@
 <meta name="description" content="Guia interativo sobre o QALY, a medida que ajuda o SUS a decidir o que paga: o que é, de onde vêm os pesos, como vira decisão, vantagens e limitações. Com quatro interativos e o jogo Plenário.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: um ensaio em coluna única (68ch) com um "laboratório" de largura total no meio; cada seção separada por faixas leves.
    Cores só via variáveis: o tema escuro segue o sistema, ou é forçado com <html data-theme="dark|light">. */
@@ -325,6 +325,7 @@ h1.titulo{font-size:clamp(2.4rem,8vw,4.6rem)}
 .vant>li{counter-increment:v;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:1rem 1.2rem}
 .vant h3::before{content:counter(v) ". ";color:var(--accent)}
 .vant p:last-child,.lim p:last-child{margin:0}
+.vant .mas{font-size:.95rem;border-top:1px dotted var(--line);padding-top:.5rem;margin-top:.6rem}
 .lim{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--loss);border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin:0 0 1rem}
 .lim>h3{margin-bottom:.7rem}
 .lim .num{color:var(--loss)}
@@ -385,6 +386,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
 #gHist .mut,.mut{color:var(--muted)}
 #gameRight .tiles{grid-template-columns:1fr 1fr}
 .final textarea{min-height:6em}
+table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
 @media(max-width:420px){.final .grades{grid-template-columns:1fr}.rcgrid{grid-template-columns:1fr}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
@@ -465,6 +467,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
       <p class="kicker">O "não" também tem pacientes</p>
       <p>Quem pede o remédio novo tem nome, rosto e uma história para contar. Quem perde a consulta ou espera mais tempo na fila porque o dinheiro mudou de lugar quase nunca fica sabendo. Decidir bem é lembrar dos dois.</p>
     </div>
+    <p>Um aviso antes de seguir. O tamanho do orçamento da saúde não é um fato da natureza: é uma decisão política, e muita gente defende que ele deveria ser maior. A Constituição diz que a saúde é direito de todos e dever do Estado, e há quem consiga tratamentos na Justiça com base nisso. Mas, seja qual for o tamanho do orçamento, em algum ponto ele acaba, e a pergunta "isto ou aquilo?" volta.</p>
     <p>Então, como comparar? Uma vacina evita doenças em milhares de crianças que nunca vão saber que foram salvas. Uma prótese não salva a vida de ninguém, mas devolve o andar. Um remédio de câncer dá alguns meses a mais. São ganhos de tipos diferentes. Para pôr os três na mesma escala, é preciso uma medida comum de saúde. Uma das mais usadas se chama QALY.</p>
   </div>
 </section>
@@ -509,14 +512,6 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
           </div>
           <p class="hint" id="dvDescP" style="font-size:.92rem;margin:0 0 1rem"></p>
           <div class="field">
-            <div class="lbl"><span>Qual vida você está desenhando</span></div>
-            <div class="presets" role="group" aria-label="Cenário em edição" id="dvCen" style="margin:0">
-              <button class="chip" type="button" data-s="sem" aria-pressed="false">Sem o tratamento</button>
-              <button class="chip" type="button" data-s="com" aria-pressed="true">Com o tratamento</button>
-            </div>
-            <p class="hint">Toque no gráfico, na altura que quiser, para mudar a coluna de cada ano.</p>
-          </div>
-          <div class="field">
             <label for="dvViveSem">Sem o tratamento, vive <span class="val" id="dvViveSemV"></span></label>
             <input type="range" id="dvViveSem" min="0" max="10" step="1">
           </div>
@@ -533,6 +528,14 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
         </div>
         <div class="panel">
           <h4 class="sr">Resultado</h4>
+          <div class="field" style="margin-bottom:.5rem">
+            <div class="lbl"><span>Para desenhar: escolha a vida e toque no gráfico</span></div>
+            <div class="presets" role="group" aria-label="Qual vida você está desenhando" id="dvCen" style="margin:0">
+              <button class="chip" type="button" data-s="sem" aria-pressed="false">Sem o tratamento</button>
+              <button class="chip" type="button" data-s="com" aria-pressed="true">Com o tratamento</button>
+            </div>
+            <p class="hint">Toque na altura que quiser, em cada ano. No alto é saúde plena (1); embaixo, 0.</p>
+          </div>
           <div id="dvChart"></div>
           <div class="legend" style="margin-bottom:1rem"><span style="--c:var(--loss)">Sem o tratamento</span><span style="--c:var(--accent)">Com o tratamento</span></div>
           <div class="tiles" aria-live="polite">
@@ -553,7 +556,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
     <div class="prose">
       <p class="eyebrow">Parte 3</p>
       <h2>De onde vem o peso</h2>
-      <p>Quem decide que viver com dor nas costas tem peso 0,8 e não 0,6? Não é o médico, nem o governo, nem o paciente sozinho. O peso sai de um caminho em três passos.</p>
+      <p>Quem decide que viver com dor nas costas tem peso 0,8 e não 0,6? Não é o médico, nem o governo, nem o paciente sozinho. O peso sai de um caminho em quatro passos.</p>
       <ol class="steps">
         <li><h3>Um questionário descreve a saúde</h3><p>Um dos mais usados se chama <strong>EQ-5D</strong>. Ele pergunta sobre cinco coisas: mobilidade, cuidados pessoais, atividades habituais, dor ou mal-estar, ansiedade ou depressão. Na versão mais antiga, cada pergunta tem três respostas (nenhum problema, algum problema, problema grave). As combinações dão 243 estados de saúde diferentes.</p></li>
         <li><h3>A população diz quanto cada estado vale</h3><p>Pesquisadores entrevistam milhares de pessoas e pedem que comparem esses estados com a saúde plena e com a morte. Essa etapa se chama <strong>valoração</strong>.</p></li>
@@ -566,7 +569,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
       <p>Não dá para perguntar "de 0 a 1, quanto vale viver com dor?". As pesquisas usam perguntas de escolha, que obrigam a pessoa a abrir mão de alguma coisa. Três das mais conhecidas:</p>
       <ul>
         <li><strong>Troca de tempo</strong> (em inglês, <em>time trade-off</em>, ou TTO). "Você prefere viver 10 anos com este problema ou menos anos com saúde plena?" Quanto mais anos a pessoa aceita perder para se livrar do problema, menor o peso. Se ela fica em dúvida entre 10 anos doente e 7 anos saudável, o peso é 7 ÷ 10 = 0,7.</li>
-        <li><strong>Aposta padrão</strong> (<em>standard gamble</em>). "Você prefere ficar como está, com certeza, ou tentar um tratamento que pode curar ou matar?" Quanto mais risco de morte a pessoa aceita correr, menor o peso.</li>
+        <li><strong>Aposta padrão</strong> (<em>standard gamble</em>). "Você prefere ficar como está, com certeza, ou tentar um tratamento que pode curar ou matar?" Quanto mais risco de morte a pessoa aceita correr, menor o peso. Se ela topa o tratamento com até 20% de risco de morte, o peso é 0,8.</li>
         <li><strong>Experimento de escolha</strong> (<em>discrete choice experiment</em>, ou DCE). A pessoa vê dois estados de saúde e só diz qual prefere. Milhares de escolhas assim revelam quanto cada problema pesa.</li>
       </ul>
       <p>Métodos diferentes dão pesos diferentes para o mesmo estado. Por isso cada tarifa informa como foi feita.</p>
@@ -654,17 +657,19 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
 
       <h3 style="margin-top:1.6rem">O limiar: uma referência, não uma sentença</h3>
       <p>Esse "até quanto" se chama <strong>limiar de custo-efetividade</strong>. A lógica: se um tratamento custa mais por QALY do que o sistema costuma gastar para produzir um QALY com o que já faz, pagar por ele tira do sistema mais saúde do que acrescenta.</p>
-      <p><span class="tag-real">dado real</span> No Brasil, quem avalia os pedidos de inclusão no SUS é a <strong>Conitec</strong>, a Comissão Nacional de Incorporação de Tecnologias no SUS. Em 2022, ela definiu seus valores de referência (<a href="#r-conitec">Conitec, 2022</a>):</p>
+      <p><span class="tag-real">dado real</span> No Brasil, quem avalia os pedidos de inclusão no SUS é a <strong>Conitec</strong>, a Comissão Nacional de Incorporação de Tecnologias no SUS. ("Tecnologia", aqui, é qualquer remédio, vacina, exame, aparelho ou procedimento; "incorporar" é passar a oferecer.) Em 2022, ela definiu seus valores de referência (<a href="#r-conitec">Conitec, 2022</a>):</p>
       <ul>
         <li><strong>R$ 40 mil por QALY</strong> como valor de referência;</li>
         <li><strong>R$ 35 mil por ano de vida ganho</strong>, para situações excepcionais em que o QALY não está disponível ou não é adequado;</li>
-        <li><strong>até 3 vezes</strong> o valor de referência (R$ 120 mil por QALY), a critério da comissão, em quatro situações: doenças raras, doenças de crianças, doença grave e doença endêmica em populações de baixa renda com poucas alternativas de tratamento.</li>
+        <li><strong>até 3 vezes</strong> o valor de referência (R$ 120 mil por QALY), a critério da comissão, em quatro situações: doença rara que reduz muito o tempo de vida com qualidade; doença de crianças que faz o mesmo; doença grave; e doença endêmica (isto é, sempre presente em uma região) em populações de baixa renda com poucas alternativas de tratamento.</li>
       </ul>
       <p>Três detalhes que costumam se perder:</p>
       <ul>
         <li>O relatório diz que a custo-efetividade "não deve ser um parâmetro isolado dos demais fatores". A lei brasileira sobre o assunto também prevê que os parâmetros de custo-efetividade sejam usados em combinação com outros critérios (<a href="#r-lei">Lei 14.313, de 2022</a>). O limiar orienta; não decide sozinho.</li>
-        <li>Doenças <strong>ultrarraras</strong> e terapias gênicas ficaram <strong>fora</strong> dessa regra, para discussão à parte.</li>
+        <li>Doenças <strong>ultrarraras</strong> (as que atingem até 1 pessoa em 50 mil) e os tratamentos gênicos ou que prometem cura (terapia gênica é a que corrige ou substitui um gene defeituoso) ficaram <strong>fora</strong> dessa regra, para discussão à parte.</li>
         <li>Os valores são de 2022. A diretriz do Ministério da Saúde de 2026 repete os mesmos R$ 40 mil e R$ 35 mil.</li>
+        <li>A conta é feita do ponto de vista do SUS: entram os custos que o SUS paga. Gastos da família, como transporte ou dias de trabalho perdidos, em geral ficam de fora.</li>
+        <li>O custo por QALY não diz quanto o tratamento vai pesar no orçamento: um remédio barato por paciente, usado por milhões de pessoas, pode custar mais que um caríssimo usado por poucas. Por isso a Conitec olha também o <strong>impacto orçamentário</strong>, o gasto total previsto. E toda estimativa tem incerteza: os estudos podem estar errados para mais ou para menos.</li>
       </ul>
       <p>Outros países têm as suas referências. Na Inglaterra, o NICE, órgão que cumpre papel parecido com o da Conitec, trabalha desde abril de 2026 com uma faixa de 25 mil a 35 mil libras por QALY (<a href="#r-nice25">NICE, 2025</a>).</p>
       <div class="note">
@@ -694,33 +699,35 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
           <p class="hint" id="rcDescP" style="font-size:.92rem;margin:0 0 1rem"></p>
           <div class="rcgrid">
             <h4>Tratamento atual</h4>
-            <div class="field"><label for="rcCa">Custo (R$)</label><input type="number" id="rcCa" min="0" step="100" inputmode="decimal"></div>
-            <div class="field"><label for="rcEa">QALYs</label><input type="number" id="rcEa" min="0" step="0.05" inputmode="decimal"></div>
+            <div class="field"><label for="rcCa">Custo (R$)</label><input type="text" id="rcCa" inputmode="decimal" autocomplete="off"></div>
+            <div class="field"><label for="rcEa">QALYs</label><input type="text" id="rcEa" inputmode="decimal" autocomplete="off"></div>
             <h4>Tratamento novo</h4>
-            <div class="field"><label for="rcCn">Custo (R$)</label><input type="number" id="rcCn" min="0" step="100" inputmode="decimal"></div>
-            <div class="field"><label for="rcEn">QALYs</label><input type="number" id="rcEn" min="0" step="0.05" inputmode="decimal"></div>
+            <div class="field"><label for="rcCn">Custo (R$)</label><input type="text" id="rcCn" inputmode="decimal" autocomplete="off"></div>
+            <div class="field"><label for="rcEn">QALYs</label><input type="text" id="rcEn" inputmode="decimal" autocomplete="off"></div>
           </div>
           <div class="field" style="margin-top:1rem">
             <label for="rcLim">Valor de referência (limiar)</label>
             <select id="rcLim">
-              <option value="40000">R$ 40 mil por QALY (referência da Conitec)</option>
-              <option value="120000">R$ 120 mil por QALY (até 3 vezes, em situações específicas)</option>
+              <option value="40000">R$ 40 mil por QALY</option>
+              <option value="120000">R$ 120 mil por QALY (3 vezes)</option>
             </select>
+            <p class="hint">R$ 40 mil é a referência da Conitec. Em algumas situações ela admite até 3 vezes.</p>
           </div>
+          <p class="hint no" id="rcErro" role="alert"></p>
         </div>
-        <div class="panel">
+        <div class="panel" id="rcOut">
           <div class="tiles" aria-live="polite">
             <div class="tile"><div class="t">Custo a mais</div><div class="n" id="rcDC"></div><div class="s">QALYs a mais: <span id="rcDE"></span></div></div>
             <div class="tile"><div class="t">Custo por QALY</div><div class="n" id="rcR"></div><div class="s" id="rcRS"></div><div id="rcSelo"></div></div>
-            <div class="tile"><div class="t">Saúde deslocada</div><div class="n" id="rcDesl"></div><div class="s" id="rcDeslS"></div></div>
+            <div class="tile"><div class="t">Saúde que sai de outro lugar</div><div class="n" id="rcDesl"></div><div class="s" id="rcDeslS"></div></div>
           </div>
           <p class="verdict" id="rcVerd" aria-live="polite"></p>
           <div class="chart">
             <h4>Plano de custo-efetividade</h4>
-            <p class="sub">Para a direita, mais saúde. Para cima, mais caro. A linha tracejada é o valor de referência; a área verde é o que a regra aceita.</p>
+            <p class="sub">Para a direita, mais saúde. Para cima, mais caro. O ponto é o tratamento novo. A linha tracejada é o valor de referência; a área verde é o que a regra aceita.</p>
             <div id="rcPlane"></div>
           </div>
-          <p class="hint">"Saúde deslocada" divide o custo a mais pelo valor de referência. É uma hipótese didática: supõe que cada R$ 40 mil gastos aqui deixam de produzir 1 QALY em outro lugar do sistema.</p>
+          <p class="hint">"Saúde que sai de outro lugar" é o custo de oportunidade: o custo a mais dividido pelo valor de referência. É uma hipótese didática: supõe que cada R$ 40 mil gastos aqui deixam de produzir 1 QALY em outro lugar do sistema.</p>
         </div>
       </div>
     </div>
@@ -731,18 +738,14 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
   <div class="wrap prose">
     <p class="eyebrow">Parte 5</p>
     <h2>Vantagens: por que tanta gente usa essa régua</h2>
-    <p>O QALY é a medida preferida de órgãos de avaliação como a Conitec, no Brasil, e o NICE, na Inglaterra. Cinco razões explicam por quê.</p>
+    <p>O QALY é a medida preferida de órgãos de avaliação como a Conitec, no Brasil, e o NICE, na Inglaterra. Cinco razões explicam por quê. Cada uma vem com a ressalva de quem critica.</p>
     <ol class="vant">
-      <li><h3>Uma moeda comum</h3><p>Sem uma medida única, não há como comparar uma vacina, uma prótese e um remédio de câncer. Cada área defenderia a sua, e ganharia quem tivesse mais voz. Com o QALY, pedidos de qualquer especialidade entram na mesma escala.</p></li>
-      <li><h3>Viver mais e viver melhor, juntos</h3><p>Contar só mortes evitadas ignora tudo o que melhora a vida sem prolongá-la: a prótese, a cirurgia de catarata, o tratamento da depressão. O QALY conta os dois tipos de ganho. Um tratamento que prolonga a vida com muito sofrimento também aparece pelo que é.</p></li>
-      <li><h3>Regra clara, igual para todos</h3><p>A conta é pública e pode ser refeita por qualquer pessoa. Quem discorda sabe do quê: do preço, do ganho estimado, do peso. E a mesma regra vale para o pedido de uma grande empresa e para o de um hospital universitário.</p></li>
-      <li><h3>Mostra quem paga a conta</h3><p>O custo por QALY, comparado com um valor de referência, obriga a pensar na saúde que deixa de ser produzida em outro lugar. É o jeito de dar voz a quem não está na sala: os pacientes que dependem dos serviços que perderiam dinheiro.</p></li>
-      <li><h3>Os pesos vêm da população</h3><p>O peso de cada estado de saúde não é opinião de especialista. Vem de pesquisas com milhares de pessoas comuns. No caso brasileiro, 9.148.</p></li>
+      <li><h3>Uma moeda comum</h3><p>Sem uma medida única, não há como comparar uma vacina, uma prótese e um remédio de câncer. Cada área defenderia a sua, e ganharia quem tivesse mais voz. Com o QALY, pedidos de qualquer especialidade entram na mesma escala.</p><p class="mas"><strong>A ressalva.</strong> Para caber numa escala só, coisas diferentes são tratadas como se fossem a mesma: aliviar uma dor e salvar uma vida viram quantidades do mesmo "produto". Há quem ache que isso já é uma perda.</p></li>
+      <li><h3>Viver mais e viver melhor, juntos</h3><p>Contar só mortes evitadas ignora tudo o que melhora a vida sem prolongá-la: a prótese, a cirurgia de catarata, o tratamento da depressão. O QALY conta os dois tipos de ganho. Um tratamento que prolonga a vida com muito sofrimento também aparece pelo que é.</p><p class="mas"><strong>A ressalva.</strong> Juntar os dois exige dar um peso à qualidade de vida, e é desse peso que nasce boa parte das críticas (limitações 3, 4 e 5).</p></li>
+      <li><h3>Regra clara, igual para todos</h3><p>A conta segue um método conhecido, os relatórios são públicos e vão a consulta pública. Quem discorda sabe do quê: do preço, do ganho estimado, do peso. E a mesma regra vale para o pedido de uma grande empresa e para o de um hospital universitário.</p><p class="mas"><strong>A ressalva.</strong> Na prática, os modelos são complexos, e poucas pessoas conseguem refazer a conta. Regra igual para todos também não é o mesmo que regra justa: depende do que a régua mede.</p></li>
+      <li><h3>Mostra quem paga a conta</h3><p>O custo por QALY, comparado com um valor de referência, obriga a pensar na saúde que deixa de ser produzida em outro lugar. É um jeito de dar voz a quem não está na sala: os pacientes que dependem dos serviços que perderiam dinheiro.</p><p class="mas"><strong>A ressalva.</strong> Ninguém sabe ao certo de onde o dinheiro sai nem quanto de saúde ele renderia lá. O valor de referência é uma estimativa, e o argumento supõe que o orçamento é fixo, o que é uma escolha política.</p></li>
+      <li><h3>Os pesos vêm da população</h3><p>O peso de cada estado de saúde não é opinião de especialista. Vem de pesquisas com milhares de pessoas comuns. No caso brasileiro, 9.148.</p><p class="mas"><strong>A ressalva.</strong> É uma média, e de pessoas que na maioria só imaginaram os estados que avaliaram. Pode não representar quem vive com a doença (limitação 5).</p></li>
     </ol>
-    <div class="note">
-      <p class="kicker">O que as vantagens não garantem</p>
-      <p>Regra igual para todos não é o mesmo que regra justa: depende do que a régua mede e do que deixa de fora. Transparência também não garante acerto: uma conta pode ser pública e estar baseada em evidência fraca. E "preferências da população" são uma média, que pode não representar quem vive com a doença. A Parte 6 trata disso.</p>
-    </div>
   </div>
 </section>
 
@@ -762,26 +765,26 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
 
     <article class="lim" id="lim-2">
       <h3><span class="num">2.</span> Idade: quem tem menos anos pela frente soma menos</h3>
-      <div class="lb"><h4>O problema</h4><p>O QALY conta anos. O mesmo tratamento rende mais QALYs em quem tem mais tempo de vida pela frente. Sem que ninguém tenha decidido isso, os mais velhos tendem a ficar atrás.</p></div>
+      <div class="lb"><h4>O problema</h4><p>O QALY conta anos. O mesmo tratamento rende mais QALYs em quem tem mais tempo de vida pela frente, e os mais velhos tendem a ficar atrás. Para os críticos, isso é discriminação pela idade: os anos que restam a uma pessoa de 85 valem, para ela, tanto quanto os de qualquer outra. Um dos críticos mais conhecidos chamou o QALY de "fatalmente falho" como método para definir prioridades (<a href="#r-harris">Harris, 1987</a>).</p></div>
       <div class="lb"><h4>Um exemplo</h4><p>Uma cirurgia do coração que funciona igualmente bem aos 50 e aos 85 anos. Aos 50, ela pode render vinte anos de vida. Aos 85, cinco. O custo é o mesmo; o custo por QALY aos 85 é quatro vezes maior.</p></div>
-      <div class="lb def"><h4>O que responde quem defende</h4><p>A conta não pergunta a idade de ninguém: mede o ganho. E há quem ache esse resultado justo. É o argumento da "vida inteira" (em inglês, <em>fair innings</em>): todos deveriam ter a chance de chegar a uma vida completa, e por isso faz sentido dar prioridade a quem ainda não chegou lá (<a href="#r-williams">Williams, 1997</a>). Do outro lado, há quem veja nisso discriminação pela idade. Um dos críticos mais conhecidos chamou o QALY de "fatalmente falho" como método para definir prioridades (<a href="#r-harris">Harris, 1987</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>Na regra da Conitec, doenças de crianças estão entre as situações que admitem limiar maior. Nos Estados Unidos, a lei de 2022 que rege a negociação de preços de remédios do programa público para idosos proíbe usar evidências de um modo que trate prolongar a vida de uma pessoa idosa como de menor valor que a de uma mais jovem (<a href="#r-usc22">42 U.S.C. § 1320f-3</a>).</p></div>
+      <div class="lb def"><h4>O que responde quem defende</h4><p>A conta não pergunta a idade de ninguém: mede o ganho, e trata do mesmo jeito qualquer pessoa com o mesmo ganho. E há quem defenda o resultado como justo. É o argumento da "vida inteira" (em inglês, <em>fair innings</em>): todos deveriam ter a chance de chegar a uma vida completa, e por isso faz sentido dar prioridade a quem ainda não chegou lá (<a href="#r-williams">Williams, 1997</a>).</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>Na regra da Conitec, doenças de crianças que reduzem muito o tempo de vida com qualidade estão entre as situações que admitem limiar maior. Nos Estados Unidos, a lei de 2022 que rege a negociação de preços de remédios do programa público para idosos proíbe usar evidências de um modo que trate prolongar a vida de uma pessoa idosa como de menor valor que a de uma mais jovem (<a href="#r-usc22">42 U.S.C. § 1320f-3</a>).</p></div>
     </article>
 
     <article class="lim" id="lim-3">
       <h3><span class="num">3.</span> Deficiência e doenças crônicas: os mesmos anos, menos QALYs</h3>
-      <div class="lb"><h4>O problema</h4><p>Se a tabela dá peso menor que 1 à vida com uma deficiência ou doença crônica, prolongar essa vida rende menos QALYs do que prolongar, pelo mesmo tempo, a vida de quem não tem a condição.</p></div>
-      <div class="lb"><h4>Um exemplo</h4><p>Um remédio acrescenta 2 anos de vida. Em quem tem peso 0,85, são 1,7 QALY. Em quem usa cadeira de rodas e tem peso 0,5 na tabela, é 1 QALY. Mesmo remédio, mesmo efeito, e ele parece quase duas vezes pior no segundo grupo. Os críticos chamam isso de dupla penalização: a pessoa já vive com a condição e ainda fica atrás na prioridade.</p></div>
-      <div class="lb def"><h4>O que responde quem defende</h4><p>Os pesos são de estados de saúde, não de pessoas: ninguém "vale" 0,5. A mesma tabela faz com que tratamentos que <em>melhoram</em> a vida de quem tem deficiência rendam muitos QALYs. E, ao menos nas análises de remédios de câncer que já foram revistas, é raro separar os pacientes por deficiência. Filósofos que examinaram a objeção concluíram que o defensor do QALY tem resposta para ela (<a href="#r-singer">Singer e colaboradores, 1995</a>). Outros autores propõem uma regra simples: para essas pessoas, um ano de vida ganho deve contar como um, e não menos (<a href="#r-nord">Nord e colaboradores, 1999</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>Nos Estados Unidos, a lei não proíbe o QALY, como às vezes se diz. Uma lei de 2010 proíbe o programa público de saúde para idosos de usar o custo por QALY <em>como limiar</em> para decidir o que cobre (<a href="#r-usc10">42 U.S.C. § 1320e-1</a>). Um instituto americano de avaliação criou uma medida complementar, o <strong>evLY</strong> (ano de vida de igual valor), que dá o mesmo valor a cada ano de vida que o tratamento acrescenta, seja qual for a idade, a deficiência ou a gravidade da doença (<a href="#r-icer">ICER</a>). O custo: o evLY não conta a melhora de qualidade nos anos acrescentados. No Brasil, a Conitec aceita o custo por ano de vida ganho quando o QALY não é adequado.</p></div>
+      <div class="lb"><h4>O problema</h4><p>Se a tabela dá peso menor que 1 a um estado de saúde, prolongar a vida de quem vive nesse estado rende menos QALYs do que prolongar, pelo mesmo tempo, a vida de quem não vive. Isso vale para qualquer doença crônica ou deficiência que o tratamento não cura. Movimentos de pessoas com deficiência fazem a crítica em primeira pessoa: rejeitam que uma tabela, feita em grande parte por quem só imaginou a vida delas, diga que seus anos contam menos.</p></div>
+      <div class="lb"><h4>Um exemplo</h4><p><span class="tag-ilu">números ilustrativos</span> Um remédio acrescenta 2 anos de vida. Para pessoas cujo estado de saúde tem peso 0,85, são 1,7 QALY. Para pessoas com uma deficiência cujo estado tem peso 0,5, é 1 QALY. Mesmo remédio, mesmo efeito, e ele parece quase duas vezes pior no segundo grupo. Os críticos chamam isso de dupla penalização: a pessoa já vive com a condição e ainda fica atrás na prioridade.</p></div>
+      <div class="lb def"><h4>O que responde quem defende</h4><p>O peso é de um estado de saúde, não de uma pessoa: ninguém "vale" 0,5. A regra é a mesma para todos: o dinheiro vai para onde produz mais saúde, e é o ganho que se mede, não quem recebe. A mesma tabela faz com que tratamentos que <em>melhoram</em> a vida de quem tem deficiência rendam muitos QALYs. Filósofos que examinaram a objeção da dupla penalização concluíram que o defensor do QALY tem resposta adequada para ela (<a href="#r-singer">Singer e colaboradores, 1995</a>). E um levantamento de análises de remédios de câncer encontrou poucos casos em que os pacientes eram separados por idade ou deficiência (<a href="#r-raymakers">Raymakers e colaboradores, 2025</a>).</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>Uma proposta simples: para essas pessoas, um ano de vida ganho deve contar como um, e não menos (<a href="#r-nord">Nord e colaboradores, 1999</a>). Nos Estados Unidos, a lei não proíbe o QALY, como às vezes se diz. Uma lei de 2010 proíbe o programa público de saúde para idosos de usar o custo por QALY <em>como limiar</em> para decidir o que cobre (<a href="#r-usc10">42 U.S.C. § 1320e-1</a>). Um instituto americano de avaliação, o Institute for Clinical and Economic Review, criou uma medida complementar, o <strong>evLY</strong> (ano de vida de igual valor), que dá o mesmo valor a cada ano de vida que o tratamento acrescenta, seja qual for a idade, a deficiência ou a gravidade da doença (<a href="#r-icer">Institute for Clinical and Economic Review</a>). O custo: o evLY não conta a melhora de qualidade nos anos acrescentados. No Brasil, a Conitec aceita o custo por ano de vida ganho quando o QALY não é adequado.</p></div>
     </article>
 
     <article class="lim" id="lim-4">
       <h3><span class="num">4.</span> O que não cabe em cinco perguntas</h3>
-      <div class="lb"><h4>O problema</h4><p>O questionário mais usado tem cinco perguntas. O que não está nelas quase não aparece na conta. E a conta padrão olha só para o paciente, não para quem cuida dele.</p></div>
+      <div class="lb"><h4>O problema</h4><p>O questionário que a diretriz brasileira indica, o EQ-5D, tem cinco perguntas. O que não está nelas quase não aparece na conta. E a conta padrão olha só para o paciente, não para quem cuida dele.</p></div>
       <div class="lb"><h4>Alguns exemplos</h4><p>Não há pergunta sobre ouvir nem sobre enxergar. Em crianças, os métodos para obter os pesos ainda variam muito (<a href="#r-rowen">Rowen e colaboradores, 2020</a>). Nos cuidados paliativos, que aliviam o sofrimento no fim da vida sem prolongá-la, o QALY "parece não funcionar bem" (<a href="#r-normand">Normand, 2009</a>). E a filha que larga o emprego para cuidar da mãe com demência não entra na conta: num levantamento de avaliações feitas na Inglaterra, só 3% incluíram a qualidade de vida de quem cuida (<a href="#r-pennington">Pennington, 2020</a>).</p></div>
       <div class="lb def"><h4>O que responde quem defende</h4><p>Um questionário curto e igual para todas as doenças é o preço da moeda comum: se cada doença usar o seu, os resultados deixam de ser comparáveis. E o instrumento funciona melhor do que se costuma dizer. Na saúde mental, por exemplo, ele se sai razoavelmente bem em ansiedade e depressão, e pior em quadros como a esquizofrenia (<a href="#r-mulhern">Mulhern e colaboradores, 2014</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>Pesquisadores testam perguntas extras para audição, visão e cansaço (<a href="#r-longworth">Longworth e colaboradores, 2014</a>) e um questionário novo, mais amplo, que inclui quem cuida (<a href="#r-eqhwb">Brazier e colaboradores, 2022</a>). A Conitec pede que as análises descrevam também outros resultados que os pacientes consideram importantes, e ouve relatos de pacientes e cuidadores nas reuniões.</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>Pesquisadores testam perguntas extras para audição, visão e cansaço (<a href="#r-longworth">Longworth e colaboradores, 2014</a>) e um questionário novo, mais amplo, que inclui quem cuida (<a href="#r-eqhwb">Brazier e colaboradores, 2022</a>). O relatório da Conitec diz que outros resultados, de preferência os que os pacientes relatam como importantes, devem ser descritos na análise; e a comissão ouve relatos de pacientes e cuidadores nas reuniões.</p></div>
     </article>
 
     <article class="lim" id="lim-5">
@@ -794,31 +797,31 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
 
     <article class="lim" id="lim-6">
       <h3><span class="num">6.</span> Resgate, gravidade, fim de vida e doenças raras</h3>
-      <div class="lb"><h4>O problema</h4><p>Para a conta, um QALY vale o mesmo venha de onde vier. Muita gente sente que salvar alguém em perigo imediato, ou ajudar quem está muito grave, vale mais.</p></div>
-      <div class="lb"><h4>Um exemplo</h4><p>Um bebê com uma doença rara, um tratamento de milhões de reais, uma campanha na TV. O impulso de salvar uma pessoa que tem nome e rosto ganhou um nome: <strong>regra do resgate</strong> (<a href="#r-jonsen">Jonsen, 1986</a>). O mesmo dinheiro, gasto em prevenção, evitaria mais sofrimento em pessoas que ninguém conhece. Caso real: em 2022, a Conitec avaliou uma terapia gênica para atrofia muscular espinhal com custo por QALY acima de R$ 880 mil, na comparação com o tratamento que já existia, e observou que não havia limiar definido para doenças ultrarraras (<a href="#r-rel793">Conitec, Relatório 793</a>).</p></div>
-      <div class="lb def"><h4>O que responde quem defende</h4><p>Ser conhecido não deveria ser motivo para passar na frente: as vítimas do "não" também são pessoas, só não aparecem (<a href="#r-mckie">McKie e Richardson, 2003</a>). Sobre o que a sociedade quer, as pesquisas são menos óbvias do que parece. Num levantamento com mais de 4 mil britânicos, houve apoio a dar prioridade a doenças graves, mas não a pagar mais por tratamentos de fim de vida nem por doenças raras só por serem raras (<a href="#r-linley">Linley e Hughes, 2013</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>Vários países ajustam a régua em vez de abandoná-la. O NICE, da Inglaterra, multiplica os QALYs por 1,2 ou por 1,7 quando a doença é mais grave (<a href="#r-nice">NICE, 2026</a>). A Conitec admite até 3 vezes o valor de referência para doenças raras, de crianças, graves ou endêmicas em populações de baixa renda, e deixou as ultrarraras para uma regra própria. Um detalhe que surpreende: mesmo com peso 1,7, um tratamento que custa seis vezes a referência continua acima dela.</p></div>
+      <div class="lb"><h4>O problema</h4><p>Para a conta, um QALY vale o mesmo venha de onde vier. Há dois argumentos contra isso. O primeiro é de justiça: quem está em situação mais grave tem um direito mais forte à ajuda, mesmo que ajudá-lo renda menos saúde no total. O segundo é o dever de socorrer: diante de uma pessoa em perigo de morte, não se faz conta. Esse dever ganhou um nome, <strong>regra do resgate</strong> (<a href="#r-jonsen">Jonsen, 1986</a>).</p></div>
+      <div class="lb"><h4>Um exemplo</h4><p>Um bebê com uma doença rara que paralisa os músculos e um tratamento de milhões de reais. Caso real: em 2022, a Conitec avaliou uma terapia gênica para atrofia muscular espinhal com custo por QALY acima de R$ 880 mil, na comparação com um dos tratamentos que já existiam, e observou que não havia limiar definido para doenças ultrarraras (<a href="#r-rel793">Conitec, Relatório 793</a>). Pela regra geral, seria um "não". Para muita gente, um "não" a esse bebê é inaceitável.</p></div>
+      <div class="lb def"><h4>O que responde quem defende</h4><p>O mesmo dinheiro, gasto de outro modo, evitaria mais sofrimento em pessoas que ninguém conhece. Ser conhecido não deveria ser motivo para passar na frente: quem perde com o "sim" também é gente, só não aparece (<a href="#r-mckie">McKie e Richardson, 2003</a>). Sobre o que a sociedade quer, as pesquisas são menos óbvias do que parece. Num levantamento com mais de 4 mil britânicos, houve apoio a dar prioridade a doenças graves, mas não a pagar mais por tratamentos de fim de vida nem por doenças raras só por serem raras (<a href="#r-linley">Linley e Hughes, 2013</a>).</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>Vários países ajustam a régua em vez de abandoná-la. O NICE, da Inglaterra, multiplica os QALYs por 1,2 ou por 1,7 quando a doença é mais grave (<a href="#r-nice">NICE, 2026</a>). A Conitec admite até 3 vezes o valor de referência em quatro situações (Parte 4) e deixou as ultrarraras para uma regra própria. Um detalhe que surpreende: mesmo com peso 1,7, um tratamento que custa seis vezes a referência continua acima dela.</p></div>
     </article>
 
     <article class="lim" id="lim-7">
-      <h3><span class="num">7.</span> As premissas escondidas na multiplicação</h3>
+      <h3><span class="num">7.</span> As suposições escondidas na multiplicação</h3>
       <div class="lb"><h4>O problema</h4><p>"Tempo vezes qualidade" parece simples, mas só funciona se algumas suposições forem verdadeiras. Nem sempre são.</p></div>
       <div class="lb"><h4>Três exemplos</h4><p><strong>Todo ano vale igual.</strong> A conta supõe que o décimo ano com dor pesa o mesmo que o primeiro. Para muita gente, não pesa: há estados que se aguentam por um tempo e não por uma vida. <strong>A ordem não importa.</strong> Melhorar aos poucos e piorar aos poucos dão o mesmo total, mas as pessoas não vivem as duas histórias do mesmo jeito. <strong>O desconto.</strong> Com 5% ao ano, um ganho daqui a 30 anos conta menos de um quarto. A vacina de hoje perde para o remédio de hoje.</p></div>
-      <div class="lb def"><h4>O que responde quem defende</h4><p>Toda medida simplifica. As respostas de cada pessoa fogem das premissas, mas, quando se junta muita gente, elas se sustentam bem melhor (<a href="#r-tsuchiya">Tsuchiya e Dolan, 2005</a>). Sobre o desconto: sem ele, as contas mandariam adiar quase todo gasto, e dinheiro e saúde precisam ser tratados com a mesma lógica.</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>Mostra-se o resultado com mais de uma hipótese. A diretriz brasileira pede um cenário sem desconto ao lado do principal. Há um debate em aberto sobre usar uma taxa menor para a saúde do que para o dinheiro (<a href="#r-claxton11">Claxton e colaboradores, 2011</a>). E instrumentos diferentes dão pesos diferentes para a mesma pessoa, o que é mais uma razão para toda análise dizer qual usou.</p></div>
+      <div class="lb def"><h4>O que responde quem defende</h4><p>Toda medida simplifica. As respostas de cada pessoa fogem dessas suposições, mas, quando se junta muita gente, as suposições se sustentam bem melhor (<a href="#r-tsuchiya">Tsuchiya e Dolan, 2005</a>). Sobre o desconto: se o dinheiro é descontado e a saúde não, as contas passam a favorecer sempre adiar o gasto. Por isso muitos defendem tratar os dois com a mesma lógica.</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>Mostra-se o resultado com mais de uma hipótese. A diretriz brasileira sugere um cenário sem desconto ao lado do principal. Há um debate em aberto sobre usar uma taxa menor para a saúde do que para o dinheiro (<a href="#r-claxton11">Claxton e colaboradores, 2011</a>). E questionários diferentes dão pesos diferentes para a mesma pessoa, o que é mais uma razão para toda análise dizer qual usou.</p></div>
     </article>
 
     <article class="lim" id="lim-8">
-      <h3><span class="num">8.</span> O QALY não é o valor de uma vida</h3>
-      <div class="lb"><h4>O problema</h4><p>"R$ 40 mil por QALY" soa como "um ano da sua vida vale R$ 40 mil". Não é isso que o número diz, mas é assim que muita gente entende, e com razão se incomoda.</p></div>
-      <div class="lb"><h4>Um exemplo</h4><p>Um tratamento é recusado porque custa R$ 200 mil por QALY. A manchete: "Governo diz que vida de paciente não vale R$ 200 mil". O que a conta disse foi outra coisa: com esse dinheiro, o sistema produziria mais saúde para outras pessoas.</p></div>
-      <div class="lb def"><h4>O que responde quem defende</h4><p>O valor de referência não é preço de ninguém. É uma estimativa de quanto custa, para o sistema, produzir um ano de vida saudável com o que ele já faz. Serve para comparar usos do mesmo dinheiro. Quanto as pessoas <em>pagariam</em> por um QALY é outra pergunta, e os estudos que a fazem chegam a valores muito diferentes entre si (<a href="#r-ryen">Ryen e Svensson, 2015</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>A resposta honesta é reconhecer que a régua mede saúde ganha, não o valor de pessoas, e que por isso ela não pode decidir sozinha. No Brasil, a lei e o próprio relatório da Conitec dizem que a custo-efetividade se combina com outros critérios. Explicar isso bem é parte do trabalho, e é um dos motivos deste site.</p></div>
+      <h3><span class="num">8.</span> Pôr um preço ao lado de um ano de vida</h3>
+      <div class="lb"><h4>O problema</h4><p>Ao comparar um ano de vida saudável com um valor em reais, a conta aceita que existe um ponto em que ajudar alguém "custa caro demais". Para os críticos, o erro está aí, e não num detalhe técnico: cada pessoa tem direito ao cuidado de que precisa, e o benefício somado de muitas outras não compensa negar a ela esse cuidado. É a objeção mais antiga a toda a ideia de maximizar a saúde total.</p></div>
+      <div class="lb"><h4>Um exemplo</h4><p>Um tratamento é recusado porque custa R$ 200 mil por QALY. Para quem precisava dele, a mensagem que chega é "a sua vida não vale R$ 200 mil". A conta não disse isso: disse que, com esse dinheiro, o sistema produziria mais saúde para outras pessoas. Mas a recusa caiu sobre uma pessoa, e o ganho, sobre desconhecidos.</p></div>
+      <div class="lb def"><h4>O que responde quem defende</h4><p>O valor de referência não é preço de ninguém. É uma estimativa de quanto custa, para o sistema, produzir um ano de vida saudável com o que ele já faz, e serve para comparar usos do mesmo dinheiro. Recusar a conta não faz o limite desaparecer: alguém continua ficando sem, só que sem regra conhecida. Quanto as pessoas <em>pagariam</em> por um QALY é outra pergunta, e os estudos que a fazem chegam a valores muito diferentes entre si (<a href="#r-ryen">Ryen e Svensson, 2015</a>).</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>No Brasil, a lei e o relatório da Conitec dizem que a custo-efetividade se combina com outros critérios. Na Justiça, muitos pedidos de tratamento são decididos pelo direito de cada pessoa à saúde, sem a conta. As duas lógicas convivem, em tensão permanente.</p></div>
     </article>
 
     <div class="note">
-      <p class="kicker">O que as críticas não derrubam</p>
-      <p>Nenhuma delas faz o problema da Parte 1 sumir: o dinheiro continua finito e alguém continua tendo de escolher. Revisões da literatura observam que boa parte das críticas éticas vale para qualquer medida que se ponha no lugar (<a href="#r-rand21">Rand e Kesselheim, 2021</a>). Sem régua nenhuma, a escolha não deixa de ser feita. Ela só deixa de ser vista.</p>
+      <p class="kicker">O que fica de pé dos dois lados</p>
+      <p>As críticas mostram que a régua deixa coisas importantes de fora, e que parte delas é questão de justiça, não de técnica. A defesa lembra que a escolha entre pedidos continua existindo com ou sem conta, e que boa parte das críticas éticas vale também para as medidas propostas no lugar (<a href="#r-rand21">Rand e Kesselheim, 2021</a>). Quase ninguém pede "régua nenhuma": a discussão é sobre qual régua, com quais ajustes, e quanto peso dar a ela.</p>
     </div>
   </div>
 </section>
@@ -827,13 +830,13 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
   <div class="wrap prose">
     <p class="eyebrow">Parte 7</p>
     <h2>Alternativas e complementos</h2>
-    <p>Existem outras réguas e outros jeitos de decidir. Cada um resolve um problema do QALY e traz outro. Por isso, na prática, o QALY costuma ser complementado, não trocado (<a href="#r-rand23">Rand e colaboradores, 2023</a>).</p>
+    <p>Existem outras réguas e outros jeitos de decidir. Cada um resolve um problema do QALY e traz outro. Uma revisão que comparou as alternativas concluiu que as críticas se aplicam também a elas (<a href="#r-rand23">Rand e colaboradores, 2023</a>). Hoje, os órgãos de avaliação mais usam essas medidas ao lado do QALY do que no lugar dele.</p>
     <div class="altl">
       <div><h3>Anos de vida ganhos</h3><p>Conta só o tempo, sem peso de qualidade. Resolve a crítica da deficiência. Em troca, ignora tudo o que melhora a vida sem prolongá-la, como a prótese e o tratamento da dor.</p></div>
       <div><h3>evLY, o ano de vida de igual valor</h3><p>Todo ano de vida acrescentado conta igual; a melhora de qualidade só conta nos anos que a pessoa já viveria. É um meio-termo entre os dois anteriores, usado ao lado do QALY nos Estados Unidos.</p></div>
       <div><h3>DALY</h3><p>Sigla em inglês de "ano de vida ajustado por incapacidade". É o espelho do QALY: em vez de saúde ganha, mede saúde perdida, por morte precoce ou por doença. Muito usado para medir o peso das doenças em países inteiros (<a href="#r-murray">Murray, 1994</a>). Os pesos têm outra origem, e as críticas são parecidas.</p></div>
-      <div><h3>WELLBY</h3><p>Mede bem-estar em vez de saúde: um ponto a mais na satisfação com a vida, numa escala de 0 a 10, por um ano. Capta o que o questionário de saúde não vê, como solidão e renda. Em troca, depende de uma única pergunta, e as pessoas se adaptam também na satisfação com a vida.</p></div>
-      <div><h3>Análise de decisão multicritério</h3><p>Em vez de um número, uma lista de critérios com pesos: gravidade, ganho de saúde, custo, inovação, equidade (<a href="#r-thokala">Thokala e colaboradores, 2016</a>). Deixa os valores à mostra. Em troca, alguém precisa escolher os critérios e os pesos, e o custo de oportunidade pode sumir da conta.</p></div>
+      <div><h3>WELLBY</h3><p>Sigla em inglês de "ano de vida ajustado pelo bem-estar". Mede bem-estar em vez de saúde: um ponto a mais na satisfação com a vida, numa escala de 0 a 10, por um ano (<a href="#r-frijters">Frijters e colaboradores, 2020</a>). Capta o que o questionário de saúde não vê, como solidão e renda. Em troca, depende de uma única pergunta, e as pessoas se adaptam também na satisfação com a vida.</p></div>
+      <div><h3>Análise de decisão multicritério</h3><p>Em vez de um número, uma lista de critérios com pesos: gravidade, ganho de saúde, custo, inovação, justiça na distribuição (<a href="#r-thokala">Thokala e colaboradores, 2016</a>). Deixa os valores à mostra. Em troca, alguém precisa escolher os critérios e os pesos, e o custo de oportunidade pode sumir da conta.</p></div>
       <div><h3>Pesos de equidade e análise distributiva</h3><p>Mantêm o QALY e acrescentam a pergunta "para quem?". É o tema do site <a href="https://felkfouri.github.io/saudepraquem/">Saúde para quem?</a></p></div>
       <div><h3>Deliberação com participação social</h3><p>Nenhuma conta substitui a discussão aberta. No Brasil, as recomendações da Conitec vão a consulta pública, e pacientes e cuidadores podem relatar sua experiência nas reuniões, na chamada Perspectiva do Paciente (<a href="#r-pp">Conitec</a>). A régua informa a conversa; não a encerra.</p></div>
     </div>
@@ -841,9 +844,9 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
     <p>Este guia não tem conclusão. Tem perguntas, e as respostas são suas.</p>
     <ul class="pergs">
       <li>Um ano de vida saudável deve valer o mesmo para todos, ou mais para quem está em pior situação? Se mais, quanto?</li>
-      <li>Quem deve dizer quanto vale viver com uma doença: quem a tem ou quem paga a conta junto com todo mundo?</li>
-      <li>Vale gastar muito para salvar uma pessoa que todos conhecem, se o mesmo dinheiro salvaria mais pessoas que ninguém conhece?</li>
-      <li>Se a régua é imperfeita, o que é pior: decidir com ela ou decidir sem ela?</li>
+      <li>Quem deve dizer quanto vale viver com uma doença: quem vive com ela, a população em geral, ou os dois?</li>
+      <li>Quando o dever de socorrer uma pessoa em perigo e o maior benefício para o maior número apontam para lados opostos, qual deve pesar mais?</li>
+      <li>Quanto peso a conta deve ter na decisão final, e quem deve decidir isso?</li>
     </ul>
   </div>
 </section>
@@ -853,7 +856,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
     <div class="prose">
       <p class="eyebrow">Jogo</p>
       <h2>Plenário</h2>
-      <p>Agora decida você. No jogo, você faz parte do comitê que escolhe o que entra no SUS. A cada reunião chegam pedidos com custo, QALYs e o depoimento de alguém. O dinheiro não dá para tudo. Três jurados avaliam as suas escolhas, e eles não concordam entre si. Leva de 8 a 10 minutos.</p>
+      <p>Agora decida você. No jogo, você faz parte do comitê que escolhe o que entra no SUS. A cada reunião chegam pedidos com custo, QALYs e o depoimento de alguém. O dinheiro não dá para tudo. Três jurados avaliam as suas escolhas, e eles não concordam entre si. Leva cerca de 10 minutos.</p>
       <p><a class="btn" href="#jogo">Jogar</a></p>
     </div>
     <div class="prose">
@@ -882,10 +885,13 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
       <dt>Limiar de custo-efetividade</dt><dd>Valor de referência, em reais por QALY, com o qual se compara a RCEI. Na Conitec, R$ 40 mil por QALY, com até 3 vezes em situações específicas.</dd>
       <dt>Custo de oportunidade</dt><dd>A saúde que deixa de ser produzida pelos serviços que perdem dinheiro para pagar um tratamento novo.</dd>
       <dt>Taxa de desconto</dt><dd>Percentual que reduz o valor de custos e ganhos que só acontecem no futuro. Na diretriz brasileira, 5% ao ano.</dd>
+      <dt>Impacto orçamentário</dt><dd>O gasto total previsto com um tratamento novo, somando todos os pacientes que vão usá-lo.</dd>
+      <dt>Tecnologia em saúde</dt><dd>Qualquer remédio, vacina, exame, aparelho ou procedimento. Incorporar uma tecnologia é passar a oferecê-la no SUS.</dd>
       <dt>Conitec</dt><dd>Comissão Nacional de Incorporação de Tecnologias no SUS. Avalia os pedidos e recomenda ao Ministério da Saúde o que deve ou não entrar no SUS.</dd>
       <dt>NICE</dt><dd>Órgão da Inglaterra que avalia tratamentos para o sistema público de saúde de lá.</dd>
       <dt>Regra do resgate</dt><dd>O impulso de salvar uma pessoa identificada e em perigo imediato, mesmo a um custo que salvaria mais pessoas de outra forma.</dd>
-      <dt>evLY</dt><dd>Ano de vida de igual valor. Medida que conta cada ano de vida acrescentado com o mesmo valor, seja qual for a condição da pessoa.</dd>
+      <dt>evLY</dt><dd>Ano de vida de igual valor (antes chamado evLYG). Medida que conta cada ano de vida acrescentado com o mesmo valor, seja qual for a condição da pessoa.</dd>
+      <dt>WELLBY</dt><dd>Ano de vida ajustado pelo bem-estar: um ponto a mais de satisfação com a vida, de 0 a 10, por um ano.</dd>
       <dt>DALY</dt><dd>Ano de vida ajustado por incapacidade. Mede saúde perdida, por morte precoce ou doença.</dd>
     </dl>
   </div>
@@ -910,6 +916,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
       <li id="r-cookson">Cookson R, Mirelman AJ, Griffin S, Asaria M, Dawkins B, Norheim OF, et al. Using cost-effectiveness analysis to address health equity concerns. Value Health. 2017;20(2):206-12. <a href="https://doi.org/10.1016/j.jval.2016.11.027">doi:10.1016/j.jval.2016.11.027</a>. PMID 28237196.</li>
       <li id="r-espirito">Espirito Santo CM, Miyamoto GC, Santos VS, Ben ÂJ, Finch AP, Roudijk B, et al. Estimating an EQ-5D-Y-3L value set for Brazil. Pharmacoeconomics. 2024;42(9):1047-63. <a href="https://doi.org/10.1007/s40273-024-01404-9">doi:10.1007/s40273-024-01404-9</a>. PMID 38954389. PMCID PMC11343814.</li>
       <li id="r-eq">EuroQol Research Foundation. Value sets [internet]; arquivos "Brazil 3L (Santos TTO 2016)", "Brazil 3L (Andrade TTO 2013)" e "Brazil Y-3L (Santo DCE TTO 2024)". <a href="https://euroqol.org/information-and-support/resources/value-sets/">https://euroqol.org/information-and-support/resources/value-sets/</a> ; <a href="https://euroqol.org/wp-content/uploads/2026/05/Brazil-3L-Santos-TTO-2016.txt">https://euroqol.org/wp-content/uploads/2026/05/Brazil-3L-Santos-TTO-2016.txt</a></li>
+      <li id="r-frijters">Frijters P, Clark AE, Krekel C, Layard R. A happy choice: wellbeing as the goal of government. Behav Public Policy. 2020;4(2):126-65. <a href="https://doi.org/10.1017/bpp.2019.39">doi:10.1017/bpp.2019.39</a>.</li>
       <li id="r-harris">Harris J. QALYfying the value of life. J Med Ethics. 1987;13(3):117-23. <a href="https://doi.org/10.1136/jme.13.3.117">doi:10.1136/jme.13.3.117</a>. PMID 3669036.</li>
       <li id="r-icer">Institute for Clinical and Economic Review. ICER glossary; Cost-effectiveness, the QALY, and the evLYG; ICER's Reference Case for Economic Evaluations (22 out. 2026). <a href="https://icer.org/icer-glossary/">https://icer.org/icer-glossary/</a> ; <a href="https://icer.org/wp-content/uploads/2024/02/ICER_Reference-Case_For-Publication_102226.pdf">https://icer.org/wp-content/uploads/2024/02/ICER_Reference-Case_For-Publication_102226.pdf</a></li>
       <li id="r-jonsen">Jonsen AR. Bentham in a box: technology assessment and health care allocation. Law Med Health Care. 1986;14(3-4):172-4. <a href="https://doi.org/10.1111/j.1748-720x.1986.tb00974.x">doi:10.1111/j.1748-720x.1986.tb00974.x</a>. PMID 3645228.</li>
@@ -925,6 +932,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
       <li id="r-normand">Normand C. Measuring outcomes in palliative care: limitations of QALYs and the road to PalYs. J Pain Symptom Manage. 2009;38(1):27-31. <a href="https://doi.org/10.1016/j.jpainsymman.2009.04.005">doi:10.1016/j.jpainsymman.2009.04.005</a>. PMID 19615624.</li>
       <li id="r-peeters">Peeters Y, Stiggelbout AM. Health state valuations of patients and the general public analytically compared. Value Health. 2010;13(2):306-9. <a href="https://doi.org/10.1111/j.1524-4733.2009.00610.x">doi:10.1111/j.1524-4733.2009.00610.x</a>. PMID 19744288.</li>
       <li id="r-pennington">Pennington BM. Inclusion of carer health-related quality of life in National Institute for Health and Care Excellence appraisals. Value Health. 2020;23(10):1349-57. <a href="https://doi.org/10.1016/j.jval.2020.05.017">doi:10.1016/j.jval.2020.05.017</a>. PMID 33032779.</li>
+      <li id="r-raymakers">Raymakers AJN, Rand LZ, Feldman WB, Kesselheim AS. An empirical investigation into concerns over quality-adjusted life-years: a review of cost-effectiveness analyses in oncology. J Cancer Policy. 2025;43:100562. <a href="https://doi.org/10.1016/j.jcpo.2025.100562">doi:10.1016/j.jcpo.2025.100562</a>. PMID 39894216.</li>
       <li id="r-rand21">Rand LZ, Kesselheim AS. Controversy over using quality-adjusted life-years in cost-effectiveness analyses: a systematic literature review. Health Aff (Millwood). 2021;40(9):1402-10. <a href="https://doi.org/10.1377/hlthaff.2021.00343">doi:10.1377/hlthaff.2021.00343</a>. PMID 34495724.</li>
       <li id="r-rand23">Rand LZ, Melendez-Torres GJ, Kesselheim AS. Alternatives to the quality-adjusted life year: how well do they address common criticisms? Health Serv Res. 2023;58(2):433-44. <a href="https://doi.org/10.1111/1475-6773.14116">doi:10.1111/1475-6773.14116</a>. PMID 36537647.</li>
       <li id="r-rowen">Rowen D, Rivero-Arias O, Devlin N, Ratcliffe J. Review of valuation methods of preference-based measures of health for economic evaluation in child and adolescent populations: where are we now and where are we going? Pharmacoeconomics. 2020;38(4):325-40. <a href="https://doi.org/10.1007/s40273-019-00873-7">doi:10.1007/s40273-019-00873-7</a>. PMID 31903522.</li>
@@ -951,7 +959,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
     <p><strong>Autor.</strong> Felipe, cirurgião e doutorando na FMUSP.</p>
     <h3 style="margin-top:1.4rem">O que é dado real e o que é ilustrativo</h3>
     <ul>
-      <li><strong>Reais, com fonte:</strong> a tarifa brasileira do EQ-5D-3L e os dados da pesquisa que a gerou; os valores de referência da Conitec e as situações de limiar maior; a taxa de desconto da diretriz do Ministério da Saúde; os dados do NICE; o que dizem as leis americanas citadas (conferidas no texto oficial) e a lei brasileira citada (conferida por fontes secundárias); os resultados dos estudos citados.</li>
+      <li><strong>Reais, com fonte:</strong> a tarifa brasileira do EQ-5D-3L e os dados da pesquisa que a gerou; os valores de referência da Conitec e as situações de limiar maior; a taxa de desconto da diretriz do Ministério da Saúde; os dados do NICE; o que dizem as leis americanas citadas (conferidas no texto do código federal, na página do Legal Information Institute) e a lei brasileira citada (conferida por fontes secundárias); os resultados dos estudos citados.</li>
       <li><strong>Ilustrativos:</strong> todos os exemplos numéricos do texto (como a prótese de R$ 26 mil), os cenários prontos dos interativos e tudo no jogo Plenário. As tecnologias do jogo são fictícias; os custos, os QALYs, os depoimentos e a reação dos jurados foram inventados para ensinar. Tratar o valor de referência como "preço" da saúde deslocada é uma hipótese didática.</li>
       <li><strong>O que este site não é:</strong> não é o questionário EQ-5D oficial, não avalia a saúde de ninguém e não representa a posição da Conitec, do Ministério da Saúde ou da USP.</li>
     </ul>
@@ -979,30 +987,31 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
   <div class="wrap two">
     <div class="prose">
       <h2>Antes da primeira reunião</h2>
-      <p>Você acaba de entrar para o comitê nacional que decide quais tratamentos novos o sistema público de saúde vai oferecer. O comitê tem um orçamento para o mandato inteiro, e ele não dá para tudo.</p>
-      <p>A cada reunião chegam dois ou três pedidos. Cada um traz o custo, a saúde que promete e o depoimento de alguém que veio falar na consulta pública. Para cada pedido, você escolhe: <strong>incorporar</strong> ou <strong>não incorporar</strong>.</p>
-      <p>A saúde é medida em <strong>QALYs</strong>: 1 QALY é um ano de vida com saúde plena. O "custo por QALY" diz quanto se paga por cada um. A referência é R$ 40 mil por QALY: acima disso, o mesmo dinheiro renderia mais saúde na rede que já existe.</p>
-      <p>Três jurados acompanham você:</p>
+      <p>Você entrou para o comitê que decide quais tratamentos novos o sistema público de saúde vai <strong>incorporar</strong>, isto é, passar a oferecer. O orçamento é um só para o mandato inteiro, e não dá para tudo.</p>
+      <p>A cada reunião chegam pedidos fictícios, com o custo, a saúde que prometem e o depoimento de alguém. Você escolhe: incorporar ou não.</p>
+      <p>Três jurados discordam entre si:</p>
       <ul>
-        <li>o <strong>Contador</strong> soma toda a saúde produzida, sem perguntar de quem é. O dinheiro que sobra vai para a rede e também rende saúde;</li>
-        <li>a <strong>Ouvidora</strong> conta quantos pedidos de quem estava em pior situação (casos mais graves ou gente com menos acesso) foram atendidos;</li>
-        <li>a <strong>Praça</strong> é a confiança da sociedade no comitê. Sobe quando você atende pedidos que comoveram o país, cai quando recusa, e cai também quando o comitê parece ter dois pesos e duas medidas.</li>
+        <li>o <strong>Contador</strong> soma toda a saúde produzida, sem perguntar de quem é;</li>
+        <li>a <strong>Ouvidora</strong> conta os pedidos atendidos de quem estava em pior situação;</li>
+        <li>a <strong>Praça</strong> é a confiança da sociedade no comitê.</li>
       </ul>
-      <p>Eles não concordam entre si, e não existe nota única. No fim, o jornal conta como foi o seu mandato.</p>
+      <details style="margin:0 0 1rem"><summary>Como cada jurado faz a conta</summary>
+        <p style="font-size:.92rem;margin-top:.5rem">A saúde é medida em QALYs: 1 QALY é um ano de vida com saúde plena. O <strong>Contador</strong> soma os QALYs dos pedidos aprovados e supõe que o dinheiro que sobra vai para a rede de saúde que já existe e rende 1 QALY a cada R$ 40 mil (a referência usada no Brasil). A <strong>Ouvidora</strong> dá 2 pontos por pedido atendido de prioridade alta (casos mais graves ou gente com menos acesso) e 1 por pedido de alguma prioridade. A <strong>Praça</strong> sobe quando você atende pedidos que comoveram o país e cai quando recusa; cai também quando o comitê parece ter dois pesos e duas medidas.</p>
+      </details>
       <details style="margin:0 0 1rem"><summary>O que é simplificação neste jogo</summary>
-        <p style="font-size:.92rem;margin-top:.5rem">Tudo aqui é fictício: as tecnologias, os custos, os QALYs, os depoimentos. Cada caso é inspirado em um tipo de decisão real, indicado no próprio cartão. Na vida real não existe um orçamento fixo por mandato, o comitê recomenda e quem decide é o Ministério, e as análises são muito mais longas. A regra "o dinheiro que sobra rende 1 QALY a cada R$ 40 mil" é uma hipótese para o jogo funcionar. Os pontos da Ouvidora e da Praça foram inventados para representar duas preocupações reais: justiça e legitimidade.</p>
+        <p style="font-size:.92rem;margin-top:.5rem">Tudo aqui é fictício: os tratamentos, os custos, os QALYs, os depoimentos. Cada caso é inspirado em um tipo de decisão real, indicado no cartão. Na vida real não existe um orçamento fixo por mandato, o tamanho do orçamento da saúde é ele mesmo uma decisão política, o comitê recomenda e quem decide é o Ministério. A regra "o dinheiro que sobra rende 1 QALY a cada R$ 40 mil" é uma hipótese para o jogo funcionar; ninguém sabe ao certo quanto a rede rende. Os pontos da Ouvidora e da Praça foram inventados para representar duas preocupações reais: justiça e legitimidade.</p>
       </details>
     </div>
     <div class="panel">
       <h3>Pronto para começar?</h3>
-      <p style="font-size:.95rem;color:var(--muted);font-family:var(--display);margin-bottom:1rem">Partida padrão: 6 reuniões, dificuldade normal, com tutorial. De 8 a 10 minutos.</p>
+      <p style="font-size:.95rem;color:var(--muted);font-family:var(--display);margin-bottom:1rem">Partida padrão: 3 reuniões, dificuldade normal, com tutorial. Cerca de 10 minutos.</p>
       <button class="btn" id="gBegin" type="button" style="font-size:1.05rem;padding:.8rem 1.3rem">Entrar no plenário</button>
       <details style="margin-top:1.4rem">
         <summary>Mudar a partida</summary>
         <div style="margin-top:.9rem">
           <div class="field">
             <div class="lbl"><span>Duração</span></div>
-            <div class="presets" role="group" aria-label="Duração" id="lenPick"><button class="chip" type="button" data-len="6" aria-pressed="true">6 reuniões</button><button class="chip" type="button" data-len="4" aria-pressed="false">4 reuniões (rápida)</button></div>
+            <div class="presets" role="group" aria-label="Duração" id="lenPick"><button class="chip" type="button" data-len="3" aria-pressed="true">3 reuniões (10 min)</button><button class="chip" type="button" data-len="4" aria-pressed="false">4 (15 min)</button><button class="chip" type="button" data-len="6" aria-pressed="false">6 (20 min)</button></div>
           </div>
           <div class="field">
             <div class="lbl"><span>Dificuldade</span></div>
@@ -1032,7 +1041,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
         <h3>O mandato até aqui</h3>
         <div class="tiles" aria-live="polite">
           <div class="tile"><div class="t">Orçamento</div><div class="n" id="jOrc"></div><div class="s" id="jOrcS"></div></div>
-          <div class="tile"><div class="t">Contador</div><div class="n" id="jC"></div><div class="s">QALYs além do que a rede renderia com o mesmo dinheiro</div></div>
+          <div class="tile"><div class="t">Contador</div><div class="n" id="jC"></div><div class="s">QALYs a mais (ou a menos) do que a rede de saúde renderia, pela hipótese do jogo</div></div>
           <div class="tile"><div class="t">Ouvidora</div><div class="n" id="jO"></div><div class="s">pontos por atender quem estava pior</div></div>
           <div class="tile"><div class="t">Praça</div><div class="n" id="jP"></div><div class="meter" aria-hidden="true"><i id="jPbar"></i></div><div class="s">confiança, de 0 a 100</div></div>
         </div>
@@ -1044,6 +1053,7 @@ ul.refs li{margin-bottom:.6rem;padding-left:1.2rem;text-indent:-1.2rem;overflow-
 </section>
 </div>
 </main>
+<noscript><p style="padding:1rem;font-family:sans-serif">Os interativos e o jogo desta página precisam de JavaScript. O texto do guia pode ser lido sem ele.</p></noscript>
 
 <script>
 /* Todo o comportamento da página, sem dependências. Seções, nesta ordem:
@@ -1093,13 +1103,13 @@ const Calc=(function(){
 
   /* ---------- Quanto custa um QALY? ----------
      dC: custo a mais (R$); dE: QALYs a mais; lim: valor de referência (R$ por QALY).
-     tipo: 'dominante' (melhor e não custa mais), 'dominada' (pior ou igual e custa mais ou igual), 'troca' (melhor e mais caro),
+     tipo: 'dominante' (melhor ou igual e mais barato, ou melhor pelo mesmo custo), 'dominada' (pior ou igual e mais caro, ou pior pelo mesmo custo), 'troca' (melhor e mais caro),
      'economia' (mais barato e pior), 'igual' (nada muda). rcei só existe quando dC e dE têm o mesmo sinal.
      deslocada = dC / lim (QALYs que o mesmo dinheiro renderia em outro lugar, por hipótese); bls = dE − dC / lim. */
   function avaliar(dC,dE,lim){
     const o={dC,dE,lim,rcei:null,deslocada:dC/lim,bls:dE-dC/lim};
     if(dC===0&&dE===0){o.tipo='igual';o.ok=null;}
-    else if(dE>0&&dC<=0){o.tipo='dominante';o.ok=true;}
+    else if(dE>=0&&dC<=0){o.tipo='dominante';o.ok=true;}
     else if(dE<=0&&dC>=0){o.tipo='dominada';o.ok=false;}
     else{o.rcei=dC/dE;o.tipo=dE>0?'troca':'economia';o.ok=dE>0?o.rcei<=lim:o.rcei>=lim;}
     return o;
@@ -1114,115 +1124,116 @@ const Calc=(function(){
      lim número da limitação do guia (0 = nenhuma); extra linha a mais no cartão; irma id do caso "gêmeo" (mesmo tratamento);
      virada {t, sim, nao}: fato revelado no fim, com o efeito na Praça se aprovou (sim) ou recusou (nao). */
   const K_JOGO=40000;
-  const ORC={facil:700,normal:600,dificil:500};
+  const ORC={6:{facil:700,normal:600,dificil:500},4:{facil:560,normal:480,dificil:440},3:{facil:480,normal:420,dificil:400}}; // R$ milhões para o mandato, por duração e dificuldade
+  const TETO=0.5; // numa reunião, o comitê não pode comprometer mais que esta fração do orçamento do mandato
   const SPREAD={forte:[0.9,1.1],moderada:[0.7,1.2],fraca:[0.3,1.3]};
   const PRACA0=60;
-  const TUTORIAL={id:'tut',tema:'Três pedidos, uma verba',intro:'Primeira reunião. Você ainda não tem a régua: só o custo de cada pedido e o que as pessoas vieram dizer.',casos:[
-    {id:'t1',nm:'Proteção contra bronquiolite para bebês',oq:'Uma dose ao nascer protege o bebê do vírus que mais interna crianças pequenas no inverno.',cost:120,q:6000,ev:'forte',w:1,com:0,lim:0,
+  const TUTORIAL={id:'tut',tema:'Três pedidos, uma verba',intro:'Três pedidos. Você só tem o custo de cada um e o que as pessoas vieram dizer.',casos:[
+    {id:'t1',nm:'Proteção contra bronquiolite para bebês',oq:'Uma dose ao nascer contra o vírus que mais interna bebês no inverno.',cost:110,q:5500,ev:'forte',w:1,com:0,lim:0,
       dep:{t:'Ninguém faz passeata por uma internação que não aconteceu. Prevenção não tem rosto.',q:'coordenadora de imunização de um município'},
       insp:'Imunização contra o vírus sincicial respiratório, avaliada pela Conitec.',
-      viu:'A régua mostrou o que nenhum depoimento mostrava: muita saúde por pouco dinheiro, espalhada por milhares de bebês que ninguém conhece pelo nome.',nao:''},
-    {id:'t2',nm:'Mutirão de próteses de quadril',oq:'Cirurgia que troca a articulação gasta do quadril, para quem está há anos na fila.',cost:90,q:4500,ev:'forte',w:1.2,com:1,lim:0,
+      viu:'A régua mostrou o que nenhum depoimento mostrava: muita saúde por pouco dinheiro, para milhares de bebês que ninguém conhece pelo nome.',nao:''},
+    {id:'t2',nm:'Mutirão de próteses de quadril',oq:'Cirurgia para quem espera há anos na fila com o quadril gasto.',cost:90,q:4500,ev:'forte',w:1.2,com:1,lim:0,
       dep:{t:'Faz três anos que eu não subo no ônibus. Não é que eu vá morrer disso. É que eu parei de viver.',q:'Dona Zefa, 71 anos'},
       insp:'Artroplastia total de quadril.',
       viu:'Não salva vidas, e por isso costuma perder para o que salva. A régua conta também a dor que some e o andar que volta.',nao:''},
-    {id:'t3',nm:'Oncovita, para câncer de pulmão avançado',oq:'Remédio que prolonga a vida em cerca de três meses, em média, quando a doença já se espalhou.',cost:150,q:750,ev:'moderada',w:1.7,com:3,lim:6,
+    {id:'t3',nm:'Oncovita, para câncer de pulmão avançado',oq:'Remédio que dá, em média, três meses a mais de vida.',cost:150,q:750,ev:'moderada',w:1.7,com:3,lim:6,
       dep:{t:'Minha filha casa em março. Três meses, para mim, são a diferença entre estar lá e não estar.',q:'Carlos, 54 anos'},
       insp:'Medicamentos oncológicos de alto custo com ganho de poucos meses de sobrevida.',
-      viu:'A régua mostrou o preço: R$ 200 mil por QALY, cinco vezes a referência. O mesmo dinheiro, na rede, renderia cinco vezes mais saúde para outras pessoas.',
+      viu:'A régua mostrou o preço: R$ 200 mil por QALY, cinco vezes a referência.',
       nao:'Ela conta três meses como três meses. Não sabe que há um casamento em março.'}
   ]};
   const PAUTAS=[
-    {id:'p1',tema:'Mesma conta, pessoas diferentes',intro:'Dois programas para controlar a pressão alta. Para a planilha, são iguais.',casos:[
-      {id:'p1a',nm:'Monitor de pressão por aplicativo',oq:'O paciente mede a pressão em casa e o aplicativo avisa a equipe quando ela sobe.',cost:80,q:2000,ev:'forte',w:1,com:0,lim:1,
-        dep:{t:'Funciona muito bem para quem tem celular novo, internet boa e tempo para medir a pressão duas vezes por dia.',q:'cardiologista de um hospital universitário'},
+    {id:'p1',tema:'Mesma conta, pessoas diferentes',intro:'Dois programas contra a pressão alta. Na planilha, são iguais.',casos:[
+      {id:'p1a',nm:'Monitor de pressão por aplicativo',oq:'O paciente mede a pressão em casa e o celular avisa a equipe.',cost:80,q:2000,ev:'forte',w:1,com:0,lim:1,
+        dep:{t:'Funciona muito bem para quem tem celular novo, internet boa e tempo para medir a pressão todo dia.',q:'cardiologista'},
         insp:'Programas de telemonitoramento de hipertensão.',
-        viu:'Para a régua, este pedido e o outro da reunião são idênticos: mesmo custo, mesmos QALYs.',nao:'Quem recebe. Este chega primeiro a quem já tem mais acesso à saúde.'},
-      {id:'p1b',nm:'Busca ativa de pressão alta em áreas rurais e ribeirinhas',oq:'Equipes vão de casa em casa, e de barco, medir a pressão e levar o remédio.',cost:80,q:2000,ev:'moderada',w:1.2,com:1,lim:1,
+        viu:'Para a régua, os dois pedidos da reunião são idênticos.',nao:'Quem recebe. Este chega primeiro a quem já tem mais acesso à saúde.'},
+      {id:'p1b',nm:'Busca ativa de pressão alta em áreas rurais e ribeirinhas',oq:'Equipes vão de casa em casa, e de barco, medir a pressão.',cost:80,q:2000,ev:'moderada',w:1.2,com:1,lim:1,
         dep:{t:'A unidade de saúde mais perto fica a seis horas de barco. Eu descobri que tinha pressão alta no dia do derrame do meu irmão.',q:'Seu Raimundo, 63 anos, ribeirinho'},
         insp:'Estratégia Saúde da Família em áreas remotas e equipes ribeirinhas.',
-        viu:'Para a régua, este pedido e o outro da reunião são idênticos: mesmo custo, mesmos QALYs.',nao:'Quem recebe. Este chega a quem hoje tem menos saúde e menos acesso.'}
+        viu:'Para a régua, os dois pedidos da reunião são idênticos.',nao:'Quem recebe. Este chega a quem hoje tem menos saúde e menos acesso.'}
     ]},
-    {id:'p2',tema:'Quantos anos pela frente',intro:'Dois pedidos para o coração e o cérebro, em idades diferentes.',casos:[
-      {id:'p2a',nm:'Válvula do coração por cateter para maiores de 85 anos',oq:'Troca a válvula sem abrir o peito, em quem não aguentaria a cirurgia.',cost:100,q:1250,ev:'forte',w:1.2,com:2,lim:2,
+    {id:'p2',tema:'Quantos anos pela frente',intro:'Dois pedidos, duas idades.',casos:[
+      {id:'p2a',nm:'Válvula do coração por cateter para maiores de 85 anos',oq:'Troca a válvula sem abrir o peito.',cost:100,q:1250,ev:'forte',w:1.2,com:2,lim:2,
         dep:{t:'Trabalhei cinquenta anos. Agora a conta diz que eu rendo pouco porque me resta pouco tempo.',q:'Dona Olga, 87 anos'},
         insp:'Implante de válvula aórtica por cateter (TAVI) em idosos.',
-        viu:'A régua não pergunta a idade de ninguém: conta os anos que o tratamento acrescenta e a qualidade deles.',nao:'Quem tem menos anos pela frente soma menos QALYs com o mesmo tratamento. Para muita gente, isso soa como punir a velhice.'},
-      {id:'p2b',nm:'Reabilitação intensiva depois do AVC',oq:'Fisioterapia, fonoaudiologia e terapia ocupacional todos os dias, nos três primeiros meses.',cost:70,q:2000,ev:'moderada',w:1.2,com:1,lim:0,
-        dep:{t:'Saí do hospital vivo e sem conseguir abotoar a camisa. Vivo eu já estava. Eu queria era voltar a trabalhar.',q:'Jorge, 49 anos, motorista'},
+        viu:'A régua não pergunta a idade de ninguém: conta os anos que o tratamento acrescenta e a qualidade deles.',nao:'Quem tem menos anos pela frente soma menos QALYs com o mesmo tratamento. Para os críticos, é discriminar pela idade.'},
+      {id:'p2b',nm:'Reabilitação intensiva depois do AVC',oq:'Fisioterapia e fonoaudiologia todos os dias, por três meses.',cost:70,q:2000,ev:'moderada',w:1.2,com:1,lim:0,
+        dep:{t:'Saí do hospital vivo e sem conseguir abotoar a camisa. Eu queria era voltar a trabalhar.',q:'Jorge, 49 anos, motorista'},
         insp:'Programas de reabilitação precoce após acidente vascular cerebral.',
         viu:'Não prolonga a vida de ninguém. A régua conta o que muda no dia a dia: andar, falar, se vestir.',nao:''}
     ]},
-    {id:'p3',tema:'O mesmo remédio, duas contas',intro:'Um remédio para o coração prolonga a vida em dois anos, em média. O fabricante pediu a incorporação para dois grupos.',casos:[
-      {id:'p3a',nm:'Cardioprol para pessoas com lesão medular',oq:'Mil pessoas que usam cadeira de rodas e têm a doença do coração.',cost:60,q:1000,ev:'forte',w:1.7,com:2,lim:3,irma:'p3b',
-        extra:'Dois anos a mais para mil pessoas: 2.000 anos de vida. Com o peso 0,5 da tabela, viram 1.000 QALYs. Por ano de vida ganho, sem peso: R$ 30 mil.',
+    {id:'p3',tema:'O mesmo remédio, duas contas',intro:'Um remédio para o coração dá dois anos a mais de vida. O pedido veio para dois grupos.',casos:[
+      {id:'p3a',nm:'Cardioprol para pessoas com lesão medular',oq:'Mil pessoas com a doença do coração que também têm lesão na medula.',cost:60,q:1000,ev:'forte',w:1.7,com:2,lim:3,irma:'p3b',
+        extra:'2.000 anos de vida a mais. O estado de saúde destas pessoas tem peso 0,5 (ilustrativo): viram 1.000 QALYs. Por ano de vida, sem peso: R$ 30 mil.',
         dep:{t:'O remédio me dá os mesmos dois anos que dá a qualquer pessoa. Por que os meus contam pela metade?',q:'Marina, 38 anos, cadeirante há doze'},
-        insp:'Debate sobre QALY e deficiência; a métrica evLYG conta todo ano de vida ganho com o mesmo peso.',
-        viu:'A régua aplicou a mesma regra para todos: tempo vezes qualidade.',nao:'Justamente por isso, prolongar a vida de quem tem um peso menor na tabela rende menos QALYs. O mesmo remédio parece pior em quem vive com deficiência.'},
-      {id:'p3b',nm:'Cardioprol para os demais pacientes',oq:'Mil pessoas com a mesma doença do coração, sem outra condição crônica.',cost:60,q:1700,ev:'forte',w:1,com:0,lim:3,
-        extra:'Os mesmos 2.000 anos de vida. Com o peso 0,85 da tabela, viram 1.700 QALYs. Por ano de vida ganho, sem peso: R$ 30 mil.',
-        dep:{t:'Mesmo remédio, mesma dose, mesmo efeito no coração. A diferença está só na tabela de pesos.',q:'farmacêutica da secretaria-executiva do comitê'},
-        insp:'Debate sobre QALY e deficiência; a métrica evLYG conta todo ano de vida ganho com o mesmo peso.',
+        insp:'Debate sobre QALY e deficiência; a medida evLY conta todo ano de vida ganho com o mesmo peso.',
+        viu:'A régua aplicou a mesma regra para todos: tempo vezes qualidade.',nao:'Por isso mesmo, prolongar uma vida vivida num estado de saúde com peso menor rende menos QALYs. O mesmo remédio parece pior para quem tem deficiência.'},
+      {id:'p3b',nm:'Cardioprol para os demais pacientes',oq:'Mil pessoas com a mesma doença do coração, sem outra condição.',cost:60,q:1700,ev:'forte',w:1,com:0,lim:3,
+        extra:'Os mesmos 2.000 anos de vida. Peso 0,85 (ilustrativo): viram 1.700 QALYs. Por ano de vida, sem peso: R$ 30 mil.',
+        dep:{t:'Mesmo remédio, mesma dose, mesmo efeito no coração. A diferença está só na tabela de pesos.',q:'farmacêutica da equipe técnica'},
+        insp:'Debate sobre QALY e deficiência; a medida evLY conta todo ano de vida ganho com o mesmo peso.',
         viu:'A régua aplicou a mesma regra para todos: tempo vezes qualidade.',nao:'Aqui a conta fecha. Compare com o outro pedido da reunião: o remédio é o mesmo.'}
     ]},
-    {id:'p4',tema:'O que cabe em cinco perguntas',intro:'Dois pedidos que não prolongam a vida de ninguém. Mudam como ela é vivida.',casos:[
-      {id:'p4a',nm:'Aparelhos auditivos para idosos',oq:'Aparelho, adaptação e acompanhamento para quem perdeu a audição com a idade.',cost:50,q:600,ev:'moderada',w:1.2,com:1,lim:4,
-        dep:{t:'Voltei a ouvir meus netos. No questionário não tinha pergunta sobre isso. E quem respondeu à pesquisa dos pesos nunca tinha ficado surdo.',q:'Seu Anísio, 78 anos'},
+    {id:'p4',tema:'O que cabe em cinco perguntas',intro:'Dois pedidos que não prolongam a vida. Mudam como ela é vivida.',casos:[
+      {id:'p4a',nm:'Aparelhos auditivos para idosos',oq:'Para quem perdeu a audição com a idade.',cost:50,q:600,ev:'moderada',w:1.2,com:1,lim:4,
+        dep:{t:'Voltei a ouvir meus netos. No questionário que me deram não tinha pergunta sobre ouvir.',q:'Seu Anísio, 78 anos'},
         insp:'Aparelhos de amplificação sonora e implante coclear; o EQ-5D não tem pergunta sobre audição.',
         viu:'A régua registrou um ganho pequeno.',nao:'O questionário mais usado não pergunta sobre audição. Parte do que o Seu Anísio ganhou ficou fora da conta.'},
-      {id:'p4b',nm:'Terapia em grupo para depressão na unidade básica',oq:'Oito encontros conduzidos por profissionais treinados da própria unidade.',cost:40,q:1600,ev:'forte',w:1.2,com:0,lim:0,
+      {id:'p4b',nm:'Terapia em grupo para depressão na unidade básica',oq:'Oito encontros, com profissionais da própria unidade.',cost:40,q:1600,ev:'forte',w:1.2,com:0,lim:0,
         dep:{t:'Eu achava que era frescura minha. No grupo descobri que tinha nome e que tinha tratamento.',q:'Luciana, 34 anos'},
         insp:'Psicoterapia em grupo conduzida por não especialistas na atenção primária.',
-        viu:'Aqui a régua enxerga bem: ansiedade e depressão são uma das cinco perguntas do questionário. E a conta mostrou que um tratamento sem aparelho e sem remédio pode render muito.',nao:''}
+        viu:'Aqui a régua enxerga bem: ansiedade e depressão são uma das cinco perguntas do questionário.',nao:''}
     ]},
-    {id:'p5',tema:'Quem cuida',intro:'Um serviço novo e um remédio novo. Só um deles tem gente na plateia.',casos:[
-      {id:'p5a',nm:'Centro-dia para pessoas com demência',oq:'A pessoa passa o dia com atividades e cuidados e volta para casa à noite.',cost:70,q:700,ev:'fraca',w:1.7,com:2,lim:4,
+    {id:'p5',tema:'Quem cuida',intro:'Só um destes pedidos tem gente na plateia.',casos:[
+      {id:'p5a',nm:'Centro-dia para pessoas com demência',oq:'A pessoa passa o dia no centro e volta para casa à noite.',cost:70,q:700,ev:'fraca',w:1.7,com:2,lim:4,
         dep:{t:'Larguei o emprego para cuidar da minha mãe. A conta mede a saúde dela. A minha, ninguém perguntou.',q:'Sandra, 51 anos, filha e cuidadora'},
         insp:'Serviços de cuidado diurno para pessoas com demência e seus cuidadores.',
         viu:'A régua mediu o ganho de saúde de quem tem demência: pequeno, e com evidência fraca.',nao:'O maior ganho pode ser de quem cuida. A conta padrão olha só para o paciente.'},
-      {id:'p5b',nm:'Anticoagulante sem exame mensal',oq:'Remédio que evita derrames em quem tem arritmia e dispensa o exame de sangue todo mês.',cost:90,q:2250,ev:'forte',w:1,com:0,lim:0,
+      {id:'p5b',nm:'Anticoagulante sem exame mensal',oq:'Evita derrames e dispensa o exame de sangue todo mês.',cost:90,q:2250,ev:'forte',w:1,com:0,lim:0,
         dep:{t:'Não tem campanha nem abaixo-assinado. Tem menos derrame e menos viagem até o laboratório.',q:'médica de família'},
         insp:'Anticoagulantes orais diretos na fibrilação atrial.',
         viu:'Sem plateia e sem comoção, o pedido só existe na pauta porque alguém fez a conta.',nao:''}
     ]},
     {id:'p6',tema:'A campanha na TV',intro:'Um pedido está em todos os telejornais. O outro, em nenhum.',casos:[
       {id:'p6a',nm:'Genevida, terapia gênica para uma doença rara de bebês',oq:'Dose única para cerca de 30 bebês por ano com uma doença que paralisa os músculos.',cost:180,q:450,ev:'fraca',w:1.7,com:3,lim:6,
-        dep:{t:'Meu filho tem nome, tem rosto e tem um prazo. Não me peçam para entender uma planilha.',q:'pai do Heitor, de 8 meses'},
+        dep:{t:'Estudo pequeno é o que existe quando a doença é rara. Se a regra exige o impossível, a regra exclui os nossos filhos.',q:'mãe do Heitor, de 8 meses, de uma associação de famílias'},
         insp:'Terapias gênicas para atrofia muscular espinhal, avaliadas pela Conitec.',
-        viu:'A régua mostrou o tamanho da escolha: R$ 400 mil por QALY, dez vezes a referência, com evidência ainda fraca.',nao:'Para a régua, salvar um bebê que todos conhecem vale o mesmo que evitar, sem ninguém ver, uma doença em desconhecidos. Muita gente sente que não é igual.'},
-      {id:'p6b',nm:'Teste de HPV no rastreamento do câncer de colo do útero',oq:'Troca o exame preventivo por um teste que encontra o risco anos antes.',cost:60,q:4000,ev:'forte',w:1.2,com:0,lim:0,
+        viu:'A régua mostrou o tamanho da escolha: R$ 400 mil por QALY, dez vezes a referência, com estudos ainda pequenos.',nao:'A gravidade. Para a régua, um QALY vale o mesmo venha de onde vier; para muitos, quem está em situação mais grave tem direito a prioridade.'},
+      {id:'p6b',nm:'Teste de HPV no rastreamento do câncer de colo do útero',oq:'Um teste que encontra o risco anos antes do preventivo.',cost:60,q:4000,ev:'forte',w:1.2,com:0,lim:0,
         dep:{t:'As mulheres que este teste vai salvar ainda não sabem que estão doentes. Elas não têm como vir aqui pedir.',q:'enfermeira de uma unidade básica'},
         insp:'Rastreamento do câncer do colo do útero com teste molecular de HPV.',
         viu:'A régua dá voz a quem não está na sala: milhares de mulheres que ninguém sabe ainda quem são.',nao:''}
     ]},
-    {id:'p7',tema:'O fim da vida',intro:'Dois pedidos para pessoas com câncer que não tem mais cura.',casos:[
-      {id:'p7a',nm:'Pancrevit, para câncer de pâncreas avançado',oq:'Remédio que acrescenta cerca de três meses de vida, com efeitos colaterais.',cost:120,q:480,ev:'moderada',w:1.7,com:2,lim:6,
+    {id:'p7',tema:'O fim da vida',intro:'Dois pedidos para pessoas com câncer sem cura.',casos:[
+      {id:'p7a',nm:'Pancrevit, para câncer de pâncreas avançado',oq:'Cerca de três meses a mais de vida, com efeitos colaterais.',cost:120,q:480,ev:'moderada',w:1.7,com:2,lim:6,
         dep:{t:'Ninguém me prometeu cura. Me prometeram um Natal.',q:'Dona Lúcia, 66 anos'},
         insp:'Medicamentos oncológicos de fim de vida e o modificador de gravidade do NICE.',
-        viu:'A régua mostrou que cada QALY aqui custa R$ 250 mil, e que o mesmo dinheiro renderia seis vezes mais saúde em outro lugar.',nao:'Meses no fim da vida contam, na régua, o mesmo que meses em qualquer outra fase.'},
-      {id:'p7b',nm:'Equipes de cuidados paliativos em casa',oq:'Médica, enfermeira e psicóloga atendem em casa quem está no fim da vida.',cost:50,q:500,ev:'moderada',w:1.7,com:1,lim:4,
+        viu:'A régua mostrou que cada QALY aqui custa R$ 250 mil, seis vezes a referência.',nao:'Meses no fim da vida contam, na régua, o mesmo que meses em qualquer outra fase.'},
+      {id:'p7b',nm:'Equipes de cuidados paliativos em casa',oq:'Médica, enfermeira e psicóloga atendem em casa.',cost:50,q:500,ev:'moderada',w:1.7,com:1,lim:4,
         dep:{t:'A gente quase não acrescenta dias. Tira a dor, a falta de ar e o medo. E fica com a família depois.',q:'Rosa, enfermeira'},
         insp:'Cuidados paliativos domiciliares.',
         viu:'A régua contou a melhora da dor e da ansiedade nas últimas semanas.',nao:'Morrer sem dor, em casa e com a família amparada quase não aparece numa conta feita de anos de vida e cinco perguntas.'}
     ]},
-    {id:'p8',tema:'A novidade',intro:'Um remédio novo com torcida organizada e uma troca que ninguém pediu.',casos:[
-      {id:'p8a',nm:'Glicemax Plus, novo remédio para diabetes',oq:'Versão nova de um remédio que o SUS já oferece, quatro vezes mais cara.',cost:140,q:350,ev:'fraca',w:1,com:2,lim:0,
-        dep:{t:'Todo paciente merece o mais moderno. Negar o Glicemax Plus é negar o futuro a quem tem diabetes.',q:'presidente de uma associação de pacientes'},
+    {id:'p8',tema:'A novidade',intro:'Um remédio novo com torcida e uma troca que ninguém pediu.',casos:[
+      {id:'p8a',nm:'Glicemax Plus, novo remédio para diabetes',oq:'Versão nova, quatro vezes mais cara, de um remédio que já é oferecido.',cost:140,q:350,ev:'fraca',w:1,com:2,lim:0,
+        dep:{t:'Todo paciente merece o mais moderno. Negar o Glicemax Plus é negar o futuro a quem tem diabetes.',q:'porta-voz de uma campanha pelo remédio'},
         insp:'Medicamentos "eu também": novas versões com ganho mínimo sobre as que já existem.',
         viu:'A régua não se comove com a palavra "moderno": o ganho medido foi mínimo, para um preço quatro vezes maior.',nao:'',
-        virada:{t:'Uma reportagem mostrou que a associação que lotou a consulta pública era financiada pelo fabricante, e que o Glicemax Plus rende quase o mesmo que o remédio antigo.',sim:-12,nao:12}},
-      {id:'p8b',nm:'Caneta de insulina de menor custo',oq:'Troca a caneta atual por outra mais barata, com a qual as pessoas erram menos a dose.',cost:-20,q:800,ev:'forte',w:1,com:0,lim:0,
-        dep:{t:'Ninguém pediu. Fui eu que achei na planilha: é mais barata e funciona melhor.',q:'técnica da secretaria-executiva do comitê'},
+        virada:{t:'Uma reportagem mostrou que a campanha pelo Glicemax Plus era paga pelo fabricante, e que ele rende quase o mesmo que o remédio antigo.',sim:-12,nao:12}},
+      {id:'p8b',nm:'Caneta de insulina de menor custo',oq:'Mais barata que a atual, e as pessoas erram menos a dose.',cost:-20,q:800,ev:'forte',w:1,com:0,lim:0,
+        dep:{t:'Ninguém pediu. Fui eu que achei na planilha: é mais barata e funciona melhor.',q:'técnica da equipe do comitê'},
         insp:'Tecnologias dominantes: mais baratas e melhores que as que substituem.',
         viu:'Mais saúde e menos gasto: na linguagem da régua, uma tecnologia "dominante". Sem a conta, ela não teria chegado à pauta.',nao:''}
     ]},
-    {id:'p9',tema:'Agora ou daqui a trinta anos',intro:'Dois pedidos com o mesmo custo. Um rende já; o outro, em 2056.',casos:[
-      {id:'p9a',nm:'Vacina para adolescentes contra um câncer da idade adulta',oq:'Duas doses aos 12 anos evitam um câncer que apareceria por volta dos 45.',cost:70,q:1600,ev:'forte',w:1,com:0,lim:7,
-        extra:'Sem desconto, seriam 7.000 QALYs (R$ 10 mil por QALY). Como o ganho só vem daqui a 30 anos, a regra do desconto de 5% ao ano reduz a conta para 1.600.',
+    {id:'p9',tema:'Agora ou daqui a trinta anos',intro:'Mesmo custo. Um rende já; o outro, em 2056.',casos:[
+      {id:'p9a',nm:'Vacina para adolescentes contra um câncer da idade adulta',oq:'Duas doses aos 12 anos evitam um câncer que viria aos 45.',cost:70,q:1620,ev:'forte',w:1,com:0,lim:7,
+        extra:'Sem desconto: 7.000 QALYs (R$ 10 mil por QALY). Como o ganho só vem em 30 anos, a regra do desconto de 5% ao ano reduz a conta para 1.620.',
         dep:{t:'O câncer que esta vacina evita só apareceria em 2056. Na conta, saúde no futuro vale menos que saúde agora.',q:'sanitarista do programa de imunizações'},
         insp:'Vacinação contra o HPV e o efeito da taxa de desconto na prevenção.',
         viu:'A régua trata custos e ganhos futuros com a mesma regra, para todos os pedidos.',nao:'Essa regra, o desconto, encolhe os ganhos da prevenção, que demoram a aparecer. Com outra taxa, o veredito mudaria.'},
-      {id:'p9b',nm:'Stent de nova geração para infarto',oq:'Reabre a artéria entupida com menos risco de ela fechar de novo.',cost:70,q:1750,ev:'forte',w:1.2,com:1,lim:0,
+      {id:'p9b',nm:'Stent de nova geração para infarto',oq:'Reabre a artéria, com menos risco de fechar de novo.',cost:70,q:1750,ev:'forte',w:1.2,com:1,lim:0,
         dep:{t:'Entrei infartando e saí andando em três dias.',q:'Seu Valdir, 58 anos'},
         insp:'Stents farmacológicos na angioplastia primária.',
         viu:'Ganho imediato e fácil de ver. A régua o põe na mesma escala da vacina ao lado.',nao:''}
@@ -1234,48 +1245,60 @@ const Calc=(function(){
   function rng(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
   function shuffle(a,r){for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
   const rceiCaso=c=>c.cost>0?c.cost*1e6/c.q:null; // null = dominante (não custa mais)
+  const curto=c=>c.nm.split(',')[0]; // nome curto, para as frases da Praça
   const pontos=c=>c.w>=1.7?2:c.w>=1.2?1:0; // Ouvidora: pedidos de quem está pior valem mais
   const DISC=2; // pontos que a Ouvidora tira quando o mesmo tratamento é aprovado para um grupo e negado ao outro
-  // cfg: {seed, reunioes (6 ou 4), dif ('facil','normal','dificil'), tutorial (true/false)}
+  // cfg: {seed, reunioes (3, 4 ou 6), dif ('facil','normal','dificil'), tutorial (true/false)}
   function novaPartida(cfg){
     const r=rng(cfg.seed*7919+cfg.reunioes);
     // o ganho real de cada caso é sorteado no início, para todos, na ordem do baralho: não depende das escolhas
     const real={};
     for(const p of [TUTORIAL].concat(PAUTAS))for(const c of p.casos){const [a,b]=SPREAD[c.ev];real[c.id]=Math.round(c.q*(a+r()*(b-a)));}
     const ordem=shuffle(PAUTAS.map((_,i)=>i),r).map(i=>PAUTAS[i]);
-    const pautas=cfg.tutorial?[TUTORIAL].concat(ordem.slice(0,cfg.reunioes-1)):ordem.slice(0,cfg.reunioes);
-    const B=ORC[cfg.dif];
+    const n=cfg.tutorial?cfg.reunioes-1:cfg.reunioes,esc=ordem.slice(0,n);
+    // toda partida mostra pelo menos duas limitações diferentes: se o sorteio não der, troca a última pauta pela seguinte
+    const lims=ps=>new Set((cfg.tutorial?[TUTORIAL]:[]).concat(ps).flatMap(p=>p.casos.map(c=>c.lim)).filter(Boolean)).size;
+    for(let k=n;lims(esc)<2&&k<ordem.length;k++)esc[n-1]=ordem[k];
+    const pautas=cfg.tutorial?[TUTORIAL].concat(esc):esc;
+    const B=ORC[cfg.reunioes][cfg.dif];
     return {cfg,B,orc:B,i:0,pautas,real,hist:[],praca:PRACA0,incoer:0,disc:0,fim:false,jr:rng(cfg.seed*104729+7)};
   }
   const pautaAtual=G=>G.pautas[G.i];
   const semRegua=G=>G.cfg.tutorial&&G.i===0; // na reunião do tutorial os QALYs ficam escondidos até a decisão
   // quanto sobra se as decisões (lista de true/false) forem tomadas; negativo = não cabe
   function sobra(G,dec){let s=G.orc;pautaAtual(G).casos.forEach((c,k)=>{if(dec[k])s-=c.cost;});return s;}
+  // teto da reunião: metade do orçamento do mandato (ou o que resta, se for menos)
+  const teto=G=>Math.min(G.orc,G.B*TETO);
+  const gastoReuniao=(G,dec)=>pautaAtual(G).casos.reduce((s,c,k)=>s+(dec[k]?c.cost:0),0);
+  const cabe=(G,dec)=>sobra(G,dec)>=-1e-9&&gastoReuniao(G,dec)<=teto(G)+1e-9;
+  // um pedido que, sozinho, já não cabe: a recusa é por falta de dinheiro, e pesa menos na Praça
+  const semDinheiro=(G,c)=>c.cost>teto(G)+1e-9;
   /* fecha a reunião: dec[k] = true (incorpora) ou false. Devolve a ata:
      dC = QALYs da reunião além do que o mesmo dinheiro renderia na rede (estimativa do dossiê);
      dO = pontos da Ouvidora (pedidos atendidos de quem está pior); dP = variação da Praça; motivos = textos da Praça. */
   function fecharReuniao(G,dec){
     const P=pautaAtual(G);
-    if(sobra(G,dec)<-1e-9)throw new Error('as decisões não cabem no orçamento');
+    if(!cabe(G,dec))throw new Error('as decisões não cabem no orçamento ou no teto da reunião');
+    const falta=P.casos.map(c=>semDinheiro(G,c)); // calculado antes de pagar
     let dC=0,dO=0,dP=0;const motivos=[];
     P.casos.forEach((c,k)=>{
       const ok=!!dec[k],rc=rceiCaso(c);
       if(ok){
         G.orc-=c.cost;dC+=c.q-c.cost*1e6/K_JOGO;dO+=pontos(c);
-        if(c.com>0){dP+=4*c.com;motivos.push({d:4*c.com,t:'Aprovou "'+c.nm+'", um pedido que mobilizou muita gente.'});}
-        if(rc===null){dP+=3;motivos.push({d:3,t:'Aprovou "'+c.nm+'", que melhora a saúde e ainda economiza.'});}
+        if(c.com>0){dP+=4*c.com;motivos.push({d:4*c.com,t:'Aprovou "'+curto(c)+'", que mobilizou muita gente.'});}
+        if(rc===null){dP+=3;motivos.push({d:3,t:'Aprovou "'+curto(c)+'", que melhora a saúde e economiza.'});}
         // coerência: aprovar um custo por QALY acima da referência depois de recusar outro mais baixo, sem a justificativa da prioridade
         if(rc!==null&&rc>K_JOGO){
-          const y=G.hist.concat(P.casos.map((x,j)=>({c:x,ok:!!dec[j]}))).find(h=>!h.ok&&h.c.id!==c.id&&rceiCaso(h.c)!==null&&rceiCaso(h.c)<rc&&h.c.w>=c.w);
-          if(y){dP-=5;G.incoer++;motivos.push({d:-5,t:'Dois pesos, duas medidas: aprovou "'+c.nm+'" depois de recusar "'+y.c.nm+'", que custava menos por QALY.'});}
+          const y=G.hist.concat(P.casos.map((x,j)=>({c:x,ok:!!dec[j],falta:falta[j]}))).find(h=>!h.ok&&!h.falta&&h.c.id!==c.id&&rceiCaso(h.c)!==null&&rceiCaso(h.c)<rc&&h.c.w>=c.w);
+          if(y){dP-=5;G.incoer++;motivos.push({d:-5,t:'Dois pesos, duas medidas: aprovou "'+curto(c)+'" depois de recusar "'+curto(y.c)+'", que custava menos por QALY.'});}
         }
       }else{
-        if(c.com>0){dP-=6*c.com;motivos.push({d:-6*c.com,t:'Recusou "'+c.nm+'", e a recusa repercutiu.'});}
+        if(c.com>0){const d=falta[k]?-3*c.com:-6*c.com;dP+=d;motivos.push({d,t:falta[k]?'Faltou dinheiro para "'+curto(c)+'", e a recusa repercutiu.':'Recusou "'+curto(c)+'", e a recusa repercutiu.'});}
         const irma=c.irma&&P.casos.findIndex(x=>x.id===c.irma);
-        if(c.irma&&irma>=0&&dec[irma]){dP-=10;dO-=DISC;G.disc++;motivos.push({d:-10,t:'Aprovou o mesmo remédio para um grupo e negou para o outro. Entidades falam em discriminação.'});}
+        if(c.irma&&irma>=0&&dec[irma]){dP-=10;dO-=DISC;G.disc++;motivos.push({d:-10,t:'Mesmo remédio aprovado para um grupo e negado ao outro. Entidades falam em discriminação.'});}
       }
     });
-    P.casos.forEach((c,k)=>G.hist.push({c,ok:!!dec[k],reuniao:G.i+1}));
+    P.casos.forEach((c,k)=>G.hist.push({c,ok:!!dec[k],reuniao:G.i+1,falta:!dec[k]&&falta[k]}));
     G.praca=Math.max(0,Math.min(100,G.praca+dP));
     const ata={pauta:P,dec:dec.map(Boolean),dC,dO,dP,motivos,semRegua:semRegua(G)};
     G.i++;if(G.i>=G.pautas.length)G.fim=true;
@@ -1291,12 +1314,14 @@ const Calc=(function(){
   }
   // melhor e pior resultado possíveis nesta partida (todas as combinações que cabem no orçamento), para as notas de 0 a 10
   function limites(G){
-    const cs=[];G.pautas.forEach(p=>p.casos.forEach(c=>cs.push(c)));
-    let minC=Infinity,maxC=-Infinity,maxO=0;const n=cs.length;
+    const cs=[],pi=[];G.pautas.forEach((p,j)=>p.casos.forEach(c=>{cs.push(c);pi.push(j);}));
+    let minC=Infinity,maxC=-Infinity,maxO=0;const n=cs.length,T=G.B*TETO;
     for(let m=0;m<(1<<n);m++){
-      let g=0,C=0,O=0;
-      for(let k=0;k<n;k++)if(m>>k&1){const c=cs[k];g+=c.cost;C+=G.real[c.id];O+=pontos(c);}
+      let g=0,C=0,O=0,ok=true;const porR=[];
+      for(let k=0;k<n;k++)if(m>>k&1){const c=cs[k];g+=c.cost;porR[pi[k]]=(porR[pi[k]]||0)+c.cost;C+=G.real[c.id];O+=pontos(c);}
       if(g>G.B+1e-9)continue;
+      for(const x of porR)if(x>T+1e-9)ok=false;
+      if(!ok)continue;
       C+=(G.B-g)*1e6/K_JOGO;
       if(C<minC)minC=C;if(C>maxC)maxC=C;if(O>maxO)maxO=O;
     }
@@ -1304,13 +1329,12 @@ const Calc=(function(){
   }
   const nota=(x,a,b)=>b-a<1e-9?10:Math.max(0,Math.min(10,10*(x-a)/(b-a)));
   /* resultado final. Só depois da última reunião. Aplica à Praça o que só aparece no fim:
-     a virada de casos com patrocínio escondido, a fila (se o gasto rendeu menos saúde do que renderia na rede) e a coerência. */
+     a virada de casos com patrocínio escondido e a coerência. */
   function resultado(G){
     const S=placar(G),L=limites(G),fim=[];
     let praca=G.praca;
     for(const h of G.hist)if(h.c.virada){const d=h.ok?h.c.virada.sim:h.c.virada.nao;praca+=d;fim.push({d,t:h.c.virada.t+(h.ok?' O comitê tinha aprovado.':' O comitê tinha recusado.')});}
     const base=G.B*1e6/K_JOGO;
-    if(S.C<base-1){praca-=10;fim.push({d:-10,t:'As filas cresceram: o que o comitê aprovou rendeu menos saúde do que o mesmo dinheiro renderia na rede.'});}
     const nOk=G.hist.filter(h=>h.ok).length,nNao=G.hist.length-nOk;
     if(G.incoer===0&&nOk>0&&nNao>0){praca+=8;fim.push({d:8,t:'O comitê foi coerente: nunca aprovou um pedido pior depois de recusar um melhor.'});}
     praca=Math.max(0,Math.min(100,praca));
@@ -1327,7 +1351,7 @@ const Calc=(function(){
     return {C:S.C,O:S.O,P:praca,gC,gO,gP,gasto:S.gasto,rede:S.rede,base,L,fim,titulo,desc,nOk,nNao,acima};
   }
   return {TARIFA,eq5dIndice,eq5dTodos,fatorDesconto,qalyPerfil,anosVida,compararVidas,TTO_T,TTO_ESCADA,ttoPeso,avaliar,
-    K_JOGO,ORC,SPREAD,PRACA0,TUTORIAL,PAUTAS,rng,shuffle,rceiCaso,pontos,novaPartida,pautaAtual,semRegua,sobra,fecharReuniao,placar,limites,nota,resultado};
+    K_JOGO,ORC,SPREAD,PRACA0,TUTORIAL,PAUTAS,rng,shuffle,rceiCaso,curto,pontos,novaPartida,pautaAtual,semRegua,sobra,TETO,teto,gastoReuniao,cabe,semDinheiro,fecharReuniao,placar,limites,nota,resultado};
 })();
 /* CALC:FIM */
 (function(){
@@ -1339,7 +1363,7 @@ const Calc=(function(){
   const fmt3=new Intl.NumberFormat('pt-BR',{maximumFractionDigits:3,minimumFractionDigits:3});
   const brl=x=>(x<0?'− ':'')+'R$ '+fmt.format(Math.abs(Math.round(x)));
   const rmil=x=>(x<0?'− ':'')+'R$ '+fmt.format(Math.abs(Math.round(x/1000)))+' mil';
-  const mi=x=>(x<0?'− ':'')+'R$ '+fmt.format(Math.abs(x))+' mi';
+  const mi=x=>(x<0?'− ':'')+'R$ '+fmt.format(Math.abs(x))+(Math.abs(x)===1?' milhão':' milhões');
   const sgn=(x,f)=>(x>0?'+':x<0?'−':'')+(f||fmt).format(Math.abs(x));
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const press=(chips,on)=>chips.forEach(c=>c.setAttribute('aria-pressed',c===on?'true':'false'));
@@ -1357,34 +1381,36 @@ const Calc=(function(){
     paliativo:{t:'Cuidado paliativo',d:'O tempo de vida é o mesmo. A dor e a falta de ar diminuem.',sem:{q:fill([.4,.25],ANOS),vive:2},com:{q:fill([.6,.5],ANOS),vive:2}}
   };
   const dv={sem:null,com:null,ativo:'com',desc:false};
+  const estreito=()=>window.innerWidth<620; // no celular os gráficos usam uma área de desenho menor, para a letra ficar legível
+  let DVG=null;
   const NOME={sem:'sem o tratamento',com:'com o tratamento'};
   const dvChips=[...document.querySelectorAll('#dvPresets .chip')],dvCen=[...document.querySelectorAll('#dvCen .chip')];
   function dvPreset(k){const p=DVP[k];dv.sem={q:p.sem.q.slice(),vive:p.sem.vive};dv.com={q:p.com.q.slice(),vive:p.com.vive};$('dvDescP').textContent=p.d;press(dvChips,dvChips.find(c=>c.dataset.p===k));dvRender();}
   function dvChart(){
-    const W=640,H=300,L=44,R=10,T=14,B=42,cw=W-L-R,ch=H-T-B,col=cw/ANOS,bw=col*.38;
+    const N=estreito(),W=N?360:640,H=N?250:300,L=N?34:44,R=N?4:10,T=14,B=42,cw=W-L-R,ch=H-T-B,col=cw/ANOS,bw=col*.38,fs=N?13:12;DVG={W,H,L,R,T,B};
     const y=v=>T+ch-v*ch;
     let s='<svg viewBox="0 0 '+W+' '+H+'" id="dvSvg" role="img" aria-label="Gráfico da qualidade de vida ano a ano, '+NOME.sem+' e '+NOME.com+'">';
-    for(const v of [0,.25,.5,.75,1])s+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="mut mono" font-size="12" x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+fmt2.format(v).replace(',00','').replace(/0$/,'')+'</text>';
+    for(const v of [0,.25,.5,.75,1])s+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="mut mono" font-size="'+fs+'" x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+String(v).replace('.',',')+'</text>';
     for(let t=1;t<=ANOS;t++){
       const x0=L+(t-1)*col;
       if(t<=dv.sem.vive)s+='<rect x="'+(x0+col*.1)+'" y="'+y(dv.sem.q[t-1])+'" width="'+bw+'" height="'+(dv.sem.q[t-1]*ch)+'" fill="var(--loss)"'+(dv.ativo==='sem'?'':' opacity=".55"')+'/>';
       if(t<=dv.com.vive)s+='<rect x="'+(x0+col*.1+bw+2)+'" y="'+y(dv.com.q[t-1])+'" width="'+bw+'" height="'+(dv.com.q[t-1]*ch)+'" fill="var(--accent)"'+(dv.ativo==='com'?'':' opacity=".55"')+'/>';
-      s+='<text class="mut" font-size="12" x="'+(x0+col/2)+'" y="'+(H-B+16)+'" text-anchor="middle">'+t+'</text>';
+      s+='<text class="mut" font-size="'+fs+'" x="'+(x0+col/2)+'" y="'+(H-B+17)+'" text-anchor="middle">'+t+'</text>';
     }
-    s+='<line class="ax" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(0)+'" y2="'+y(0)+'"/><text class="mut" font-size="12" x="'+(L+cw/2)+'" y="'+(H-6)+'" text-anchor="middle">ano</text></svg>';
+    s+='<line class="ax" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(0)+'" y2="'+y(0)+'"/><text class="mut" font-size="'+fs+'" x="'+(L+cw/2)+'" y="'+(H-6)+'" text-anchor="middle">ano</text></svg>';
     return s;
   }
   function dvRender(){
-    const r=dv.desc?TAXA:0,o=Calc.compararVidas(dv.sem,dv.com,r);
+    const r=dv.desc?TAXA:0,o=Calc.compararVidas(dv.sem,dv.com,r),a=dv.com.vive-dv.sem.vive; // a: anos vividos a mais, sem desconto
     $('dvChart').innerHTML=dvChart();
     $('dvQsem').textContent=fmt2.format(o.qalySem);$('dvQcom').textContent=fmt2.format(o.qalyCom);
-    $('dvGanho').textContent=sgn(o.ganhoQaly,fmt2);$('dvAV').textContent=sgn(o.ganhoAnos,fmt2);
+    $('dvGanho').textContent=sgn(o.ganhoQaly,fmt2);$('dvAV').textContent=a===0?'0':sgn(a);
     $('dvViveSemV').textContent=dv.sem.vive+(dv.sem.vive===1?' ano':' anos');$('dvViveComV').textContent=dv.com.vive+(dv.com.vive===1?' ano':' anos');
     $('dvViveSem').value=dv.sem.vive;$('dvViveCom').value=dv.com.vive;
-    const g=o.ganhoQaly,a=o.ganhoAnos;
+    const g=o.ganhoQaly;
     $('dvFrase').innerHTML=(Math.abs(g)<0.005?'Os dois cenários somam os mesmos QALYs.':'<strong>O tratamento '+(g>0?'acrescenta ':'tira ')+fmt2.format(Math.abs(g))+' QALYs.</strong>')+' '+
-      (Math.abs(a)<0.005?'O tempo de vida é o mesmo: toda a diferença vem da qualidade.':a>0?'A pessoa vive '+fmt2.format(a)+' anos a mais'+(g<a-0.005?', mas esses anos contam menos que 1 cada, porque não são de saúde plena.':'.'):'A pessoa vive '+fmt2.format(-a)+' anos a menos.')+
-      (dv.desc?' Com o desconto de '+fmt.format(TAXA*100)+'% ao ano, cada ano no futuro pesa um pouco menos que o anterior.':'');
+      (a===0?'O tempo de vida é o mesmo: toda a diferença vem da qualidade.':a>0?'A pessoa vive '+a+(a===1?' ano':' anos')+' a mais'+(g<a-0.005?', mas cada um conta menos que 1 QALY, porque não é de saúde plena.':'.'):'A pessoa vive '+(-a)+(a===-1?' ano':' anos')+' a menos.')+
+      (dv.desc?' Com o desconto de '+fmt.format(TAXA*100)+'% ao ano, os QALYs de cada ano no futuro contam um pouco menos (o primeiro ano não é descontado).':'');
     // controles finos (teclado): um por ano, do cenário que está sendo editado
     const S=dv[dv.ativo];
     $('dvFinoT').textContent='Ajustar ano a ano ('+NOME[dv.ativo]+')';
@@ -1402,7 +1428,7 @@ const Calc=(function(){
     // toque ou clique no gráfico: a coluna do ano vai para a altura tocada, no cenário que está sendo editado
     const box=$('dvChart');let down=false;
     function set(e){
-      const svg=$('dvSvg');if(!svg)return;const r=svg.getBoundingClientRect(),W=640,H=300,L=44,R=10,T=14,B=42;
+      const svg=$('dvSvg');if(!svg)return;const r=svg.getBoundingClientRect(),{W,H,L,R,T,B}=DVG;
       const px=(e.clientX-r.left)/r.width*W,py=(e.clientY-r.top)/r.height*H;
       const t=Math.floor((px-L)/((W-L-R)/ANOS))+1;if(t<1||t>ANOS)return;
       const v=Math.max(0,Math.min(1,Math.round((1-(py-T)/(H-T-B))*20)/20));
@@ -1487,37 +1513,41 @@ const Calc=(function(){
   };
   const rcChips=[...document.querySelectorAll('#rcPresets .chip')];
   const rcIn=['rcCa','rcEa','rcCn','rcEn'].map($);
+  // aceita "26.000", "26000", "1,05" e "1.05": ponto seguido de três dígitos é separador de milhar
+  const num=t=>{t=String(t).trim().replace(/\s|R\$/g,'');if(t==='')return NaN;if(/,/.test(t))t=t.replace(/\./g,'').replace(',','.');else if(/^\d{1,3}(\.\d{3})+$/.test(t))t=t.replace(/\./g,'');return /^\d+(\.\d+)?$/.test(t)?+t:NaN;};
   function rcPlane(o){
-    const W=640,H=340,L=14,R=14,T=22,B=30,cw=W-L-R,ch=H-T-B,cx=L+cw/2,cy=T+ch/2;
+    const N=estreito(),W=N?360:640,H=N?300:340,L=8,R=8,T=26,B=34,cw=W-L-R,ch=H-T-B,cx=L+cw/2,cy=T+ch/2,fs=N?13:12;
     const xm=Math.max(Math.abs(o.dE)*1.6,0.1),ym=Math.max(Math.abs(o.dC)*1.5,o.lim*xm*0.9,1000);
     const X=v=>cx+v/xm*cw/2,Y=v=>cy-v/ym*ch/2;
     // região aceita pela regra: abaixo da reta do limiar
     const yl=Math.max(-ym,-o.lim*xm),yr=Math.min(ym,o.lim*xm),xl=yl/o.lim,xr=yr/o.lim;
-    let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Plano de custo-efetividade: na horizontal, QALYs a mais; na vertical, custo a mais. A tecnologia está no quadrante '+{dominante:'de baixo à direita (dominante)',dominada:'de cima à esquerda (dominada)',troca:'de cima à direita',economia:'de baixo à esquerda',igual:'central'}[o.tipo]+'.">';
+    let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Plano de custo-efetividade: na horizontal, QALYs a mais; na vertical, custo a mais. A tecnologia está no canto '+{dominante:'de baixo à direita (dominante)',dominada:'de cima à esquerda (dominada)',troca:'de cima à direita',economia:'de baixo à esquerda',igual:'central'}[o.tipo]+'.">';
     s+='<polygon points="'+X(xl)+','+Y(yl)+' '+X(xr)+','+Y(yr)+' '+X(xm)+','+Y(yr)+' '+X(xm)+','+Y(-ym)+' '+X(xl)+','+Y(-ym)+'" fill="var(--accent-soft)"/>';
     s+='<line class="ax" x1="'+L+'" x2="'+(W-R)+'" y1="'+cy+'" y2="'+cy+'"/><line class="ax" x1="'+cx+'" x2="'+cx+'" y1="'+T+'" y2="'+(H-B)+'"/>';
     s+='<line x1="'+X(xl)+'" y1="'+Y(yl)+'" x2="'+X(xr)+'" y2="'+Y(yr)+'" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 4"/>';
-    s+='<text font-size="12" class="mut" x="'+(W-R)+'" y="'+(T+12)+'" text-anchor="end">mais caro e melhor</text><text font-size="12" class="mut" x="'+L+'" y="'+(T+12)+'">mais caro e pior</text>';
-    s+='<text font-size="12" class="mut" x="'+(W-R)+'" y="'+(H-B-6)+'" text-anchor="end">mais barato e melhor</text><text font-size="12" class="mut" x="'+L+'" y="'+(H-B-6)+'">mais barato e pior</text>';
-    s+='<text font-size="12" class="mut" x="'+(W-R)+'" y="'+(H-8)+'" text-anchor="end">QALYs a mais →</text><text font-size="12" class="mut" x="'+(cx+6)+'" y="'+(T-8)+'">↑ custo a mais</text>';
+    const lab=(x,y,a,t)=>'<text font-size="'+fs+'" x="'+x+'" y="'+y+'"'+(a?' text-anchor="end"':'')+' style="paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round">'+t+'</text>';
+    s+=lab(W-R,T+14,1,'mais caro e melhor')+lab(L,T+14,0,'mais caro e pior')+lab(W-R,H-B-8,1,'mais barato e melhor')+lab(L,H-B-8,0,'mais barato e pior');
+    s+='<text font-size="'+fs+'" class="mut" x="'+(W-R)+'" y="'+(H-10)+'" text-anchor="end">mais saúde (QALYs) →</text><text font-size="'+fs+'" class="mut" x="'+(cx+6)+'" y="'+(T-10)+'">↑ mais caro</text>';
     s+='<circle cx="'+X(o.dE)+'" cy="'+Y(o.dC)+'" r="8" fill="'+(o.ok===false?'var(--bad)':'var(--good)')+'" stroke="var(--card)" stroke-width="2"/></svg>';
     return s;
   }
   function rcRender(){
-    const [ca,ea,cn,en]=rcIn.map(i=>+i.value||0),lim=+$('rcLim').value;
-    const o=Calc.avaliar(cn-ca,en-ea,lim);
+    const vals=rcIn.map(i=>num(i.value)),lim=+$('rcLim').value,ruim=vals.some(Number.isNaN);
+    $('rcErro').textContent=ruim?'Preencha os quatro campos só com números. Exemplos: 26000 ou 26.000 para o custo; 1,05 para os QALYs.':'';
+    $('rcOut').hidden=ruim;if(ruim)return;
+    const [ca,ea,cn,en]=vals,o=Calc.avaliar(cn-ca,en-ea,lim);
     $('rcDC').textContent=(o.dC>0?'+ ':'')+brl(o.dC);$('rcDE').textContent=sgn(o.dE,fmt2);
     const T={dominante:['Dominante','ok'],dominada:['Dominada','no'],igual:['Sem diferença','eq']};
     if(o.rcei===null){$('rcR').textContent='—';$('rcRS').textContent='não se calcula a razão neste caso';$('rcSelo').innerHTML=badge(T[o.tipo][1],T[o.tipo][0]);}
     else{$('rcR').textContent=brl(o.rcei);$('rcRS').textContent=o.tipo==='troca'?'por QALY ganho':'economizados por QALY perdido';$('rcSelo').innerHTML=badge(o.ok?'ok':'no',o.tipo==='troca'?(o.ok?'abaixo da referência':'acima da referência'):(o.ok?'economia acima da referência':'economia abaixo da referência'));}
     $('rcDesl').textContent=o.dC>0?fmt2.format(o.deslocada):o.dC<0?'+'+fmt2.format(-o.deslocada):'0';
-    $('rcDeslS').textContent=o.dC>0?'QALYs que o mesmo dinheiro renderia em outro lugar':o.dC<0?'QALYs que o dinheiro poupado pode render em outro lugar':'nenhum dinheiro muda de lugar';
+    $('rcDeslS').textContent=o.dC>0?'QALYs que o mesmo dinheiro renderia em outro lugar (hipótese)':o.dC<0?'QALYs que o dinheiro poupado pode render em outro lugar (hipótese)':'nenhum dinheiro muda de lugar';
     const v={
       dominante:'<strong>Mais saúde por menos (ou o mesmo) dinheiro.</strong> Não há o que pesar: a tecnologia nova é melhor nas duas coisas. Os economistas chamam isso de tecnologia <em>dominante</em>.',
       dominada:'<strong>Custa mais (ou o mesmo) e não rende mais saúde.</strong> Também não há o que pesar: a tecnologia nova é <em>dominada</em> pela atual.',
       igual:'Custo e saúde iguais: a conta não distingue as duas opções.',
       troca:'Cada QALY a mais custa <strong>'+brl(o.rcei||0)+'</strong>. '+(o.ok?'Fica <strong>abaixo</strong> do valor de referência de '+rmil(lim)+': pela regra, o gasto rende mais saúde ('+fmt2.format(o.dE)+' QALYs) do que o mesmo dinheiro renderia em outro lugar ('+fmt2.format(o.deslocada)+').':'Fica <strong>acima</strong> do valor de referência de '+rmil(lim)+': pela regra, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+').'),
-      economia:'A tecnologia nova poupa dinheiro e perde um pouco de saúde: <strong>'+brl(o.rcei||0)+'</strong> economizados para cada QALY perdido. '+(o.ok?'Como isso é mais que o valor de referência, a regra diz que o dinheiro poupado pode render mais saúde em outro lugar do que a perdida aqui. É o quadrante mais desconfortável: a conta aceita, e muita gente não.':'Como isso é menos que o valor de referência, a economia não compensa a saúde perdida.')
+      economia:'A tecnologia nova poupa dinheiro e perde um pouco de saúde: <strong>'+brl(o.rcei||0)+'</strong> economizados para cada QALY perdido. '+(o.ok?'Como isso é mais que o valor de referência, a regra diz que o dinheiro poupado pode render mais saúde em outro lugar do que a perdida aqui. É o caso mais desconfortável: a conta aceita, e muita gente não.':'Como isso é menos que o valor de referência, a economia não compensa a saúde perdida.')
     }[o.tipo];
     $('rcVerd').innerHTML=v+(o.tipo==='troca'||o.tipo==='economia'?' O valor de referência orienta; a decisão final considera outros critérios.':'');
     $('rcPlane').innerHTML=rcPlane(o);
@@ -1576,18 +1606,20 @@ const Calc=(function(){
   }
   window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
   window.addEventListener('resize',onScroll);
+  let larg=estreito();window.addEventListener('resize',()=>{if(estreito()!==larg){larg=estreito();dvRender();rcRender();}});
 
   /* ---------- Jogo Plenário: telas ---------- */
-  let G=null,cfg={seed:null,reunioes:6,dif:'normal',tutorial:true},acc={C:0,O:0},ultimaAta=null;
+  let G=null,cfg={seed:null,reunioes:3,dif:'normal',tutorial:true},acc={C:0,O:0},ultimaAta=null;
   const newSeed=()=>Math.floor(Math.random()*9000)+1000;
   $('gSeed').value=newSeed();
   function chipGroup(id,onPick){const cs=[...$(id).querySelectorAll('.chip')];cs.forEach(c=>c.addEventListener('click',()=>{press(cs,c);onPick(c.dataset);}));}
-  const DIFD={facil:'Cada pedido já vem com o custo por QALY calculado, um selo dizendo se fica abaixo ou acima da referência e uma dica. Orçamento de R$ '+Calc.ORC.facil+' milhões.',
-    normal:'Cada pedido traz o custo, os QALYs e o custo por QALY. Orçamento de R$ '+Calc.ORC.normal+' milhões.',
-    dificil:'Só o custo e os QALYs: a divisão é com você. Orçamento de R$ '+Calc.ORC.dificil+' milhões.'};
-  chipGroup('lenPick',d=>{cfg.reunioes=+d.len;});
-  chipGroup('diffPick',d=>{cfg.dif=d.dif;$('diffDesc').textContent=DIFD[cfg.dif];});
-  $('diffDesc').textContent=DIFD.normal;
+  const DIFD={facil:'Cada pedido já vem com o custo por QALY calculado, um selo dizendo se fica abaixo ou acima da referência e uma dica.',
+    normal:'Cada pedido traz o custo, os QALYs e o custo por QALY.',
+    dificil:'Só o custo e os QALYs: a divisão é com você. E o orçamento é menor.'};
+  const difDesc=()=>{$('diffDesc').textContent=DIFD[cfg.dif]+' Orçamento do mandato: '+mi(Calc.ORC[cfg.reunioes][cfg.dif])+'.';};
+  chipGroup('lenPick',d=>{cfg.reunioes=+d.len;difDesc();});
+  chipGroup('diffPick',d=>{cfg.dif=d.dif;difDesc();});
+  difDesc();
   const DIFN={facil:'fácil',normal:'normal',dificil:'difícil'};
   const PRI={1.7:'prioridade alta',1.2:'alguma prioridade'};
   function face(who,mood){
@@ -1610,69 +1642,69 @@ const Calc=(function(){
     renderReuniao();
   }
   function renderSide(){
-    $('jOrc').textContent=mi(G.orc);$('jOrcS').textContent='de '+mi(G.B)+' para o mandato inteiro';
+    $('jOrc').textContent=mi(G.orc);$('jOrcS').textContent='restam, de '+mi(G.B)+' para o mandato inteiro';
     $('jC').textContent=sgn(Math.round(acc.C));$('jO').textContent=fmt.format(acc.O);$('jP').textContent=fmt.format(G.praca);
     $('jPbar').style.width=G.praca+'%';
     $('gHist').innerHTML=G.hist.length?G.hist.map(h=>'<li><span class="'+(h.ok?'sim':'nao')+'">'+(h.ok?'Incorporado':'Não incorporado')+'</span> '+esc(h.c.nm)+' <span class="mut">· reunião '+h.reuniao+'</span></li>').join(''):'<li class="mut">Nenhuma decisão ainda.</li>';
     $('gStat').innerHTML=G.fim?'fim do mandato':'reunião <b>'+(G.i+1)+'</b> de '+G.pautas.length+' · <b>'+mi(G.orc)+'</b>';
   }
   function casoHtml(c,k,sr){
-    const rc=Calc.rceiCaso(c),dom=rc===null;
+    const rc=Calc.rceiCaso(c),dom=rc===null,falta=Calc.semDinheiro(G,c);
     let st='<span class="st"><b>'+(dom?'economiza '+mi(-c.cost):mi(c.cost))+'</b><small>custo total</small></span>';
     if(!sr){
       st+='<span class="st"><b>'+fmt.format(c.q)+'</b><small>QALYs ganhos</small></span>';
       if(cfg.dif!=='dificil')st+='<span class="st"><b>'+(dom?'—':rmil(rc))+'</b><small>'+(dom?'melhor e mais barato':'por QALY')+'</small></span>';
-      st+='<span class="st"><b>'+c.ev+'</b><small>evidência</small></span>';
+      st+='<span class="st"><b>'+c.ev+'</b><small>força dos estudos</small></span>';
     }
-    const tags=(c.w>1?'<span class="tg up">'+PRI[c.w]+' para a Ouvidora</span>':'')+(!sr&&cfg.dif==='facil'?(dom?badge('ok','dominante'):badge(rc<=K?'ok':'no',rc<=K?'abaixo da referência':'acima da referência')):'');
-    const dica=!sr&&cfg.dif==='facil'?'<p class="hint">'+(dom?'Dica: melhora a saúde e ainda devolve dinheiro ao orçamento.':rc<=K?'Dica: abaixo de '+rmil(K)+' por QALY, o pedido rende mais saúde do que o mesmo dinheiro renderia na rede.':'Dica: acima de '+rmil(K)+' por QALY, o mesmo dinheiro renderia mais saúde na rede. Veja se há algo importante que a conta não mostra.')+'</p>':'';
+    const tags=(c.w>1?'<span class="tg up">'+PRI[c.w]+' para a Ouvidora</span>':'')+(falta?'<span class="badge no">não cabe nesta reunião</span>':'')+(!sr&&cfg.dif==='facil'?(dom?badge('ok','dominante'):badge(rc<=K?'ok':'no',rc<=K?'abaixo da referência':'acima da referência')):'');
+    const dica=!sr&&cfg.dif==='facil'?'<p class="hint">'+(dom?'Dica: melhora a saúde e ainda devolve dinheiro ao orçamento.':rc<=K?'Dica: fica abaixo da referência de '+rmil(K)+' por QALY.':'Dica: fica acima da referência de '+rmil(K)+' por QALY. Veja se há algo importante que a conta não mostra.')+'</p>':'';
     return '<article class="caso" data-k="'+k+'"><h4>'+esc(c.nm)+'</h4><p class="oq">'+esc(c.oq)+'</p>'+
       '<div class="stats">'+st+'</div>'+(tags?'<div class="tags">'+tags+'</div>':'')+
       (c.extra&&!sr?'<p class="extra">'+esc(c.extra)+'</p>':'')+
       '<blockquote class="dep"><p>“'+esc(c.dep.t)+'”</p><footer>'+esc(c.dep.q)+', na consulta pública</footer></blockquote>'+dica+
-      '<details><summary>De onde vem este caso</summary><p class="hint">Tecnologia fictícia, com números ilustrativos. Inspirada em: '+esc(c.insp)+'</p></details>'+
-      '<fieldset class="voto"><legend>Sua decisão sobre “'+esc(c.nm)+'”</legend><label><input type="radio" name="v'+k+'" value="1"> Incorporar</label><label><input type="radio" name="v'+k+'" value="0"> Não incorporar</label></fieldset></article>';
+      '<fieldset class="voto"><legend>Sua decisão sobre “'+esc(c.nm)+'”</legend><label><input type="radio" name="v'+k+'" value="1"'+(falta?' disabled':'')+'> Incorporar</label><label><input type="radio" name="v'+k+'" value="0"'+(falta?' checked':'')+'> Não incorporar</label></fieldset>'+
+      (falta?'<p class="hint">Este pedido custa mais do que o comitê ainda pode gastar nesta reunião.</p>':'')+'</article>';
   }
   function coach(sr){
-    if(!cfg.tutorial||G.i>1)return '';
-    const t=sr?'Nesta primeira reunião você <strong>não tem a régua</strong>: só o custo de cada pedido e o que as pessoas vieram dizer. Decida como achar justo. O orçamento de '+mi(G.B)+' é para o mandato inteiro, e ainda vêm '+(G.pautas.length-1)+' reuniões.'
-      :'Agora você tem a régua. Cada pedido mostra os <strong>QALYs ganhos</strong> (anos de vida com saúde plena) e o <strong>custo por QALY</strong>. A referência é '+rmil(K)+' por QALY: acima disso, o mesmo dinheiro renderia mais saúde na rede. Três jurados vão avaliar você, e eles não concordam entre si.';
+    if(!cfg.tutorial||G.i>0)return '';
+    const t=sr?'Nesta primeira reunião você <strong>não tem a régua</strong>. O orçamento de '+mi(G.B)+' é para as '+G.pautas.length+' reuniões, e em cada uma só dá para gastar até metade dele.'
+      :'Agora cada pedido mostra os <strong>QALYs ganhos</strong> (anos de vida com saúde plena) e o <strong>custo por QALY</strong>. A referência é '+rmil(K)+' por QALY.';
     return '<div class="coach"><p class="eyebrow" style="margin:0 0 .3rem">Como jogar</p><p style="margin:0">'+t+'</p></div>';
   }
   function decisoes(){const P=Calc.pautaAtual(G);return P.casos.map((_,k)=>{const r=document.querySelector('#gameLeft input[name="v'+k+'"]:checked');return r?r.value==='1':null;});}
   function updSobra(){
-    const dec=decisoes(),falta=dec.filter(d=>d===null).length,s=Calc.sobra(G,dec.map(d=>!!d)),neg=s<-1e-9;
-    $('gSobra').innerHTML='Orçamento disponível: <b>'+mi(G.orc)+'</b> · depois destas decisões: <b class="'+(neg?'no':'')+'">'+mi(s)+'</b>';
-    $('gAviso').textContent=neg?'Não cabe no orçamento. Recuse algum pedido para continuar.':falta?'Falta decidir '+falta+(falta===1?' pedido.':' pedidos.'):'';
+    const dec=decisoes(),falta=dec.filter(d=>d===null).length,b=dec.map(d=>!!d),g=Calc.gastoReuniao(G,b),neg=!Calc.cabe(G,b);
+    $('gSobra').innerHTML='Limite desta reunião: <b>'+mi(Calc.teto(G))+'</b> · marcado: <b class="'+(neg?'no':'')+'">'+mi(g)+'</b>';
+    $('gAviso').textContent=neg?'Passou do que dá para gastar nesta reunião. Recuse algum pedido para continuar.':falta?'Falta decidir '+falta+(falta===1?' pedido.':' pedidos.'):'';
     $('gFechar').disabled=neg||falta>0;
   }
   function renderReuniao(){
     const P=Calc.pautaAtual(G),sr=Calc.semRegua(G),L=$('gameLeft');
-    L.innerHTML='<div class="yr"><h2 class="y">Reunião '+(G.i+1)+' de '+G.pautas.length+'</h2><span class="of">partida nº '+cfg.seed+' · '+DIFN[cfg.dif]+'</span></div>'+
-      coach(sr)+'<p class="eyebrow" style="margin:.2rem 0 .2rem">Pauta</p><h3 style="font-size:1.3rem">'+esc(P.tema)+'</h3><p>'+esc(P.intro)+'</p>'+
+    L.innerHTML='<div class="yr"><h2 class="y">Reunião '+(G.i+1)+' de '+G.pautas.length+'</h2>'+(G.i===0?'<span class="of">partida nº '+cfg.seed+' · '+DIFN[cfg.dif]+'</span>':'')+'</div>'+
+      coach(sr)+'<h3 style="font-size:1.3rem">'+esc(P.tema)+'</h3><p>'+esc(P.intro)+'</p>'+
       '<div class="casos">'+P.casos.map((c,k)=>casoHtml(c,k,sr)).join('')+'</div>'+
       '<div class="fecha"><p id="gSobra" class="sobra"></p><p id="gAviso" class="hint" role="status"></p><button class="btn" id="gFechar" type="button">Encerrar a reunião</button></div>';
     L.querySelectorAll('.voto input').forEach(i=>i.addEventListener('change',updSobra));
     $('gFechar').addEventListener('click',()=>{const ata=Calc.fecharReuniao(G,decisoes().map(d=>!!d));acc.C+=ata.dC;acc.O+=ata.dO;ultimaAta=ata;renderAta(ata);});
     updSobra();renderSide();toLeft();
   }
-  const linkLim=n=>n?' <a href="#lim-'+n+'">Ler no guia: limitação '+n+'</a>':'';
+  const linkLim=n=>n?' <a href="#lim-'+n+'">Guia: limitação '+n+'</a>':'';
   function renderAta(ata){
     const L=$('gameLeft'),P=ata.pauta,n=G.i,ult=G.fim;
     let h='<div class="yr"><h2 class="y">Ata da reunião '+n+'</h2><span class="of">'+esc(P.tema)+'</span></div>';
     if(ata.semRegua){
-      h+='<div class="coach"><p class="eyebrow" style="margin:0 0 .3rem">Agora, com a régua</p><p style="margin:0 0 .6rem">Você decidiu só com o custo e os depoimentos. Veja os mesmos três pedidos na mesma escala: QALYs ganhos e custo por QALY.</p>'+
-        '<div class="tablewrap" tabindex="0" role="region" aria-label="Tabela (role para os lados)"><table><thead><tr><th>Pedido</th><th class="num">Custo</th><th class="num">QALYs</th><th class="num">Por QALY</th><th>Você</th></tr></thead><tbody>'+
-        P.casos.map((c,k)=>'<tr><td>'+esc(c.nm)+'</td><td class="num">'+mi(c.cost)+'</td><td class="num">'+fmt.format(c.q)+'</td><td class="num">'+rmil(Calc.rceiCaso(c))+'</td><td>'+(ata.dec[k]?'incorporou':'não incorporou')+'</td></tr>').join('')+
-        '</tbody></table></div><p style="margin:.6rem 0 0">Sem uma medida comum, uma vacina, uma cirurgia e um remédio de câncer não se comparam: ganha quem conta a história mais forte. A régua não decide por você, mas põe os três na mesma escala. A partir da próxima reunião, ela vem em todos os pedidos.</p></div>';
+      h+='<div class="coach"><p class="eyebrow" style="margin:0 0 .3rem">Agora, com a régua</p><p style="margin:0 0 .6rem">Os mesmos três pedidos, agora na mesma escala: 1 QALY é um ano de vida com saúde plena.</p>'+
+        '<table class="tut"><thead><tr><th>Pedido</th><th class="num">QALYs</th><th class="num">R$ por QALY</th></tr></thead><tbody>'+
+        P.casos.map((c,k)=>'<tr><td>'+esc(Calc.curto(c))+'<br><span class="mut">'+(ata.dec[k]?'você incorporou':'você recusou')+'</span></td><td class="num">'+fmt.format(c.q)+'</td><td class="num">'+fmt.format(Calc.rceiCaso(c)/1000)+' mil</td></tr>').join('')+
+        '</tbody></table><p style="margin:.6rem 0 0">A régua não decide por você, mas põe os três na mesma escala. Agora ela vem em todos os pedidos. A referência é '+rmil(K)+' por QALY: acima disso, pela regra, o dinheiro renderia mais saúde em outro lugar.</p></div>';
     }
-    h+='<div class="vistos">'+P.casos.map((c,k)=>'<div class="visto"><p class="vh"><span class="'+(ata.dec[k]?'sim':'nao')+'">'+(ata.dec[k]?'Incorporado':'Não incorporado')+'</span> '+esc(c.nm)+'</p>'+
-      '<p><b>O que a régua mostrou.</b> '+esc(c.viu)+'</p>'+(c.nao?'<p><b>O que ficou fora da conta.</b> '+esc(c.nao)+linkLim(c.lim)+'</p>':'')+'</div>').join('')+'</div>';
+    h+='<div class="vistos">'+P.casos.map((c,k)=>ata.semRegua&&!c.nao?'':'<div class="visto"><p class="vh"><span class="'+(ata.dec[k]?'sim':'nao')+'">'+(ata.dec[k]?'Incorporado':'Não incorporado')+'</span> '+esc(c.nm)+'</p>'+
+      (c.nao?'<p><b>Fora da conta.</b> '+esc(c.nao)+linkLim(c.lim)+'</p>':'<p><b>O que a régua mostrou.</b> '+esc(c.viu)+'</p>')+'</div>').join('')+'</div>';
     const dC=Math.round(ata.dC),dP=ata.dP;
     h+='<div class="react">'+
-      '<div class="jury">'+face('C',dC)+'<p><b>Contador.</b> '+(dC>0?'Esta reunião rendeu '+fmt.format(dC)+' QALYs a mais do que o mesmo dinheiro renderia na rede.':dC<0?'O dinheiro desta reunião renderia '+fmt.format(-dC)+' QALYs a mais se ficasse na rede.':'Nada mudou na minha conta: o que se ganhou aqui é o que a rede renderia com o mesmo dinheiro.')+'</p></div>'+
-      '<div class="jury">'+face('O',ata.dO)+'<p><b>Ouvidora.</b> '+(ata.dO>0?'Você atendeu quem estava em pior situação: +'+ata.dO+(ata.dO===1?' ponto.':' pontos.'):ata.dO<0?'O mesmo tratamento foi dado a uns e negado a outros: '+ata.dO+' pontos.':'Nenhum pedido de quem estava em pior situação foi atendido nesta reunião.')+'</p></div>'+
-      '<div class="jury">'+face('P',dP)+'<div><p style="margin:0"><b>Praça.</b> '+(dP>0?'A confiança no comitê subiu '+dP+' pontos.':dP<0?'A confiança no comitê caiu '+(-dP)+' pontos.':'A confiança no comitê não se mexeu.')+'</p>'+
+      '<div class="jury">'+face('C',dC)+'<p><b>Contador:</b> '+(dC>0?'+'+fmt.format(dC)+' QALYs em relação a deixar o dinheiro na rede de saúde.':dC<0?'−'+fmt.format(-dC)+' QALYs em relação a deixar o dinheiro na rede de saúde.':'empate.')+'</p></div>'+
+      '<div class="jury">'+face('O',ata.dO)+'<p><b>Ouvidora:</b> '+(ata.dO>0?'+'+ata.dO+(ata.dO===1?' ponto':' pontos')+' por atender quem estava pior.':ata.dO<0?ata.dO+' pontos: tratamento desigual.':'ninguém em pior situação foi atendido.')+'</p></div>'+
+      '<div class="jury">'+face('P',dP)+'<div><p style="margin:0"><b>Praça:</b> '+(dP>0?'confiança +'+dP+'.':dP<0?'confiança −'+(-dP)+'.':'confiança igual.')+'</p>'+
       (ata.motivos.length?'<ul class="mot">'+ata.motivos.map(m=>'<li>'+esc(m.t)+' <span class="mono">('+sgn(m.d)+')</span></li>').join('')+'</ul>':'')+'</div></div></div>';
     h+='<button class="btn" id="gNext" type="button">'+(ult?'Ler o jornal do fim do mandato':'Próxima reunião')+'</button>';
     L.innerHTML=h;
@@ -1684,7 +1716,7 @@ const Calc=(function(){
   const pick=(arr,r)=>arr[Math.floor(r()*arr.length)];
   const MANCH={
     'Plenário da régua':['Comitê segue a régua à risca e deixa a comoção do lado de fora','Plenário só aprova o que cabe na referência; pacientes protestam, a rede agradece'],
-    'Plenário da praça':['Comitê ouve a plateia e aprova os pedidos de maior comoção','Plenário atende quem veio pedir; a conta fica para quem não veio'],
+    'Plenário da praça':['Comitê ouve a plateia e aprova os pedidos de maior comoção','Plenário atende quem veio pedir e fecha o mandato com a praça ao lado'],
     'Plenário de quem está pior':['Os mais graves primeiro: comitê fecha o mandato com essa marca','Comitê dá prioridade a quem estava em pior situação'],
     'Plenário da conta':['Comitê fecha o mandato de olho no total de saúde','Mais saúde no total: a escolha do plenário neste mandato'],
     'Plenário equilibrista':['Nem só a conta, nem só a comoção: comitê fecha o mandato no meio do caminho','Plenário tenta agradar a três jurados e quase consegue'],
@@ -1694,43 +1726,43 @@ const Calc=(function(){
     {k:'Agenda',t:'A próxima consulta pública do comitê já tem data. Qualquer pessoa pode opinar.'},
     {k:'Dicionário',t:'"Dominante", no comitê, não é elogio de personalidade: é a tecnologia que custa menos e funciona melhor.'},
     {k:'Corredor',t:'O cafezinho do plenário segue sem avaliação de custo-efetividade. Há quem diga que seria reprovado.'},
-    {k:'Planilha',t:'Técnica do comitê pede que parem de chamar o QALY de "o preço da vida". "É uma régua, não uma etiqueta."'},
+    {k:'Planilha',t:'No corredor, a discussão continua: o QALY é uma régua ou uma etiqueta de preço? Ninguém mudou de opinião.'},
     {k:'Plateia',t:'Associações de pacientes pedem mais vagas na plateia. A secretaria promete transmissão ao vivo.'}
   ];
   function jornal(R){
     const r=G.jr,meses=['janeiro','fevereiro','março'],ok=G.hist.filter(h=>h.ok),nao=G.hist.filter(h=>!h.ok);
-    const lede='O comitê nacional de incorporação encerrou o mandato com '+ok.length+(ok.length===1?' tecnologia incorporada':' tecnologias incorporadas')+' e '+nao.length+(nao.length===1?' recusada':' recusadas')+'. Gastou '+mi(R.gasto)+' dos '+mi(G.B)+' disponíveis'+(G.B-R.gasto>0.5?'; os '+mi(G.B-R.gasto)+' restantes reforçaram a rede que já existe.':'.');
-    const saude='<b>A conta.</b> Pelas contas da secretaria-executiva, as decisões renderam '+fmt.format(Math.round(R.C))+' QALYs, já somado o que o dinheiro restante rendeu na rede. Se todo o orçamento tivesse ficado na rede, teriam sido '+fmt.format(Math.round(R.base))+'. '+(R.C>R.base+1?'O mandato fechou com saldo positivo de saúde.':R.C<R.base-1?'O mandato fechou com menos saúde do que a rede teria produzido sozinha.':'Empate.');
-    const sur=ok.filter(h=>Math.abs(G.real[h.c.id]/h.c.q-1)>0.15).map(h=>'"'+esc(h.c.nm)+'" rendeu '+(G.real[h.c.id]<h.c.q?'menos':'mais')+' do que o dossiê prometia ('+fmt.format(G.real[h.c.id])+' QALYs, contra '+fmt.format(h.c.q)+' estimados)');
-    const surp=sur.length?'<b>Na prática.</b> '+sur.join('; ')+'. Quanto mais fraca a evidência, maior a surpresa.':'';
+    const lede='O comitê encerrou o mandato com '+ok.length+(ok.length===1?' pedido aprovado':' pedidos aprovados')+' e '+nao.length+(nao.length===1?' recusado':' recusados')+'. Gastou '+mi(R.gasto)+' dos '+mi(G.B)+(G.B-R.gasto>0.5?'; o resto reforçou a rede de saúde.':'.');
+    const saude='<b>A conta.</b> O mandato rendeu '+fmt.format(Math.round(R.C))+' QALYs. Com todo o dinheiro na rede de saúde, seriam '+fmt.format(Math.round(R.base))+', pela hipótese do jogo (R$ 40 mil na rede = 1 QALY).';
+    const sur=ok.filter(h=>Math.abs(G.real[h.c.id]/h.c.q-1)>0.15).map(h=>'"'+esc(Calc.curto(h.c))+'" rendeu '+(G.real[h.c.id]<h.c.q?'menos':'mais')+' do que prometia ('+fmt.format(G.real[h.c.id])+' QALYs, contra '+fmt.format(h.c.q)+')');
+    const surp=sur.length?'<b>Na prática.</b> '+sur.slice(0,1).join('; ')+'. Estudo fraco, surpresa maior.':'';
     const pior=ok.filter(h=>Calc.pontos(h.c)>0).length,piorT=G.hist.filter(h=>Calc.pontos(h.c)>0).length;
-    const just='<b>Quem estava pior.</b> Dos '+piorT+' pedidos de pessoas em situação mais grave ou com menos acesso, '+pior+(pior===1?' foi atendido.':' foram atendidos.');
+    const just='<b>Quem estava pior.</b> De '+piorT+' pedidos de prioridade, '+pior+(pior===1?' foi atendido.':' foram atendidos.');
     const fim=R.fim.length?'<b>Repercussão.</b> '+R.fim.map(f=>esc(f.t)).join(' '):'';
     const cartas=[];
     const a=ok.filter(h=>h.c.com>=2),b=nao.filter(h=>h.c.com>=2);
-    if(a.length){const h=pick(a,r);cartas.push('“'+esc(h.c.dep.t)+'” Foi o que eu disse ao comitê. Obrigado por terem ouvido. <span class="bk">'+esc(h.c.dep.q)+'</span>');}
-    if(b.length){const h=pick(b,r);cartas.push('“'+esc(h.c.dep.t)+'” Foi o que eu disse ao comitê. Responderam com uma planilha. <span class="bk">'+esc(h.c.dep.q)+'</span>');}
-    if(R.C<R.base-1)cartas.push('Minha mãe espera há dois anos por uma cirurgia de catarata. Ninguém fez campanha por ela, e o dinheiro foi para outro lugar. <span class="bk">leitora que não estava na plateia</span>');
+    if(a.length){const h=pick(a,r);cartas.push('“'+esc(h.c.dep.t)+'” Obrigado por terem ouvido. <span class="bk">'+esc(h.c.dep.q)+'</span>');}
+    if(b.length){const h=pick(b,r);cartas.push('“'+esc(h.c.dep.t)+'” Responderam com uma planilha. <span class="bk">'+esc(h.c.dep.q)+'</span>');}
+    if(R.C<R.base-1&&cartas.length<2)cartas.push('Minha mãe espera há dois anos por uma cirurgia de catarata. Ninguém fez campanha por ela. <span class="bk">leitora que não estava na plateia</span>');
     else if(!cartas.length)cartas.push('Não fui a nenhuma reunião e nem sabia que o comitê existia. Soube agora que o posto do meu bairro ganhou reforço. <span class="bk">leitor que não estava na plateia</span>');
     const i1=Math.floor(r()*BREVES.length),i2=(i1+1+Math.floor(r()*(BREVES.length-1)))%BREVES.length;
     return '<div class="paper pulse"><div class="mast"><span class="ed">'+(1+Math.floor(r()*28))+' de '+pick(meses,r)+'</span><span class="nm">A Gazeta</span><span class="ed">Edição do fim do mandato</span></div>'+
       '<div class="pgrid"><div class="main"><p class="kick">Saúde</p><h3 class="head">'+pick(MANCH[R.titulo],r)+'</h3>'+
-      '<div class="cols"><p>'+lede+'</p><p>'+saude+'</p><p>'+just+'</p>'+(surp?'<p>'+surp+'</p>':'')+(fim?'<p>'+fim+'</p>':'')+'</div></div>'+
-      '<aside class="side"><p class="kick">Cartas</p>'+cartas.slice(0,2).map(c=>'<p class="carta">'+c+'</p>').join('')+'<p class="kick">Breves</p>'+[BREVES[i1],BREVES[i2]].map(x=>'<p><span class="bk">'+x.k+'</span>'+x.t+'</p>').join('')+'</aside></div></div>';
+      '<div class="cols"><p>'+lede+'</p><p>'+saude+'</p>'+(surp?'<p>'+surp+'</p>':'')+(fim?'<p>'+fim+'</p>':'')+'</div></div>'+
+      '<aside class="side"><p class="kick">Cartas</p>'+cartas.slice(0,2).map(c=>'<p class="carta">'+c+'</p>').join('')+'<p class="kick">Breves</p>'+[BREVES[i1]].map(x=>'<p><span class="bk">'+x.k+'</span>'+x.t+'</p>').join('')+'</aside></div></div>';
   }
   function renderFinal(){
     const R=Calc.resultado(G),L=$('gameLeft');
-    G.praca=R.P;
-    const viu=G.hist.filter(h=>h.c.nao||h.c.virada||Calc.rceiCaso(h.c)===null);
+    G.praca=R.P;acc.C=R.C-R.base;acc.O=R.O; // o painel passa a mostrar o resultado real, o mesmo do jornal
+    const viu=G.hist;
     const resumo='Plenário · partida nº '+cfg.seed+' · '+G.pautas.length+' reuniões · '+DIFN[cfg.dif]+(cfg.tutorial?'':' · sem tutorial')+'\n'+R.titulo+'\nContador '+fmt1.format(R.gC)+' · Ouvidora '+fmt1.format(R.gO)+' · Praça '+fmt1.format(R.gP)+'\nIncorporou: '+(G.hist.filter(h=>h.ok).map(h=>h.c.nm).join('; ')||'nada')+'\nGastou '+mi(R.gasto)+' de '+mi(G.B)+'.';
     L.innerHTML='<div class="yr"><h2 class="y">Fim do mandato</h2><span class="of">partida nº '+cfg.seed+' · '+DIFN[cfg.dif]+'</span></div>'+jornal(R)+
       '<div class="final"><p class="eyebrow" style="margin:1rem 0 0">Seu estilo de decisão</p><p class="n">'+R.titulo+'</p><p>'+R.desc+'</p>'+
       '<div class="grades"><div><div class="l">Contador</div><div class="g" id="fC">'+fmt1.format(R.gC)+'</div></div><div><div class="l">Ouvidora</div><div class="g" id="fO">'+fmt1.format(R.gO)+'</div></div><div><div class="l">Praça</div><div class="g" id="fP">'+fmt1.format(R.gP)+'</div></div></div>'+
-      '<p class="hint">Notas de 0 a 10. Não existe nota única, de propósito: os três jurados medem coisas diferentes, e nenhuma decisão agrada a todos. O <b>Contador</b> compara o total de saúde com o melhor e o pior resultado possíveis nesta partida. A <b>Ouvidora</b> conta os pedidos atendidos de quem estava em pior situação. A <b>Praça</b> é a confiança da sociedade no comitê.</p>'+
-      '<h3 style="margin-top:1.4rem">O que a régua mostrou e o que ficou fora</h3><div class="vistos">'+
-      (viu.length?viu.map(h=>'<div class="visto"><p class="vh"><span class="'+(h.ok?'sim':'nao')+'">'+(h.ok?'Incorporado':'Não incorporado')+'</span> '+esc(h.c.nm)+'</p><p>'+esc(h.c.viu)+(h.c.nao?' <b>Fora da conta:</b> '+esc(h.c.nao)+linkLim(h.c.lim):' <a href="#vantagens">Ler no guia: vantagens</a>')+'</p></div>').join(''):'<p>Nesta partida não apareceu nenhum caso em que a conta e o depoimento discordassem.</p>')+'</div>'+
-      '<p>Você acabou de sentir, jogando, por que o QALY é usado e por que é criticado. O guia explica cada ponto, com os argumentos dos dois lados: <a href="#vantagens">vantagens</a> e <a href="#limitacoes">limitações</a>.</p>'+
-      '<label for="gResumo" class="hint">Resumo da partida (para copiar)</label><textarea id="gResumo" readonly rows="5">'+esc(resumo)+'</textarea>'+
+      '<p class="hint">Notas de 0 a 10. Não existe nota única: nenhuma decisão agrada aos três.</p>'+
+      '<details><summary>Rever caso a caso: o que a régua mostrou e o que ficou fora</summary><div class="vistos">'+
+      (viu.length?viu.map(h=>'<div class="visto"><p class="vh"><span class="'+(h.ok?'sim':'nao')+'">'+(h.ok?'Incorporado':'Não incorporado')+'</span> '+esc(h.c.nm)+'</p><p>'+esc(h.c.viu)+(h.c.nao?' <b>Fora da conta:</b> '+esc(h.c.nao)+linkLim(h.c.lim):' <a href="#vantagens">Guia: vantagens</a>')+'</p><p class="hint">Caso fictício. Inspirado em: '+esc(h.c.insp)+'</p></div>').join(''):'<p>Nesta partida não apareceu nenhum caso em que a conta e o depoimento discordassem.</p>')+'</div></details>'+
+      '<p style="margin-top:1rem">No guia, os dois lados: <a href="#vantagens">vantagens</a> e <a href="#limitacoes">limitações</a>.</p>'+
+      '<label for="gResumo" class="hint">Resumo da partida</label><textarea id="gResumo" readonly rows="5">'+esc(resumo)+'</textarea>'+
       '<div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem"><button class="btn" id="gAgain" type="button">Jogar a mesma partida de novo</button><button class="btn ghost" id="gNew" type="button">Nova partida</button><button class="btn ghost" id="gCopy" type="button">Copiar resumo</button></div></div>';
     $('gAgain').addEventListener('click',()=>startGame(cfg.seed));
     $('gNew').addEventListener('click',toStart);
