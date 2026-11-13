@@ -40,3 +40,19 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D12. Jogo: sem nota única.** Os três jurados dão notas separadas e não há soma nem ranking. O título da gestão descreve o estilo de decisão, não diz quem "ganhou". Motivo: o critério do Juiz C (o leitor forma a própria opinião) e a mensagem do produto (a régua ajuda, mas não decide sozinha).
 
 **D13. Números do jogo e dos cenários prontos são ilustrativos.** As tecnologias são fictícias, "inspiradas em" casos reais citados. São reais, com fonte: a tarifa brasileira do EQ-5D-3L, os valores de referência da Conitec, a taxa de desconto das diretrizes e os pesos do modificador de gravidade do NICE. A nota de transparência lista os dois grupos.
+
+## Rodada 1 — construção (13 nov. 2026)
+
+**D14. Ouvidora: desvio do plano aprovado.** O plano previa a Ouvidora como soma dos QALYs com pesos de gravidade (1; 1,2; 1,7). Na simulação com seis estratégias, essa Ouvidora deu sempre a mesma ordem que o Contador (notas 9,9 e 9,9 para a estratégia "só a régua"): pesos dessa ordem não revertem diferenças de 5 a 10 vezes no custo por QALY. Um jurado que repete o outro derruba a regra "os jurados discordam". A Ouvidora passou a contar os pedidos atendidos de quem estava em pior situação (2 pontos para prioridade alta, 1 para alguma), menos os episódios de tratamento desigual. As categorias de prioridade continuam as mesmas. O achado numérico entrou no guia (limitação 6: "mesmo com peso 1,7, um tratamento que custa seis vezes a referência continua acima dela"). Detalhe em `JOGO.md`.
+
+**D15. Título.** Aprovada a opção A: "A régua da saúde".
+
+**D16. Convenção do desconto.** O primeiro ano não é descontado (`1 / (1 + r)^(t − 1)`). A 3ª edição da diretriz não fixa a convenção; a escolha é didática e está em `MODELO.md`.
+
+**D17. Valor do pior estado: −0,177.** É o que sai do código oficial da EuroQol para a tarifa de Santos et al. A literatura cita −0,176; a diferença não foi resolvida porque o artigo é de acesso fechado.
+
+**D18. O que ficou de fora por não estar verificado na fonte primária:** os valores do PIB per capita do IBGE (o site do IBGE não abriu); o andamento dos projetos de lei americanos; o valor em libras do WELLBY; os limiares em coroas e euros da Noruega e da Holanda; o prazo de 20 dias da consulta pública da Conitec. O site não afirma nenhum deles.
+
+**D19. Playwright.** O ambiente já traz Playwright e Chromium; o `npm install` do projeto baixa outra versão, sem navegador. A cópia local foi removida de `node_modules` para o teste usar a instalada. Em outra máquina: `npm install` e `npx playwright install chromium`, ou `CHROMIUM_PATH`. O axe-core foi instalado sem problema.
+
+**D20. Como citar e autoria.** O site traz só "Felipe", como no original. O sobrenome e o endereço público definitivo (GitHub Pages) dependem do autor; a citação aponta para o repositório, que existe.

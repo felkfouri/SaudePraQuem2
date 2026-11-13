@@ -1,0 +1,67 @@
+'use strict';
+/* Testes dos cálculos dos quatro interativos. Valores esperados calculados à mão (ver docs/MODELO.md).
+   Uso: node tests/calc.js   (termina com código 0 se tudo passar) */
+const assert=require('assert'),{Calc:C}=require('./carregar.js');
+let n=0;const perto=(a,b,tol,msg)=>{n++;assert.ok(Math.abs(a-b)<=(tol||1e-9),(msg||'')+' esperado '+b+', obtido '+a);};
+const igual=(a,b,msg)=>{n++;assert.strictEqual(a,b,msg);};
+
+// ---- Desenhe uma vida
+perto(C.qalyPerfil([.5,.5],2,0),1,0,'2 anos a 0,5');
+perto(C.qalyPerfil(Array(10).fill(1),10,0),10,0,'10 anos a 1');
+perto(C.qalyPerfil([.7,.7,.7,.7,.7,.7,.7,.7,.7,.7],10,0),7,1e-12,'10 anos a 0,7');
+perto(C.qalyPerfil([.6,.5,.4,.9],3,0),1.5,1e-12,'só conta os anos vividos');
+// desconto de 5%: 1 + 1/1,05 + 1/1,05² = 1 + 0,952381 + 0,907029 = 2,859410
+perto(C.qalyPerfil([1,1,1],3,0.05),2.859410,1e-6,'3 anos a 1, desconto 5%');
+// 0,8 + 0,6/1,05 = 0,8 + 0,571429 = 1,371429
+perto(C.qalyPerfil([.8,.6],2,0.05),1.371429,1e-6,'perfil misto com desconto');
+perto(C.fatorDesconto(1,0.05),1,0,'primeiro ano sem desconto');
+perto(C.fatorDesconto(11,0.05),0.613913,1e-6,'1 QALY daqui a 10 anos');
+perto(C.fatorDesconto(31,0.05),0.231377,1e-6,'1 QALY daqui a 30 anos');
+perto(C.anosVida(4,0),4,0,'anos de vida');
+{ // "Só mais tempo": 4 anos a 0,5 contra 8 anos a 0,5 → +2 QALYs, +4 anos
+  const o=C.compararVidas({q:Array(10).fill(.5),vive:4},{q:Array(10).fill(.5),vive:8},0);
+  perto(o.qalySem,2);perto(o.qalyCom,4);perto(o.ganhoQaly,2);perto(o.ganhoAnos,4);
+  // prótese: 10 × 0,55 = 5,5; 0,6 + 9 × 0,85 = 8,25; ganho 2,75; anos 0
+  const p=C.compararVidas({q:Array(10).fill(.55),vive:10},{q:[.6].concat(Array(9).fill(.85)),vive:10},0);
+  perto(p.qalySem,5.5,1e-12);perto(p.qalyCom,8.25,1e-12);perto(p.ganhoQaly,2.75,1e-12);perto(p.ganhoAnos,0);
+  // ganho negativo
+  const q=C.compararVidas({q:[.9,.9],vive:2},{q:[.5,.5],vive:2},0);perto(q.ganhoQaly,-0.8,1e-12);
+}
+
+// ---- EQ-5D-3L, tarifa brasileira (Santos et al., 2016). Valores conferidos nos arquivos da EuroQol (docs/FONTES.md)
+const T={'11111':1,'21111':0.731,'11211':0.754,'11121':0.787,'11113':0.756,'11112':0.801,'22222':0.408,'21232':0.416,'33333':-0.177};
+for(const k in T)perto(C.eq5dIndice(k.split('').map(Number)),T[k],1e-9,'estado '+k);
+{ const todos=C.eq5dTodos();igual(todos.length,243,'243 estados');
+  igual(todos.filter(x=>x.v<0).length,10,'10 estados abaixo de zero');
+  perto(Math.min(...todos.map(x=>x.v)),-0.177,1e-9,'menor valor');perto(Math.max(...todos.map(x=>x.v)),1,0,'maior valor');
+  igual(todos.filter(x=>x.v===1).length,1,'só 11111 vale 1');
+  perto(Math.max(...todos.filter(x=>x.v<1).map(x=>x.v)),0.801,1e-9,'segundo melhor estado');
+  n++;assert.ok(Number.isNaN(C.eq5dIndice([1,1,1,1])),'estado inválido');n++;assert.ok(Number.isNaN(C.eq5dIndice([1,1,1,1,4])));
+  // os três estados do "Qual é o seu peso?": 11121, 21222 e 23332
+  perto(C.eq5dIndice([2,1,2,2,2]),0.520,1e-9);perto(C.eq5dIndice([2,3,3,3,2]),0.111,1e-9);
+}
+
+// ---- Qual é o seu peso? escada 9, 8, 7, 6, 5, 3, 1 (T = 10)
+igual(C.TTO_T,10);assert.deepStrictEqual(C.TTO_ESCADA,[9,8,7,6,5,3,1]);n++;
+const U=[0.95,0.85,0.75,0.65,0.55,0.4,0.2,0.05];
+U.forEach((u,k)=>perto(C.ttoPeso(k).u,u,1e-12,'aceitos = '+k));
+igual(C.ttoPeso(7).fim,true);igual(C.ttoPeso(3).fim,false);perto(C.ttoPeso(7).cima,0.1,1e-12);
+
+// ---- Quanto custa um QALY?
+{ let o=C.avaliar(60000,2,40000);igual(o.tipo,'troca');perto(o.rcei,30000);igual(o.ok,true);perto(o.deslocada,1.5);perto(o.bls,0.5);
+  o=C.avaliar(20000,1,40000);perto(o.rcei,20000);igual(o.ok,true);            // prótese do texto
+  o=C.avaliar(60000,0.25,40000);perto(o.rcei,240000);igual(o.ok,false);perto(o.bls,-1.25); // remédio de câncer
+  o=C.avaliar(2400000,8,40000);perto(o.rcei,300000);igual(o.ok,false);
+  o=C.avaliar(2400000,8,120000);igual(o.ok,false);                           // mesmo com 3 vezes
+  o=C.avaliar(40000,1,40000);igual(o.ok,true);perto(o.bls,0);                // exatamente no limiar
+  o=C.avaliar(-600,0.2,40000);igual(o.tipo,'dominante');igual(o.ok,true);igual(o.rcei,null);
+  o=C.avaliar(0,0.2,40000);igual(o.tipo,'dominante');
+  o=C.avaliar(3000,-0.1,40000);igual(o.tipo,'dominada');igual(o.ok,false);igual(o.rcei,null);
+  o=C.avaliar(3000,0,40000);igual(o.tipo,'dominada');
+  o=C.avaliar(-40000,-0.05,40000);igual(o.tipo,'economia');perto(o.rcei,800000,1e-6);igual(o.ok,true);
+  o=C.avaliar(-1000,-0.05,40000);igual(o.tipo,'economia');perto(o.rcei,20000,1e-6);igual(o.ok,false);
+  o=C.avaliar(0,0,40000);igual(o.tipo,'igual');igual(o.ok,null);
+  // o benefício líquido em saúde e a RCEI concordam no veredito, nos dois quadrantes em que há troca
+  for(const dC of [-90000,-5000,5000,39000,41000,500000])for(const dE of [-2,-0.1,0.1,1,3]){const x=C.avaliar(dC,dE,40000);if(x.rcei!==null){n++;assert.strictEqual(x.ok,x.bls>=-1e-12,'BLS e RCEI discordam em '+dC+', '+dE);}}
+}
+console.log('calc.js: '+n+' verificações, todas certas.');
