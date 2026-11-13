@@ -19,6 +19,12 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 
 **D6. Pesquisa de fatos antes do plano.** A verificação de fontes foi adiantada para a Fase 0 porque o desenho de um interativo depende dela (os coeficientes da tarifa brasileira do EQ-5D-3L existem em fonte aberta ou não?). As notas brutas ficam em `docs/pesquisa/`; a lista consolidada, em `docs/FONTES.md`.
 
+**D6a. Rede bloqueada e ambiente novo.** As três primeiras pesquisas não conseguiram abrir fontes primárias (a rede do ambiente padrão só permitia PubMed e buscas). Com aprovação do autor, foi criado o ambiente pessoal `saudepraquem2`, com acesso a 20 sites oficiais ou acadêmicos (Conitec/gov.br, Rebrats, IBGE, NICE, PMC, EuroQol, ICER, Congresso e leis dos EUA, entre outros). Continuam inacessíveis: `planalto.gov.br`, `bvsms.saude.gov.br` e `journals.sagepub.com` (o artigo de Santos et al. é de acesso fechado). O que depender só deles fica com status "parcialmente verificada" em `FONTES.md`.
+
+**D6b. URL do site original confirmada:** `https://felkfouri.github.io/saudepraquem/` respondeu com a página "Saúde para Quem?". Substitui a ressalva de D4.
+
+**D6c. Aviso automático de push.** O ambiente emite um aviso pedindo commit e push a cada pausa. A regra 6 do autor (push só no final, com OK) prevalece: os commits são locais.
+
 ## Fase 1 — plano
 
 **D7. Um arquivo só.** O site continua sendo um único `index.html` (CSS e JS embutidos), como o original: abre com duplo clique, sem servidor, e funciona no GitHub Pages. Os testes em Node extraem o bloco de cálculo do próprio `index.html` entre dois comentários marcadores, para testar o código que de fato roda na página.
