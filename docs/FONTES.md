@@ -101,7 +101,7 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 | `#alternativas`, `#glossario` | DALY: mede saúde perdida; usado para carga de doença (Murray 1994) | F99 | verificada |
 | `#alternativas` | WELLBY: um ponto na satisfação com a vida, escala de 0 a 10, por um ano | F101 | parcial; sem referência na lista do site |
 | `#alternativas` | Análise de decisão multicritério: vários critérios com pesos (Thokala 2016) | F102 | verificada |
-| `#alternativas` | "Toda recomendação da Conitec passa por consulta pública" | F104 | parcial (consulta pública e base legal) |
+| `#alternativas` | "Toda recomendação da Conitec passa por consulta pública" | F104, F118, F124 | verificada (página "Consultas públicas" da Conitec e Relatório 793); o prazo em dias não é afirmado |
 | `#refs` | "Todas foram conferidas em novembro de 2026, no documento original ou no registro do PubMed" | Parte B | divergência: a Lei 14.313 (R6, `r-lei`) é [parcial], pois o Planalto não abriu |
 | `#sobre` | São "reais, com fonte" a tarifa, os valores da Conitec, o desconto, os dados do NICE, "o que dizem as leis citadas" e os resultados dos estudos | F16–F22, F37–F44, F53, F64–F69, F47, F75, F76 | verificada, exceto a lei brasileira (F47, parcial) |
 | jogo (PAUTAS, `insp`) | Imunização contra o vírus sincicial respiratório "avaliada pela Conitec" | F107 | verificada |
@@ -307,7 +307,7 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 
 **F83.** Instrumentos diferentes dão utilidades diferentes: a diferença entre público e pacientes variou com o instrumento em mais de 50% em todos os grupos de doença, com desvantagem sistemática sobretudo para saúde mental; entre EQ-5D e SF-6D a concordância é apenas "razoável" (ICC de 0,375 a 0,615; diferença média de 0,253). — *Fonte:* R71, R72 (resumos). — *Status:* verificada.
 
-**F84.** Visão e audição: revisão para o NICE examinou EQ-5D, SF-6D e HUI3 em deficiência visual e auditiva e desenvolveu itens "bolt-on" de audição, cansaço e visão. — *Fonte:* R70. — *Status:* parcial (conclusões por condição não lidas).
+**F84.** (O site afirma só o que o resumo sustenta: que a revisão testou perguntas extras de audição, cansaço e visão.) Visão e audição: revisão para o NICE examinou EQ-5D, SF-6D e HUI3 em deficiência visual e auditiva e desenvolveu itens "bolt-on" de audição, cansaço e visão. — *Fonte:* R70. — *Status:* parcial (conclusões por condição não lidas).
 
 **F85.** Crianças: os métodos de valoração variam muito e carecem de diretriz; de quem são as preferências é questão normativa. — *Fonte:* R73 (resumo). — *Status:* verificada.
 
@@ -399,13 +399,13 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 
 **F122.** Réplica a Singer et al.: Harris J. Double jeopardy and the veil of ignorance--a reply. J Med Ethics. 1995;21(3):151-7. doi:10.1136/jme.21.3.151. PMID 7674279. Segundo o resumo no PubMed, o artigo sustenta que o QALY e medidas parecidas "remain vulnerable to the charge of double jeopardy" e critica o uso do "véu da ignorância" por Singer et al. — *Status:* verificada (resumo no PubMed). É daí que vem a descrição do argumento de Singer et al. como de imparcialidade.
 
-**F123.** Supremo Tribunal Federal e medicamentos fora das listas do SUS: a página "Judicialização" da Conitec lista seis condições fixadas pelo Supremo; a segunda é provar "que a decisão da Conitec de não incluir o medicamento nas listas do SUS é ilegal, que não houve pedido de inclusão ou houve demora excessiva na sua análise" (reconferida pelo construtor em 13 nov. 2026, depois dos pareceres da rodada 4). — *Fonte:* https://www.gov.br/conitec/pt-br/judicializacao (conferida pelo Juiz D nas rodadas 2 e 3). — *Status:* verificada. O site não afirma data nem cronologia.
+**F123.** Supremo Tribunal Federal e medicamentos fora das listas do SUS: a página "Judicialização" da Conitec lista seis condições fixadas pelo Supremo; a segunda é provar "que a decisão da Conitec de não incluir o medicamento nas listas do SUS é ilegal, que não houve pedido de inclusão ou houve demora excessiva na sua análise" (reconferida pelo construtor em 13 nov. 2026, depois dos pareceres da rodada 4). — *Fonte:* https://www.gov.br/conitec/pt-br/judicializacao (conferida pelo Juiz D nas rodadas 2 a 5). — *Status:* verificada. O site não afirma data nem cronologia.
 
 **F124.** Consulta pública: a página "Consultas públicas" da Conitec diz que qualquer cidadão pode participar, por formulário eletrônico (conferida pelo Juiz D na rodada 3). — *Status:* verificada.
 
 ## Parte B — Referências
 
-Marcas: **[PubMed]** registro lido; **[Crossref]** metadados no Crossref; **[aberto]** documento aberto em 13 nov. 2026; **[parcial]** dados só por buscador ou catálogo. "s/r" = sem resumo no PubMed. Os DOIs vêm do PubMed e não foram testados em doi.org.
+Marcas: **[PubMed]** registro lido; **[Crossref]** metadados no Crossref; **[aberto]** documento aberto em 13 nov. 2026; **[parcial]** dados só por buscador ou catálogo. "s/r" = sem resumo no PubMed. Os DOIs vêm do PubMed. Na primeira consolidação eles não tinham sido testados; nas rodadas 1 a 5 o Juiz D testou em doi.org todos os DOIs da lista do site (redirecionam) e conferiu os PMIDs no PubMed.
 
 **Documentos oficiais brasileiros**
 - **R1.** Brasil. Ministério da Saúde. O uso de limiares de custo-efetividade nas decisões em saúde: recomendações da Comissão Nacional de Incorporação de Tecnologias no SUS. Brasília: Ministério da Saúde; 2022. 112 p. https://www.gov.br/conitec/pt-br/midias/pdf/2022/20221106_relatorio-uso-de-limiares-de-custo-efetividade-nas-decisoes-em-saude.pdf [aberto; p. PDF = impressa + 3]
@@ -556,7 +556,7 @@ Marcas: **[PubMed]** registro lido; **[Crossref]** metadados no Crossref; **[abe
 
 > Atualização das rodadas 2 e 3 (os itens abaixo ficam na lista como registro do que estava pendente em cada momento): os itens 4 (aposta padrão), 7 (Constituição e leis brasileiras, no que toca ao art. 196) e 15 (Longworth, quanto ao desenvolvimento de itens extras) foram superados pelos fatos F116, F121 e F84; o site afirma só o que esses fatos sustentam. Afirmações qualitativas sem fato próprio, aceitas como conhecimento geral e sem número: gastos da família fora da perspectiva do SUS e impacto orçamentário (conferidas pelo Juiz D na diretriz e na Portaria 8.817); consulta pública pela internet; a crítica de movimentos de pessoas com deficiência; o uso de outras medidas ao lado do QALY.
 
-O site não deve afirmar como fato:
+Lista original do que o site não deveria afirmar como fato (os itens 4, 7 e 15 foram superados; ver a nota acima):
 
 1. Que o EQ-5D-5L descreve 3.125 estados, e a redação dos seus cinco níveis: não constam das notas de pesquisa.
 2. A redação oficial em português do questionário EQ-5D (itens e níveis).

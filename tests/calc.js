@@ -84,7 +84,7 @@ igual(C.ttoPeso(7).fim,true);igual(C.ttoPeso(3).fim,false);perto(C.ttoPeso(7).ci
   const br=x=>x.toFixed(3).replace('.',',');
   for(const d of C.TARIFA.d)tem('<td class="num">'+br(d[1])+'</td><td class="num">'+br(d[2])+'</td>','linha da tabela de coeficientes '+br(d[1])+' / '+br(d[2]));
   tem('perde 0,149 de saída');tem('vale −0,177');tem('10 ficaram abaixo de zero');tem('conta como 0,61 hoje');tem('como 0,23');
-  tem('26.000 − 6.000 = <b>R$ 20.000</b>');tem('<strong>R$ 40 mil por QALY</strong>');tem('<strong>R$ 35 mil por ano de vida ganho</strong>');tem('5% ao ano');tem('(R$ 120 mil por QALY)');tem('dividido por R$ 40 mil, sempre');tem('quatro situações');tem('que não houve pedido de inclusão ou que a análise demorou demais');tem('9.148 pessoas');tem('No caso brasileiro, 9.148');
+  tem('26.000 − 6.000 = <b>R$ 20.000</b>');tem('<strong>R$ 40 mil por QALY</strong>');tem('<strong>R$ 35 mil por ano de vida ganho</strong>');tem('5% ao ano');tem('(R$ 120 mil por QALY)');tem('dividido por R$ 40 mil, sempre');tem('por exemplo, por ser uma doença rara ou grave');tem('media="print" onload=');tem('quatro situações');tem('que não houve pedido de inclusão ou que a análise demorou demais');tem('9.148 pessoas');tem('No caso brasileiro, 9.148');
   igual(C.K_JOGO,40000);
   // caso da vacina no jogo: 7.000 QALYs em 30 anos, com 5% ao ano = 1.620
   perto(Math.round(7000*C.fatorDesconto(31,0.05)/10)*10,1620,0,'7.000 × 1,05^-30');

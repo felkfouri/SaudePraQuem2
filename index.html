@@ -706,7 +706,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
             <div class="field"><label for="rcEn">QALYs</label><input type="text" id="rcEn" inputmode="decimal" autocomplete="off"></div>
           </div>
           <div class="field" style="margin-top:1rem">
-            <label for="rcLim">Valor de referência (limiar)</label>
+            <label for="rcLim">Limite para comparar (limiar)</label>
             <select id="rcLim">
               <option value="40000">R$ 40 mil por QALY</option>
               <option value="120000">R$ 120 mil por QALY (3 vezes)</option>
@@ -816,7 +816,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <div class="lb"><h4>O problema</h4><p>Ao comparar um ano de vida saudável com um valor em reais, a conta aceita que existe um ponto em que ajudar alguém "custa caro demais". Para os críticos, o erro está aí, e não num detalhe técnico: cada pessoa tem direito ao cuidado de que precisa, e o benefício somado de muitas outras não compensa negar a ela esse cuidado. É uma objeção antiga a toda a ideia de maximizar a saúde total.</p></div>
       <div class="lb"><h4>Um exemplo</h4><p>Um tratamento é recusado porque custa R$ 200 mil por QALY. Para quem precisava dele, a mensagem que chega é "a sua vida não vale R$ 200 mil". A recusa cai sobre uma pessoa com nome; o ganho prometido em troca, sobre desconhecidos.</p></div>
       <div class="lb def"><h4>O que responde quem defende</h4><p>O valor de referência não é preço de ninguém. É uma estimativa de quanto custa, para o sistema, produzir um ano de vida saudável com o que ele já faz, e serve para comparar usos do mesmo dinheiro. Recusar a conta não faz o limite desaparecer: alguém continua ficando sem, só que sem regra conhecida. Quanto as pessoas <em>pagariam</em> por um QALY é outra pergunta, e os estudos que a fazem chegam a valores muito diferentes entre si (<a href="#r-ryen">Ryen e Svensson, 2015</a>).</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>No Brasil, a lei e o relatório da Conitec dizem que a custo-efetividade se combina com outros critérios. Na Justiça, pedidos de tratamento são discutidos a partir do direito de cada pessoa à saúde. O Supremo Tribunal Federal fixou condições para o fornecimento de medicamentos que não estão nas listas do SUS; uma delas é mostrar que a decisão da Conitec de não incluir o medicamento é ilegal, que não houve pedido de inclusão ou que a análise demorou demais (<a href="#r-jud">Conitec, Judicialização</a>). A lógica do direito de cada pessoa e a lógica da comparação entre todos os pedidos convivem, em tensão permanente.</p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>No Brasil, a lei e o relatório da Conitec dizem que a custo-efetividade se combina com outros critérios. Na Justiça, pedidos de tratamento são discutidos a partir do direito de cada pessoa à saúde. O Supremo Tribunal Federal fixou condições para o fornecimento de medicamentos que não estão nas listas do SUS. Uma delas é mostrar que a decisão da Conitec de não incluir o medicamento é ilegal, que não houve pedido de inclusão ou que a análise demorou demais (<a href="#r-jud">Conitec, Judicialização</a>). A lógica do direito de cada pessoa e a lógica da comparação entre todos os pedidos convivem, em tensão permanente.</p></div>
     </article>
 
     <div class="note">
@@ -1347,7 +1347,7 @@ const Calc=(function(){
     for(const h of G.hist)if(h.c.virada){const d=h.ok?h.c.virada.sim:h.c.virada.nao;praca+=d;fim.push({d,t:h.c.virada.t+(h.ok?' O comitê tinha aprovado.':' O comitê tinha recusado.')});}
     const base=G.B*1e6/K_JOGO;
     const nOk=G.hist.filter(h=>h.ok).length,nNao=G.hist.length-nOk;
-    if(G.incoer===0&&nOk>0&&nNao>0){praca+=8;fim.push({d:8,t:'Nas reuniões com a régua, o comitê não aprovou um pedido mais caro por QALY depois de recusar outro mais barato e de igual prioridade.'});}
+    if(G.incoer===0&&nOk>0&&nNao>0){praca+=8;fim.push({d:8,t:'O comitê foi coerente: nas reuniões com a régua, não aprovou um pedido acima da referência depois de recusar outro mais barato por QALY e de prioridade igual ou maior.'});}
     praca=Math.max(0,Math.min(100,praca));
     const gC=nota(S.C,L.minC,L.maxC),gO=nota(S.O,0,L.maxO),gP=praca/10;
     const acima=G.hist.filter(h=>h.ok&&rceiCaso(h.c)!==null&&rceiCaso(h.c)>K_JOGO).length;
@@ -1539,7 +1539,7 @@ const Calc=(function(){
     const lab=(x,y,a,t)=>'<text font-size="'+fs+'" x="'+x+'" y="'+y+'"'+(a?' text-anchor="end"':'')+' style="paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round">'+t+'</text>';
     s+=lab(W-R,T+14,1,'mais caro e melhor')+lab(L,T+14,0,'mais caro e pior')+lab(W-R,H-B-8,1,'mais barato e melhor')+lab(L,H-B-8,0,'mais barato e pior');
     s+='<text font-size="'+fs+'" class="mut" x="'+(W-R)+'" y="'+(H-10)+'" text-anchor="end">mais saúde (QALYs) →</text><text font-size="'+fs+'" class="mut" x="'+(cx+6)+'" y="'+(T-10)+'">↑ mais caro</text>';
-    s+='<circle cx="'+X(o.dE)+'" cy="'+Y(o.dC)+'" r="8" fill="'+(o.ok===false?'var(--bad)':'var(--good)')+'" stroke="var(--card)" stroke-width="2"/></svg>';
+    s+='<circle cx="'+X(o.dE)+'" cy="'+Y(o.dC)+'" r="8" fill="'+(o.prioridade?'var(--muted)':o.ok===false?'var(--bad)':'var(--good)')+'" stroke="var(--card)" stroke-width="2"/></svg>';
     return s;
   }
   function rcRender(){
@@ -1548,25 +1548,25 @@ const Calc=(function(){
     $('rcOut').hidden=ruim;if(ruim)return;
     const [ca,ea,cn,en]=vals,o=Calc.avaliar(cn-ca,en-ea,lim);
     $('rcDC').textContent=(o.dC>0?'+ ':'')+brl(o.dC);$('rcDE').textContent=sgn(o.dE,fmt2);
-    const T={dominante:['Dominante','ok'],dominada:['Dominada','no'],igual:['Sem diferença','eq']};
+    const T={dominante:['Dominante','ok'],dominada:['Dominado','no'],igual:['Sem diferença','eq']};
     if(o.rcei===null){$('rcR').textContent='—';$('rcRS').textContent='não se calcula a razão neste caso';$('rcSelo').innerHTML=badge(T[o.tipo][1],T[o.tipo][0]);}
     else{
       const alto=lim>Calc.REF,nome=alto?'limite de 3 vezes':'referência'; // a Conitec só chama de referência os R$ 40 mil
       $('rcR').textContent=brl(o.rcei);$('rcRS').textContent=o.tipo==='troca'?'por QALY ganho':'economizados por QALY perdido';
       $('rcSelo').innerHTML=o.tipo==='troca'
-        ?(o.prioridade?badge('eq','acima da referência, dentro do limite de 3 vezes'):badge(o.ok?'ok':'no',o.ok?(alto?'abaixo da referência e do limite':'abaixo da referência'):'acima do'+(alto?' limite de 3 vezes':' valor de referência')))
+        ?(o.prioridade?badge('eq',Math.abs(o.rcei-lim)<1e-9?'acima da referência, no limite de 3 vezes':'acima da referência, dentro do limite de 3 vezes'):badge(o.ok?'ok':'no',o.ok?(Math.abs(o.rcei-Calc.REF)<1e-9?'no valor de referência':alto?'abaixo da referência e do limite':'abaixo da referência'):'acima do'+(alto?' limite de 3 vezes':' valor de referência')))
         :(o.prioridade?badge('eq','economia acima da referência, abaixo do limite de 3 vezes'):badge(o.ok?'ok':'no','economia '+(o.ok?'acima':'abaixo')+(alto?' do '+nome:' da '+nome)));
     }
     $('rcDesl').textContent=o.dC>0?fmt2.format(o.deslocada):o.dC<0?fmt2.format(-o.deslocada):'0';$('rcDeslT').textContent=o.dC<0?'Saúde que o dinheiro poupado pode render':'Saúde que sai de outro lugar';
     $('rcDeslS').textContent=o.dC>0?'QALYs que o mesmo dinheiro renderia em outro lugar (hipótese)':o.dC<0?'QALYs que o dinheiro poupado pode render em outro lugar (hipótese)':'nenhum dinheiro muda de lugar';
     const v={
       dominante:(o.dE>0&&o.dC<0?'<strong>Mais saúde por menos dinheiro.</strong>':o.dE>0?'<strong>Mais saúde pelo mesmo dinheiro.</strong>':'<strong>A mesma saúde por menos dinheiro.</strong>')+' Não há o que pesar: o tratamento novo não perde em nada e ganha em pelo menos uma coisa. Os economistas chamam isso de tecnologia <em>dominante</em>.',
-      dominada:'<strong>Custa mais (ou o mesmo) e não rende mais saúde.</strong> Também não há o que pesar: o tratamento novo é <em>dominado</em> pela atual.',
+      dominada:'<strong>Custa mais (ou o mesmo) e não rende mais saúde.</strong> Também não há o que pesar: o tratamento novo é <em>dominado</em> pelo atual.',
       igual:'Custo e saúde iguais: a conta não distingue as duas opções.',
-      troca:'Cada QALY a mais custa <strong>'+brl(o.rcei||0)+'</strong>. '+(o.prioridade?'Fica <strong>abaixo</strong> do limite de '+rmil(lim)+' que a Conitec admite em situações específicas, mas acima da referência de '+rmil(Calc.REF)+'. Pela hipótese desta página, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+'). Aceitar, neste caso, é uma <strong>escolha de prioridade</strong> (por exemplo, por ser uma doença rara ou grave), não um resultado da conta.'
+      troca:'Cada QALY a mais custa <strong>'+brl(o.rcei||0)+'</strong>. '+(o.prioridade?'Fica <strong>'+(Math.abs(o.rcei-lim)<1e-9?'exatamente no':'abaixo do')+'</strong> limite de '+rmil(lim)+' que a Conitec admite em situações específicas, mas acima da referência de '+rmil(Calc.REF)+'. Pela hipótese desta página, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+'). Aceitar, neste caso, é uma <strong>escolha de prioridade</strong> (por exemplo, por ser uma doença rara ou grave), não um resultado da conta.'
         :o.ok?'Fica <strong>'+(Math.abs(o.rcei-Calc.REF)<1e-9?'exatamente no':'abaixo do')+'</strong> valor de referência de '+rmil(Calc.REF)+': pela regra, o gasto rende '+(o.bls>1e-9?'mais saúde':'a mesma saúde')+' ('+fmt2.format(o.dE)+' QALYs) '+(o.bls>1e-9?'do que':'que')+' o mesmo dinheiro renderia em outro lugar ('+fmt2.format(o.deslocada)+').'
         :'Fica <strong>acima</strong> '+(lim>Calc.REF?'até do limite de '+rmil(lim)+' admitido em situações específicas':'do valor de referência de '+rmil(lim))+': pela regra, o mesmo dinheiro renderia mais saúde em outro lugar ('+fmt2.format(o.deslocada)+' QALYs) do que rende aqui ('+fmt2.format(o.dE)+').'),
-      economia:'O tratamento novo poupa dinheiro e perde um pouco de saúde: <strong>'+brl(o.rcei||0)+'</strong> economizados para cada QALY perdido. '+(o.prioridade?'Isso é mais que a referência de '+rmil(Calc.REF)+' e menos que o limite de '+rmil(lim)+'. Pela hipótese desta página, o dinheiro poupado renderia mais saúde em outro lugar ('+fmt2.format(-o.deslocada)+' QALYs) do que a perdida aqui ('+fmt2.format(-o.dE)+'). Recusar a troca, neste caso, é uma <strong>escolha de prioridade</strong> (proteger mais a saúde de quem tem uma doença rara ou grave, por exemplo), não um resultado da conta.'
+      economia:'O tratamento novo poupa dinheiro e perde um pouco de saúde: <strong>'+brl(o.rcei||0)+'</strong> economizados para cada QALY perdido. '+(o.prioridade?'Esta página aplica à economia a mesma lógica do limite de 3 vezes (é uma extensão didática, não uma regra da Conitec). O valor é mais que a referência de '+rmil(Calc.REF)+' e menos que o limite de '+rmil(lim)+'. Pela hipótese desta página, o dinheiro poupado renderia mais saúde em outro lugar ('+fmt2.format(-o.deslocada)+' QALYs) do que a perdida aqui ('+fmt2.format(-o.dE)+'). Recusar a troca, neste caso, é uma <strong>escolha de prioridade</strong> (proteger mais a saúde de quem tem uma doença rara ou grave, por exemplo), não um resultado da conta.'
         :o.ok?'Como isso é mais que '+(lim>Calc.REF?'o limite de '+rmil(lim):'o valor de referência de '+rmil(lim))+', a regra diz que o dinheiro poupado pode render mais saúde em outro lugar do que a perdida aqui. É o caso mais desconfortável: a conta aceita, e muita gente não.'
         :'Como isso é menos que o valor de referência de '+rmil(Calc.REF)+', a economia não compensa a saúde perdida.')
     }[o.tipo];

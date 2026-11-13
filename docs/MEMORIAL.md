@@ -55,17 +55,29 @@ O produto foi escrito com apoio de inteligência artificial generativa (Claude, 
 A validação teve duas partes, e é importante dizer o que cada uma é.
 
 **Testes automáticos (verificação objetiva).**
-- Cálculos: 166 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
+- Cálculos: 168 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
 - Jogo: consistência dos dados e equilíbrio, com 32.400 partidas simuladas por seis estratégias fixas; nenhuma estratégia simples agrada aos três jurados.
 - Página real: nenhum erro no console, interativos com os valores esperados, links internos, navegação por teclado, três partidas completas, acessibilidade (axe-core, sem violação séria ou crítica, nos temas claro e escuro) e capturas de tela em 375 px e 1280 px.
 
 **Bancada de avaliadores simulados por IA (revisão por critérios).** Quatro avaliadores independentes, que não acompanharam a construção, leram o site e as capturas de tela e emitiram parecer em formato fixo: uma leitora leiga (que responde a cinco perguntas de compreensão e precisa acertar quatro), uma banca de economia da saúde, um crítico do QALY "dos dois lados" e um checador de fatos. Cada item dos pareceres foi aceito ou rejeitado com justificativa (`review/rodada-N/TRIAGEM.md`). O critério de saída era a aprovação dos quatro, sem pendência bloqueante ou importante. O resultado de cada rodada está em `review/` e no `CHANGELOG.md`.
 
+**Resultado.** Foram cinco rodadas. Na primeira, os quatro avaliadores reprovaram (1 item bloqueante: o jogo não cabia em 10 minutos; 28 itens importantes). As correções principais ao longo das rodadas: partida padrão de 3 reuniões e teto de gasto por reunião; reescrita das limitações 2, 3, 6 e 8 para apresentar a crítica na versão forte; ressalva em cada vantagem; dois erros de cálculo (dominância com saúde igual; anos descontados mostrados como tempo vivido); e o tratamento do limite de 3 vezes no interativo de custo por QALY (o custo de oportunidade passou a usar sempre a referência de R$ 40 mil, e a diferença virou "escolha de prioridade"). Na quinta rodada os quatro aprovaram, sem item bloqueante ou importante. A leitora simulada acertou 5 de 5 perguntas de compreensão em todas as rodadas. Um item pedido pela banca foi rejeitado com evidência (a frase tinha lastro literal no relatório da Conitec) e depois confirmado por ela.
+
+| Rodada | Leiga | Banca | Crítico | Fatos e técnica |
+|---|---|---|---|---|
+| 1 | reprova | reprova | reprova | reprova |
+| 2 | reprova | aprova | reprova | aprova |
+| 3 | reprova | reprova | aprova | aprova |
+| 4 | aprova | reprova | aprova | reprova |
+| 5 | aprova | aprova | aprova | aprova |
+
+Depois da aprovação entraram apenas polimentos de redação e documentação, não rejulgados (`review/rodada-5/TRIAGEM.md`).
+
 **A bancada é uma simulação.** Ela ajuda a encontrar erros e desequilíbrios, mas não é evidência de que pessoas reais do público-alvo compreendem o material, nem substitui a avaliação da banca da disciplina.
 
 ## 7. Limitações do produto
 
-- Não houve teste com pessoas do público-alvo.
+- Não houve teste com pessoas do público-alvo. A duração do jogo (cerca de 10 minutos) é uma estimativa por contagem de palavras, não uma medição.
 - O artigo original da tarifa brasileira é de acesso fechado: os coeficientes foram conferidos nos arquivos de cálculo da EuroQol e em fontes secundárias concordantes, não no artigo.
 - Parte das leis brasileiras citadas foi conferida por fontes secundárias, porque o portal da legislação estava inacessível durante a checagem; o status de cada fato está em `FONTES.md`.
 - O interativo do EQ-5D usa redação própria, não o instrumento oficial; a escada de time trade-off é uma demonstração, não uma medida válida.

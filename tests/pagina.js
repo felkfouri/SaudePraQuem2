@@ -126,7 +126,7 @@ async function jogar(page,seed,estrategia,shots,longa){
       {const v=await texto(page,'#rcVerd'),selo=await texto(page,'#rcSelo');ok(v.includes('Recusar a troca')&&v.includes('escolha de prioridade')&&!v.includes('menos que o valor de referência')&&selo.includes('acima da referência'),'Custo por QALY: economia de R$ 80 mil por QALY perdido com o limite de 3 vezes é tratada como escolha de prioridade');}
       await page.selectOption('#rcLim','40000');
       await page.click('#rcPresets [data-p="dominante"]');ok((await texto(page,'#rcSelo')).includes('Dominante'),'Custo por QALY: caso dominante');
-      await page.click('#rcPresets [data-p="dominada"]');ok((await texto(page,'#rcSelo')).includes('Dominada'),'Custo por QALY: caso dominado');
+      await page.click('#rcPresets [data-p="dominada"]');ok((await texto(page,'#rcSelo')).includes('Dominado'),'Custo por QALY: caso dominado');
       await page.click('#rcPresets [data-p="economia"]');ok(await texto(page,'#rcR')==='R$ 800.000','Custo por QALY: mais barato e pior = R$ 800.000 por QALY perdido');
       await page.fill('#rcCn','');ok(!/NaN|∞/.test(await texto(page,'#rcei'))&&(await texto(page,'#rcErro')).length>10,'Custo por QALY: campo vazio mostra aviso, sem NaN nem ∞');
       await page.click('#rcPresets [data-p="abaixo"]');await page.fill('#rcCn','26.000');ok(await texto(page,'#rcR')==='R$ 20.000','Custo por QALY: "26.000" é lido como vinte e seis mil');

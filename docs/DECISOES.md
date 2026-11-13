@@ -86,3 +86,9 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D31. "Referência" e "limite".** Em todo o interativo de custo por QALY, "valor de referência" é só R$ 40 mil; R$ 120 mil é "limite de 3 vezes". A discordância entre a regra (com o limiar escolhido) e o saldo pela hipótese (com a referência de base) é apresentada como escolha de prioridade, nos dois sentidos (pareceres B e D, rodada 4).
 
 **D32. Rodada 5 é a última.** Pelo critério de saída, se os quatro não aprovarem na rodada 5, o trabalho para e o que ficou pendente vai para o relatório.
+
+## Rodada 5 — fechamento (13 nov. 2026)
+
+**D33. Critério de saída cumprido.** Os quatro juízes aprovaram a versão do commit `48c056b`, sem bloqueante nem importante, com o portão verde.
+
+**D34. Polimentos depois da aprovação.** Entraram só mudanças de redação e documentação apontadas por dois ou mais juízes, num commit separado. Não foram rejulgadas; o portão foi refeito (`review/final/`). O que não entrou está listado em `review/rodada-5/TRIAGEM.md`.

@@ -1,5 +1,23 @@
 # Registro de mudanças
 
+## Rodada 5 e fechamento (13 nov. 2026)
+
+**Os quatro juízes aprovaram** a versão do commit `48c056b`, sem item bloqueante ou importante, com o portão automático verde. Triagem em `review/rodada-5/TRIAGEM.md`.
+
+Depois da aprovação, entraram só polimentos de redação e documentação em que os juízes coincidiram (concordância de "dominado", rótulo do seletor, empates exatos, ponto neutro no gráfico, frase do bônus de coerência, incoerências de `FONTES.md`). Não foram rejulgados; o portão final está em `review/final/` (168 verificações de cálculo, 32.400 partidas, teste na página).
+
+Resumo das rodadas:
+
+| Rodada | A (leiga) | B (banca) | C (crítico) | D (fatos) |
+|---|---|---|---|---|
+| 1 | reprova | reprova | reprova | reprova |
+| 2 | reprova | aprova | reprova | aprova |
+| 3 | reprova | reprova | aprova | aprova |
+| 4 | aprova | reprova | aprova | reprova |
+| 5 | aprova | aprova | aprova | aprova |
+
+Em aberto: autoria completa (depende do autor); polimentos não aplicados listados na triagem da rodada 5.
+
 ## Rodada 4 (13 nov. 2026)
 
 Vereditos: A e C aprovaram; B e D reprovaram pelo mesmo item importante. Triagem em `review/rodada-4/TRIAGEM.md`.
