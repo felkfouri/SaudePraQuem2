@@ -70,7 +70,7 @@ Por paciente: custo e QALYs do tratamento atual e do novo; `lim`, o valor de ref
 - `ΔE < 0` e `ΔC < 0`: `RCEI = ΔC / ΔE` é a economia por QALY perdido; aceita pela regra se `RCEI ≥ lim`.
 - Saúde deslocada: `D = ΔC / lim`. Benefício líquido em saúde: `BLS = ΔE − ΔC / lim`. Nos dois quadrantes com troca, `BLS ≥ 0` equivale ao veredito da RCEI (o teste confere).
 
-`lim` = R$ 40.000 (valor de referência da Conitec) ou R$ 120.000 (3 vezes, admitido em quatro situações; FONTES F37 a F41).
+`lim` = R$ 40.000 (valor de referência da Conitec) ou R$ 120.000 (3 vezes, admitido em quatro situações; FONTES F37 a F41). Segundo o relatório de 2022, o valor foi calculado a partir de um estudo de custo de oportunidade (documento do BID, F43 e F61), que chegou perto de 1 PIB per capita; outra estimativa citada no mesmo relatório é mais baixa (F60). O site apresenta as duas.
 
 **Hipótese didática:** `D` trata o valor de referência como se fosse o custo de oportunidade do sistema (quanto custa produzir 1 QALY na margem). O valor da Conitec é uma referência de política; estimativas pelo lado da oferta para o Brasil são mais baixas (FONTES F60 a F62). O site diz isso no próprio interativo.
 

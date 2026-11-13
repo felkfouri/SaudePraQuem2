@@ -125,7 +125,7 @@ async function jogar(page,seed,estrategia,shots,longa){
       await page.fill('#rcCn','');ok(!/NaN|∞/.test(await texto(page,'#rcei'))&&(await texto(page,'#rcErro')).length>10,'Custo por QALY: campo vazio mostra aviso, sem NaN nem ∞');
       await page.click('#rcPresets [data-p="abaixo"]');await page.fill('#rcCn','26.000');ok(await texto(page,'#rcR')==='R$ 20.000','Custo por QALY: "26.000" é lido como vinte e seis mil');
       await page.fill('#rcEn','5');await page.fill('#rcCn','5.000');ok((await texto(page,'#rcSelo')).includes('Dominante'),'Custo por QALY: mesma saúde e mais barato é dominante');
-      await page.fill('#rcEn','5,5');await page.fill('#rcCn','abc');ok((await texto(page,'#rcErro')).length>10,'Custo por QALY: texto inválido mostra aviso');await page.click('#rcPresets [data-p="abaixo"]');
+      await page.fill('#rcEn','1.050');await page.fill('#rcCn','26.000');await page.fill('#rcEn','5,5');await page.fill('#rcCn','abc');ok((await texto(page,'#rcErro')).length>10,'Custo por QALY: texto inválido mostra aviso');await page.click('#rcPresets [data-p="abaixo"]');
       // ---- links internos
       const soltos=await page.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].map(a=>a.getAttribute('href').slice(1)).filter(id=>id&&!document.getElementById(id)));
       ok(soltos.length===0,'links internos: '+(soltos.length?'sem destino: '+[...new Set(soltos)].join(', '):await page.locator('a[href^="#"]').count()+' âncoras, todas com destino'));

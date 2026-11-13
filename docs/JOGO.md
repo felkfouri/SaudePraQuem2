@@ -62,7 +62,7 @@ Cada pauta (`PAUTAS`, mais a `TUTORIAL`) tem tema, introdução e dois ou três 
 
 | Pauta | Casos | O que está em jogo |
 |---|---|---|
-| Tutorial: três pedidos, uma verba | proteção de bebês (R$ 110 milhões, 20 mil/QALY), próteses de quadril (90 milhões, 20 mil), remédio de câncer (150 milhões, 200 mil); o teto deixa aprovar no máximo dois | **Vantagem:** sem a régua, não há como comparar; ganha a história mais forte |
+| Tutorial: três pedidos, uma verba | proteção de bebês (R$ 110 milhões, 20 mil/QALY), próteses de quadril (90 milhões, 20 mil), remédio de câncer (150 milhões, 200 mil); o teto deixa aprovar no máximo dois na maioria das configurações | **Vantagem:** sem a régua, não há como comparar; ganha a história mais forte |
 | Mesma conta, pessoas diferentes | dois programas idênticos em custo e QALYs | Limitação 1 (distribuição) |
 | Quantos anos pela frente | válvula para maiores de 85 (80 mil); reabilitação pós-AVC (35 mil) | Limitação 2 (idade) |
 | O mesmo remédio, duas contas | mesmo remédio, 2 anos a mais: 60 mil/QALY em quem tem peso 0,5; 35 mil em quem tem 0,85 | Limitação 3 (deficiência) |
@@ -71,7 +71,7 @@ Cada pauta (`PAUTAS`, mais a `TUTORIAL`) tem tema, introdução e dois ou três 
 | A campanha na TV | terapia gênica (400 mil); teste de HPV (15 mil) | Limitação 6 (resgate); vantagem: quem não está na sala |
 | O fim da vida | remédio de 3 meses (250 mil); cuidados paliativos (100 mil) | Limitações 6 e 4 |
 | A novidade | remédio "eu também" com lobby (400 mil); caneta mais barata e melhor (dominante) | **Vantagem:** a régua acerta contra a pressão |
-| Agora ou daqui a trinta anos | vacina com ganho em 30 anos (44 mil com desconto; 10 mil sem); stent (40 mil) | Limitação 7 (desconto) |
+| Agora ou daqui a trinta anos | vacina com ganho em 30 anos (43 mil com desconto; 10 mil sem); stent (40 mil) | Limitação 7 (desconto) |
 
 ## Evidência e ganho real
 

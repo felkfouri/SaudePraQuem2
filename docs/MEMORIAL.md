@@ -33,10 +33,17 @@ Site estático de um arquivo, com três camadas:
 - **Quatro interativos:** desenhar a curva de qualidade de vida e ver o QALY como área; converter um estado do EQ-5D em peso pela tarifa brasileira; responder a uma escada de time trade-off e comparar o próprio peso com o da tarifa; calcular o custo por QALY de uma tecnologia e vê-la no plano de custo-efetividade.
 - **Jogo Plenário:** o jogador integra um comitê de incorporação por três reuniões (partida padrão, cerca de 10 minutos), com orçamento fixo. A primeira reunião é jogada sem os QALYs, só com custo e depoimentos; em seguida o jogo mostra os mesmos pedidos na escala comum (a vantagem é sentida). Nas reuniões seguintes, cada pauta opõe a conta a um depoimento que expõe uma limitação, e há casos em que a conta acerta contra a pressão. Três jurados com critérios diferentes, sem nota única.
 
+## 4a. Aplicabilidade e impacto esperado
+
+- **Onde pode ser usado:** em conselhos de saúde e associações de pacientes, antes de uma consulta pública da Conitec; em aulas de graduação e de residência, como introdução à avaliação econômica (o jogo com código de partida permite que uma turma compare decisões); por jornalistas que cobrem incorporação de tecnologias.
+- **O que se espera:** que o leitor entenda um relatório de recomendação quando ele fala em custo por QALY e limiar, e que participe do debate conhecendo os argumentos dos dois lados.
+- **Como medir:** as cinco perguntas de `COMPREENSAO.md` servem de teste antes e depois da leitura. Isso ainda não foi feito com pessoas reais (ver seção 7).
+- **Manutenção:** os valores de referência e as normas mudam; cada fato tem fonte e data em `FONTES.md`, o que permite atualizar o texto ponto a ponto.
+
 ## 5. Método de construção
 
 1. **Reconhecimento:** inventário do site anterior, classificando cada parte como reutilizar, adaptar ou descartar (`INVENTARIO.md`).
-2. **Checagem de fatos antes da redação:** cada afirmação factual prevista foi buscada em fonte primária (relatório da Conitec de 2022; Diretriz de Avaliação Econômica, 3ª ed., 2026; manual do NICE; arquivos de cálculo da EuroQol; texto das leis americanas; registros do PubMed). O resultado é `FONTES.md`: 114 fatos e 119 referências, cada um com status "verificada", "parcial" ou "não verificada". O que não pôde ser verificado na fonte não é afirmado no site.
+2. **Checagem de fatos antes da redação:** cada afirmação factual prevista foi buscada em fonte primária (relatório da Conitec de 2022; Diretriz de Avaliação Econômica, 3ª ed., 2026; manual do NICE; arquivos de cálculo da EuroQol; texto das leis americanas; registros do PubMed). O resultado é `FONTES.md`: 121 fatos e 119 referências, cada um com status "verificada", "parcial" ou "não verificada". O que não pôde ser verificado na fonte não é afirmado no site.
 3. **Plano** aprovado pelo autor antes da construção (`PLANO.md`), com título, mapa, fórmulas, três conceitos de jogo e as perguntas de compreensão.
 4. **Construção** em HTML, CSS e JavaScript puros, sem bibliotecas, reaproveitando do site anterior o estilo, a navegação, o gerador com semente, o jornal e o tutorial.
 5. **Ciclo de revisão** em rodadas (seção 6).
