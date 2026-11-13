@@ -43,7 +43,7 @@ Site estático de um arquivo, com três camadas:
 ## 5. Método de construção
 
 1. **Reconhecimento:** inventário do site anterior, classificando cada parte como reutilizar, adaptar ou descartar (`INVENTARIO.md`).
-2. **Checagem de fatos antes da redação:** cada afirmação factual prevista foi buscada em fonte primária (relatório da Conitec de 2022; Diretriz de Avaliação Econômica, 3ª ed., 2026; manual do NICE; arquivos de cálculo da EuroQol; texto das leis americanas; registros do PubMed). O resultado é `FONTES.md`: 121 fatos e 119 referências, cada um com status "verificada", "parcial" ou "não verificada". O que não pôde ser verificado na fonte não é afirmado no site.
+2. **Checagem de fatos antes da redação:** cada afirmação factual prevista foi buscada em fonte primária (relatório da Conitec de 2022; Diretriz de Avaliação Econômica, 3ª ed., 2026; manual do NICE; arquivos de cálculo da EuroQol; texto das leis americanas; registros do PubMed). O resultado é `FONTES.md`: 124 fatos e 121 referências, cada um com status "verificada", "parcial" ou "não verificada". O que não pôde ser verificado na fonte não é afirmado no site.
 3. **Plano** aprovado pelo autor antes da construção (`PLANO.md`), com título, mapa, fórmulas, três conceitos de jogo e as perguntas de compreensão.
 4. **Construção** em HTML, CSS e JavaScript puros, sem bibliotecas, reaproveitando do site anterior o estilo, a navegação, o gerador com semente, o jornal e o tutorial.
 5. **Ciclo de revisão** em rodadas (seção 6).
@@ -55,7 +55,7 @@ O produto foi escrito com apoio de inteligência artificial generativa (Claude, 
 A validação teve duas partes, e é importante dizer o que cada uma é.
 
 **Testes automáticos (verificação objetiva).**
-- Cálculos: 119 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
+- Cálculos: 149 verificações com valores esperados calculados à mão (`MODELO.md`), entre elas o índice de nove estados do EQ-5D conferidos com a tarifa publicada, o total de 243 estados e os 10 abaixo de zero.
 - Jogo: consistência dos dados e equilíbrio, com 32.400 partidas simuladas por seis estratégias fixas; nenhuma estratégia simples agrada aos três jurados.
 - Página real: nenhum erro no console, interativos com os valores esperados, links internos, navegação por teclado, três partidas completas, acessibilidade (axe-core, sem violação séria ou crítica, nos temas claro e escuro) e capturas de tela em 375 px e 1280 px.
 

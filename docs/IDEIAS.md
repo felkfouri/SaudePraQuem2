@@ -13,3 +13,4 @@ Ideias que surgiram e não entram nesta entrega. Nada daqui é implementado dura
 - **Dominância estendida** e fronteira de eficiência, para comparar mais de duas opções (sugestão da banca, rodada 1).
 - **Outros questionários** (SF-6D, HUI) e por que dão pesos diferentes (sugestão da banca, rodada 1).
 - **Citação em primeira pessoa** de organizações de pessoas com deficiência sobre o QALY, quando houver fonte primária aberta (sugestão do Juiz C, rodada 1).
+- **Testes mais duros:** simular a folha de fontes externa que nunca responde; fixar as notas de três partidas de referência (sugestões do Juiz D, rodada 3).

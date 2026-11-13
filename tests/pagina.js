@@ -118,6 +118,8 @@ async function jogar(page,seed,estrategia,shots,longa){
       await page.click('#rcPresets [data-p="abaixo"]');ok(await texto(page,'#rcR')==='R$ 20.000'&&(await texto(page,'#rcSelo')).includes('abaixo'),'Custo por QALY: prótese = R$ 20.000, abaixo da referência');
       await page.click('#rcPresets [data-p="acima"]');ok(await texto(page,'#rcR')==='R$ 240.000'&&(await texto(page,'#rcSelo')).includes('acima'),'Custo por QALY: remédio de câncer = R$ 240.000, acima');
       await page.click('#rcPresets [data-p="rara"]');await page.selectOption('#rcLim','120000');ok(await texto(page,'#rcR')==='R$ 300.000'&&(await texto(page,'#rcSelo')).includes('acima'),'Custo por QALY: doença rara = R$ 300.000, acima mesmo com 3 vezes');
+      ok(await texto(page,'#rcDesl')==='60,00','Custo por QALY: com o limite de R$ 120 mil, a saúde deslocada continua pela referência de R$ 40 mil (60,00 QALYs)');
+      await page.fill('#rcCa','0');await page.fill('#rcEa','0');await page.fill('#rcCn','80.000');await page.fill('#rcEn','1');ok((await texto(page,'#rcVerd')).includes('escolha de prioridade'),'Custo por QALY: entre R$ 40 mil e R$ 120 mil, a tela diz que aceitar é escolha de prioridade');
       await page.selectOption('#rcLim','40000');
       await page.click('#rcPresets [data-p="dominante"]');ok((await texto(page,'#rcSelo')).includes('Dominante'),'Custo por QALY: caso dominante');
       await page.click('#rcPresets [data-p="dominada"]');ok((await texto(page,'#rcSelo')).includes('Dominada'),'Custo por QALY: caso dominado');

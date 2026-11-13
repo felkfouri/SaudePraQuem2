@@ -17,7 +17,7 @@ Catálogo único das afirmações factuais do site e de suas fontes. Consolida q
 
 ## Mapa — onde cada afirmação do site se apoia
 
-> Atualizado na rodada 1. Afirmações acrescentadas depois da tabela abaixo: orçamento como decisão política e direito à saúde (#problema, #lim-8) → F121, parcial; exemplo numérico da aposta padrão (#peso) → F116; "outros desfechos… importantes pelo paciente" (#lim-4) → F115; consulta pública (#vantagens, #alternativas) → F118; WELLBY (#alternativas) → F119; subgrupos em oncologia (#lim-3) → F120; EQ-5D "um dos mais usados" (#peso) → F117; ultrarrara = até 1 em 50 mil (#decisao) → F41; perspectiva do SUS e impacto orçamentário (#decisao) → F55 (perspectiva) e R4 (a portaria de 2025 prevê um valor de referência de impacto orçamentário). Linhas da tabela que apontavam divergências já corrigidas foram mantidas como registro.
+> Atualizado na rodada 1. Afirmações acrescentadas depois da tabela abaixo: orçamento como decisão política e direito à saúde (#problema, #lim-8) → F121, verificada em páginas oficiais; exemplo numérico da aposta padrão (#peso) → F116; "outros desfechos… importantes pelo paciente" (#lim-4) → F115; consulta pública (#vantagens, #alternativas) → F118; WELLBY (#alternativas) → F119; subgrupos em oncologia (#lim-3) → F120; EQ-5D "um dos mais usados" (#peso) → F117; ultrarrara = até 1 em 50 mil (#decisao) → F41; perspectiva do SUS e impacto orçamentário (#decisao) → F55 (perspectiva) e R4 (a portaria de 2025 prevê um valor de referência de impacto orçamentário). Linhas da tabela que apontavam divergências já corrigidas foram mantidas como registro.
 
 Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos do jogo (TUTORIAL, PAUTAS, BREVES) feita em 13 nov. 2026. Cada linha é uma afirmação factual do site; exemplos declarados ilustrativos e contas aritméticas ficaram de fora. "—" na coluna Fato(s) quer dizer que não há fato correspondente na Parte A. Quando o status do fato é misto, vale aqui o da parte que o site usa. "Divergência" marca diferença de número, redação ou sentido entre o site e o fato.
 
@@ -397,6 +397,12 @@ Auditoria do texto do guia (`index.html`, de `#guia` até `#sobre`) e dos textos
 
 **F121.** "A saúde é direito de todos e dever do Estado" (Constituição de 1988, art. 196), e há fornecimento de tratamentos por decisão judicial no Brasil. — *Fonte:* R9; páginas oficiais conferidas pelo Juiz D na rodada 2: https://www.gov.br/saude/pt-br/sus (texto do art. 196) e https://www.gov.br/conitec/pt-br/judicializacao (fornecimento por decisão judicial e critérios do STF que consideram a avaliação da Conitec). — *Status:* verificada em páginas oficiais do governo; o texto da Constituição no portal da legislação não abriu.
 
+**F122.** Réplica a Singer et al.: Harris J. Double jeopardy and the veil of ignorance--a reply. J Med Ethics. 1995;21(3):151-7. doi:10.1136/jme.21.3.151. PMID 7674279. Segundo o resumo no PubMed, o artigo sustenta que o QALY e medidas parecidas "remain vulnerable to the charge of double jeopardy" e critica o uso do "véu da ignorância" por Singer et al. — *Status:* verificada (resumo no PubMed). É daí que vem a descrição do argumento de Singer et al. como de imparcialidade.
+
+**F123.** Supremo Tribunal Federal e medicamentos fora das listas do SUS: a página "Judicialização" da Conitec lista as condições fixadas pelo Supremo, entre elas provar "que a decisão da Conitec de não incluir o medicamento nas listas do SUS é ilegal". — *Fonte:* https://www.gov.br/conitec/pt-br/judicializacao (conferida pelo Juiz D nas rodadas 2 e 3). — *Status:* verificada. O site não afirma data nem cronologia.
+
+**F124.** Consulta pública: a página "Consultas públicas" da Conitec diz que qualquer cidadão pode participar, por formulário eletrônico (conferida pelo Juiz D na rodada 3). — *Status:* verificada.
+
 ## Parte B — Referências
 
 Marcas: **[PubMed]** registro lido; **[Crossref]** metadados no Crossref; **[aberto]** documento aberto em 13 nov. 2026; **[parcial]** dados só por buscador ou catálogo. "s/r" = sem resumo no PubMed. Os DOIs vêm do PubMed e não foram testados em doi.org.
@@ -548,7 +554,7 @@ Marcas: **[PubMed]** registro lido; **[Crossref]** metadados no Crossref; **[abe
 
 ## Parte C — O que não foi possível verificar
 
-> Atualização da rodada 2: os itens 4 (aposta padrão), 7 (Constituição e leis brasileiras, no que toca ao art. 196) e 15 (Longworth, quanto ao desenvolvimento de itens extras) foram superados pelos fatos F116, F121 e F84; o site afirma só o que esses fatos sustentam. Afirmações qualitativas sem fato próprio, aceitas como conhecimento geral e sem número: gastos da família fora da perspectiva do SUS e impacto orçamentário (conferidas pelo Juiz D na diretriz e na Portaria 8.817); consulta pública pela internet; a crítica de movimentos de pessoas com deficiência; o uso de outras medidas ao lado do QALY.
+> Atualização das rodadas 2 e 3 (os itens abaixo ficam na lista como registro do que estava pendente em cada momento): os itens 4 (aposta padrão), 7 (Constituição e leis brasileiras, no que toca ao art. 196) e 15 (Longworth, quanto ao desenvolvimento de itens extras) foram superados pelos fatos F116, F121 e F84; o site afirma só o que esses fatos sustentam. Afirmações qualitativas sem fato próprio, aceitas como conhecimento geral e sem número: gastos da família fora da perspectiva do SUS e impacto orçamentário (conferidas pelo Juiz D na diretriz e na Portaria 8.817); consulta pública pela internet; a crítica de movimentos de pessoas com deficiência; o uso de outras medidas ao lado do QALY.
 
 O site não deve afirmar como fato:
 

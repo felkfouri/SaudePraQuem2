@@ -1,5 +1,14 @@
 # Registro de mudanças
 
+## Rodada 3 (13 nov. 2026)
+
+Vereditos: C e D aprovaram; A e B reprovaram por um item importante cada. Triagem em `review/rodada-3/TRIAGEM.md`.
+
+- **Custo por QALY:** a saúde deslocada usa sempre a referência de R$ 40 mil, também com o limiar de R$ 120 mil; entre os dois valores, a tela diz que aceitar é escolha de prioridade. Testes novos (149 verificações).
+- "Equidade" explicada no cartão e no glossário; aviso quando nenhum pedido da reunião cabe no orçamento.
+- Limitação 3: argumento de imparcialidade descrito e réplica de Harris (1995) citada. Limitação 8: frase sobre o Supremo colada à página da Conitec, com referência.
+- "Dominante" definido de forma completa; fala do Contador com "hipótese do jogo"; `MODELO.md` §4 reescrito; fatos F122 a F124.
+
 ## Rodada 2 (13 nov. 2026)
 
 Vereditos: B e D aprovaram; A e C reprovaram por um item importante cada. Triagem em `review/rodada-2/TRIAGEM.md`.

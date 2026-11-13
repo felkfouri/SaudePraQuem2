@@ -72,3 +72,11 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D26. Dominância estendida e outros instrumentos (SF-6D, HUI) não entram.** Sugeridos pela banca como polimento; aumentariam o texto para leigos. Ficam em `IDEIAS.md`.
 
 **D27. Instrução aos juízes na rodada 2.** Para a autoria (B6), o Juiz B foi orientado a registrar o item numa seção "PENDÊNCIA DO AUTOR", fora da lista que decide o veredito, porque só o autor pode fornecer esses dados. Os Juízes A, C e D receberam uma definição mais explícita do que conta como IMPORTANTE e do que é POLIMENTO. A instrução está registrada aqui para que a leitura dos vereditos da rodada 2 em diante leve isso em conta.
+
+## Rodada 3 — triagem (13 nov. 2026)
+
+**D28. Conflito A × C/D na limitação 3.** A Juíza A achou os parágrafos densos; os Juízes C e D pediram que o texto dissesse qual é o argumento da defesa e desse a fonte da réplica. Pela ordem de prioridade (correção factual acima da compreensão do leigo quando o trecho continua compreensível), entraram a descrição do argumento de imparcialidade e a referência à réplica de Harris (1995).
+
+**D29. Custo de oportunidade sempre pela referência de base.** No interativo de custo por QALY, a saúde deslocada usa R$ 40 mil mesmo quando o limiar escolhido é R$ 120 mil (parecer B, rodada 3). O limiar maior é escolha de prioridade, e a tela passou a dizer isso.
+
+**D30. Juízes na rodada 4.** Os quatro voltam, porque o site mudou depois dos pareceres de C e D.
