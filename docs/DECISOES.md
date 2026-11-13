@@ -70,3 +70,5 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D25. Autoria (B6) fica em aberto.** Nome completo, programa, docente ou orientador, contato e endereço público dependem do autor.
 
 **D26. Dominância estendida e outros instrumentos (SF-6D, HUI) não entram.** Sugeridos pela banca como polimento; aumentariam o texto para leigos. Ficam em `IDEIAS.md`.
+
+**D27. Instrução aos juízes na rodada 2.** Para a autoria (B6), o Juiz B foi orientado a registrar o item numa seção "PENDÊNCIA DO AUTOR", fora da lista que decide o veredito, porque só o autor pode fornecer esses dados. Os Juízes A, C e D receberam uma definição mais explícita do que conta como IMPORTANTE e do que é POLIMENTO. A instrução está registrada aqui para que a leitura dos vereditos da rodada 2 em diante leve isso em conta.
