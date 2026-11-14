@@ -2,7 +2,16 @@
 
 **Título:** A régua da saúde: o que é o QALY, suas vantagens e limitações
 **Tipo:** produto técnico para a sociedade (material didático interativo, de acesso aberto)
-**Autor:** Felipe, doutorando na Faculdade de Medicina da Universidade de São Paulo
+**Autores:**
+
+| Nome | Nº USP |
+|---|---|
+| Felipe Kfouri | 15281489 |
+| Leonardo Pinho do Amaral | 16767089 |
+| Marcos Vinícius Pereira Mota | 12674418 |
+| Tainara Rodrigues Santos | 9309445 |
+
+Alunos da Faculdade de Medicina da Universidade de São Paulo.
 **Disciplina:** Análise Econômica em Saúde, 2026
 **Data:** novembro de 2026
 
@@ -23,7 +32,7 @@ Pessoas sem formação em economia da saúde: usuários do SUS, conselheiros de 
 
 As recomendações de incorporação de tecnologias no SUS usam o custo por QALY e um valor de referência desde 2022. Essas decisões afetam a todos e passam por consulta pública, mas o vocabulário (QALY, RCEI, limiar, utilidade, desconto) afasta justamente quem é chamado a opinar. O material disponível em português é, na maior parte, técnico. Ao mesmo tempo, o QALY é alvo de críticas sérias (sobre idade, deficiência, gravidade, o que o instrumento capta), que costumam chegar ao público em versões simplificadas: ou "o governo põe preço na vida", ou "é só uma conta". Faltava um material que explicasse a medida e apresentasse as críticas com as respectivas respostas, sem conduzir o leitor.
 
-O produto dá continuidade a um trabalho anterior do autor, "Saúde para quem?", sobre análise de custo-efetividade distributiva.
+O produto dá continuidade a um trabalho anterior de um dos autores, "Saúde para quem?", sobre análise de custo-efetividade distributiva.
 
 ## 4. Conteúdo
 
@@ -44,11 +53,11 @@ Site estático de um arquivo, com três camadas:
 
 1. **Reconhecimento:** inventário do site anterior, classificando cada parte como reutilizar, adaptar ou descartar (`INVENTARIO.md`).
 2. **Checagem de fatos antes da redação:** cada afirmação factual prevista foi buscada em fonte primária (relatório da Conitec de 2022; Diretriz de Avaliação Econômica, 3ª ed., 2026; manual do NICE; arquivos de cálculo da EuroQol; texto das leis americanas; registros do PubMed). O resultado é `FONTES.md`: 124 fatos e 121 referências, cada um com status "verificada", "parcial" ou "não verificada". O que não pôde ser verificado na fonte não é afirmado no site.
-3. **Plano** aprovado pelo autor antes da construção (`PLANO.md`), com título, mapa, fórmulas, três conceitos de jogo e as perguntas de compreensão.
+3. **Plano** aprovado antes da construção (`PLANO.md`), com título, mapa, fórmulas, três conceitos de jogo e as perguntas de compreensão.
 4. **Construção** em HTML, CSS e JavaScript puros, sem bibliotecas, reaproveitando do site anterior o estilo, a navegação, o gerador com semente, o jornal e o tutorial.
 5. **Ciclo de revisão** em rodadas (seção 6).
 
-O produto foi escrito com apoio de inteligência artificial generativa (Claude, da Anthropic), sob direção e revisão do autor, que responde pelo conteúdo.
+O produto foi escrito com apoio de inteligência artificial generativa (Claude, da Anthropic), sob direção e revisão dos autores, que respondem pelo conteúdo.
 
 ## 6. Validação
 

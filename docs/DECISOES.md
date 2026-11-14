@@ -92,3 +92,7 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D33. Critério de saída cumprido.** Os quatro juízes aprovaram a versão do commit `48c056b`, sem bloqueante nem importante, com o portão verde.
 
 **D34. Polimentos depois da aprovação.** Entraram só mudanças de redação e documentação apontadas por dois ou mais juízes, num commit separado. Não foram rejulgadas; o portão foi refeito (`review/final/`). O que não entrou está listado em `review/rodada-5/TRIAGEM.md`.
+
+## Autoria (14 nov. 2026)
+
+**D35. Autores informados.** Felipe Kfouri, Leonardo Pinho do Amaral, Marcos Vinícius Pereira Mota e Tainara Rodrigues Santos. Os nomes entraram no site, no README e no memorial. Os números USP entraram só no memorial, que é o documento entregue à disciplina; como o repositório é público, cabe aos autores decidir se eles ficam. A forma abreviada da citação (Kfouri F, Amaral LP, Mota MVP, Santos TR) é uma inferência sobre os sobrenomes e precisa ser conferida pelos autores. Continuam sem informação: programa, docente da disciplina ou orientador, contato e endereço público definitivo.

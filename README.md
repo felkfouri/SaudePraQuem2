@@ -98,15 +98,15 @@ Os testes leem o bloco `Calc` do próprio `index.html`, então testam o código 
 
 ## Como foi feito
 
-Escrito com apoio de inteligência artificial (Claude, da Anthropic), sob direção e revisão do autor. A revisão usou uma bancada de quatro avaliadores simulados por IA (leiga, banca da disciplina, crítico do QALY, checador de fatos), com pareceres e triagem em `review/`. Isso não substitui a leitura por pessoas reais do público-alvo.
+Escrito com apoio de inteligência artificial (Claude, da Anthropic), sob direção e revisão dos autores. A revisão usou uma bancada de quatro avaliadores simulados por IA (leiga, banca da disciplina, crítico do QALY, checador de fatos), com pareceres e triagem em `review/`. Isso não substitui a leitura por pessoas reais do público-alvo.
 
 ## Como citar
 
-> Felipe. *A régua da saúde: o que é o QALY, suas vantagens e limitações* [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://github.com/felkfouri/SaudePraQuem2
+> Kfouri F, Amaral LP, Mota MVP, Santos TR. *A régua da saúde: o que é o QALY, suas vantagens e limitações* [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://github.com/felkfouri/SaudePraQuem2
 
 ## Autoria
 
-Felipe, cirurgião e doutorando na FMUSP. Disciplina de Análise Econômica em Saúde, 2026.
+Felipe Kfouri, Leonardo Pinho do Amaral, Marcos Vinícius Pereira Mota e Tainara Rodrigues Santos. Disciplina de Análise Econômica em Saúde, Faculdade de Medicina da USP, 2026.
 
 ## Licença
 
