@@ -1,10 +1,10 @@
 # Portão automático
 
-Gerado por `node tests/pagina.js` em 2026-11-14 21:34 UTC (25 s). Antes dele rodam `tests/calc.js`, `tests/dados.js` e `tests/equilibrio.js` (`npm test`).
+Gerado por `node tests/pagina.js` em 2026-11-14 22:48 UTC (25 s). Antes dele rodam `tests/calc.js`, `tests/dados.js` e `tests/equilibrio.js` (`npm test`).
 
 **Resultado: tudo verde**
 
-- [x] carga da página em 515 ms (arquivo de 186 kB, sem imagens nem bibliotecas)
+- [x] carga da página em 514 ms (arquivo de 186 kB, sem imagens nem bibliotecas)
 - [x] 375 px: sem rolagem horizontal no guia (sobra 0 px)
 - [x] 375 px: cada captura mostra a seção do nome
 - [x] 375 px: texto dos gráficos com 13.0 px de altura (mínimo 11)
@@ -37,7 +37,7 @@ Gerado por `node tests/pagina.js` em 2026-11-14 21:34 UTC (25 s). Antes dele rod
 - [x] links internos: 81 âncoras, todas com destino
 - [x] axe, guia, tema claro: nenhuma violação séria ou crítica
 - [x] axe, guia, tema escuro: nenhuma violação séria ou crítica
-- [x] 375 px, partida 1234: 3 reuniões até o jornal (Plenário equilibrista; Contador 4,5, Ouvidora 3,3, Praça 3,1; 3231 ms de máquina)
+- [x] 375 px, partida 1234: 3 reuniões até o jornal (Plenário equilibrista; Contador 4,5, Ouvidora 3,3, Praça 3,1; 3249 ms de máquina)
 - [x] jogo, partida padrão 1234: 1443 palavras na tela do começo ao fim (limite 1.500, cerca de 10 minutos a 150 palavras por minuto)
 - [x] 375 px: sem rolagem horizontal no jogo (sobra 0 px)
 - [x] axe, jogo, jornal final: nenhuma violação séria ou crítica
@@ -46,9 +46,9 @@ Gerado por `node tests/pagina.js` em 2026-11-14 21:34 UTC (25 s). Antes dele rod
 - [x] axe, jogo, reunião sem a régua: nenhuma violação séria ou crítica
 - [x] jogo: a primeira reunião não mostra os QALYs
 - [x] jogo: mesmo código e mesmas escolhas dão as mesmas notas (4,5 3,3 3,1)
-- [x] 375 px, partida 2718: 3 reuniões até o jornal (Plenário equilibrista; Contador 4,3, Ouvidora 2,5, Praça 3,1; 922 ms de máquina)
+- [x] 375 px, partida 2718: 3 reuniões até o jornal (Plenário equilibrista; Contador 4,3, Ouvidora 2,5, Praça 3,1; 958 ms de máquina)
 - [x] jogo, partida padrão 2718: 1433 palavras na tela do começo ao fim (limite 1.500, cerca de 10 minutos a 150 palavras por minuto)
-- [x] 375 px, partida 4242: 6 reuniões até o jornal (Plenário da conta; Contador 7,2, Ouvidora 6,3, Praça 4,4; 1607 ms de máquina)
+- [x] 375 px, partida 4242: 6 reuniões até o jornal (Plenário da conta; Contador 7,2, Ouvidora 6,3, Praça 4,4; 1634 ms de máquina)
 - [x] axe, jogo, tela inicial: nenhuma violação séria ou crítica
 - [x] axe, jogo, ata: nenhuma violação séria ou crítica
 - [x] axe, jogo, reunião com a régua: nenhuma violação séria ou crítica
@@ -61,7 +61,7 @@ Gerado por `node tests/pagina.js` em 2026-11-14 21:34 UTC (25 s). Antes dele rod
 - [x] teclado: foco visível (contorno de 2 px) nos links
 - [x] teclado: votar com espaço e setas habilita "Encerrar a reunião"
 - [x] teclado: ao trocar de tela, o foco vai para o título da nova tela
-- [x] 1280 px, partida 1234: 3 reuniões até o jornal (Plenário equilibrista; Contador 4,5, Ouvidora 3,3, Praça 3,1; 3122 ms de máquina)
+- [x] 1280 px, partida 1234: 3 reuniões até o jornal (Plenário equilibrista; Contador 4,5, Ouvidora 3,3, Praça 3,1; 3206 ms de máquina)
 - [x] 1280 px: zero erros no console
 
 Capturas nesta pasta: `<largura>-<seção>.png` e `<largura>-jogo-*.png`.

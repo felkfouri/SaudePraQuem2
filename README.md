@@ -2,7 +2,7 @@
 
 **O que é o QALY, a medida que ajuda o SUS a decidir o que paga. Vantagens e limitações.**
 
-Guia interativo para o público geral, com quatro interativos e o jogo **Plenário**. Produto técnico da disciplina de Análise Econômica em Saúde, programa de pós-graduação da Faculdade de Medicina da USP, 2026.
+Guia interativo para o público geral, com quatro interativos e o jogo **Plenário**. Produto técnico da disciplina MPR5762 – Avaliação Econômica de Tecnologias em Saúde, programa de pós-graduação da Faculdade de Medicina da USP, 2026.
 
 É a continuação de [Saúde para quem?](https://felkfouri.github.io/saudepraquem/), que trata da análise de custo-efetividade distributiva. Aqui, a análise distributiva aparece como resposta a uma das limitações do QALY.
 
@@ -106,7 +106,7 @@ Escrito com apoio de inteligência artificial (Claude, da Anthropic), sob direç
 
 ## Autoria
 
-Felipe Kfouri, Leonardo Pinho do Amaral, Marcos Vinícius Pereira Mota e Tainara Rodrigues Santos. Disciplina de Análise Econômica em Saúde, Faculdade de Medicina da USP, 2026.
+Felipe Kfouri, Leonardo Pinho do Amaral, Marcos Vinícius Pereira Mota e Tainara Rodrigues Santos. Disciplina MPR5762 – Avaliação Econômica de Tecnologias em Saúde, Faculdade de Medicina da USP, 2026. Docentes: Alessandro Gonçalves Campolina, Hillegonda Maria Dutilh Novaes e Patrícia Coelho de Soárez.
 
 ## Licença
 

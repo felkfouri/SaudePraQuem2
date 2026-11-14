@@ -12,7 +12,8 @@
 | Tainara Rodrigues Santos | 9309445 |
 
 Alunos da Faculdade de Medicina da Universidade de São Paulo.
-**Disciplina:** Análise Econômica em Saúde, 2026
+**Disciplina:** MPR5762 – Avaliação Econômica de Tecnologias em Saúde (2026)
+**Docentes:** Alessandro Gonçalves Campolina, Hillegonda Maria Dutilh Novaes e Patrícia Coelho de Soárez
 **Data:** novembro de 2026
 
 ## 1. Objetivo

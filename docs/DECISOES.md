@@ -96,3 +96,5 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 ## Autoria (14 nov. 2026)
 
 **D35. Autores informados.** Felipe Kfouri, Leonardo Pinho do Amaral, Marcos Vinícius Pereira Mota e Tainara Rodrigues Santos. Os nomes entraram no site, no README e no memorial. Os números USP entraram só no memorial, que é o documento entregue à disciplina; como o repositório é público, cabe aos autores decidir se eles ficam. A forma abreviada da citação (Kfouri F, Amaral LP, Mota MVP, Santos TR) é uma inferência sobre os sobrenomes e precisa ser conferida pelos autores. Continuam sem informação: programa, docente da disciplina ou orientador, contato e endereço público definitivo.
+
+**D36. Disciplina e docentes (14 nov. 2026).** O nome correto da disciplina é "MPR5762 – Avaliação Econômica de Tecnologias em Saúde (2026)", e não "Análise Econômica em Saúde", como constava desde o pedido inicial. Docentes: Alessandro Gonçalves Campolina, Hillegonda Maria Dutilh Novaes e Patrícia Coelho de Soárez. Corrigido no site, no README e no memorial. Os documentos de planejamento e os pareceres da bancada mantêm o nome antigo, como registro histórico.
