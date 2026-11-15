@@ -77,8 +77,8 @@ Testes: 2 anos a 0,5 = 1 QALY; 10 anos a 1 = 10; perfil misto conferido à mão;
 
 Cinco perguntas (mobilidade, cuidados pessoais, atividades habituais, dor/mal-estar, ansiedade/depressão), três níveis cada (versão 3L). Saída: o código do estado (ex.: 21232), o índice pela tarifa brasileira e a frase "um ano neste estado conta como X de um ano com saúde plena". Um botão mostra o pior e o melhor estado.
 
-- Fórmula: a do modelo publicado por Santos et al. (2016), com os coeficientes conferidos na fonte: `índice = 1 − (decrementos dos níveis marcados, por dimensão) − (termos adicionais do modelo, se houver)`. A fórmula exata e os coeficientes entram em `docs/MODELO.md` e `docs/FONTES.md` depois da conferência.
-- **Se os coeficientes não puderem ser conferidos em duas fontes independentes**, o interativo usa coeficientes didáticos, com o rótulo "ilustrativo, não é a tarifa brasileira" e a explicação do motivo.
+- Fórmula (tarifa de Santos et al., 2016): estado 11111 = 1; nos demais, `índice = 1 − 0,149 − Σ decrementos`, com os decrementos por dimensão para o nível 2 e o nível 3: mobilidade 0,120 / 0,363; cuidados pessoais 0,112 / 0,218; atividades habituais 0,097 / 0,184; dor/mal-estar 0,064 / 0,168; ansiedade/depressão 0,050 / 0,095. Exemplo: 21232 = 1 − 0,149 − 0,120 − 0,097 − 0,168 − 0,050 = 0,416.
+- **Situação da conferência:** os coeficientes coincidem em três fontes independentes (um artigo aberto que reproduz a fórmula e dois pacotes estatísticos, com diferença zero nos 243 estados). O artigo original é de acesso fechado e não foi aberto; por isso o site dirá "tarifa brasileira (Santos et al., 2016), coeficientes conferidos em fontes secundárias concordantes". O pior estado sai −0,177 pela soma dos coeficientes arredondados; a literatura cita −0,176. O site mostra o valor da soma e explica a diferença de arredondamento em `FONTES.md`.
 - Texto próprio para os níveis (não o questionário oficial) e aviso: não é o instrumento oficial e não serve para avaliar a saúde de ninguém.
 
 Testes: 11111 = 1; dois ou três estados conferidos com a tabela publicada; o pior estado; todos os 243 estados dentro da faixa publicada.
@@ -187,6 +187,24 @@ Cada item abaixo entra em `docs/FONTES.md` com citação, DOI/PMID ou endereço,
 
 **Jogo e cenários**
 23. Cada caso real que "inspira" uma tecnologia fictícia: uma fonte.
+
+### O que a pesquisa já mostrou (13 nov. 2026)
+
+Notas completas em `docs/pesquisa/`. Uma segunda passada, nos documentos primários, está em andamento; o que ela mudar entra em `FONTES.md`.
+
+| Assunto | Achado | Consequência para o site |
+|---|---|---|
+| Tarifa brasileira do EQ-5D-3L | Coeficientes obtidos e concordantes em três fontes; faixa de 1 a −0,177; 10 dos 243 estados abaixo de zero. | O interativo usa a tarifa real. |
+| EQ-5D-5L | Nenhuma tarifa brasileira localizada até nov. 2026. | O site diz isso e usa a versão 3L. |
+| EQ-5D-Y-3L | Tarifa brasileira publicada em 2024 (Espirito Santo et al.), verificada no texto integral. | Citada na limitação sobre crianças. |
+| Limiar da Conitec | R$ 40 mil por QALY, R$ 35 mil por ano de vida ganho, até 3 vezes em situações específicas; sem valor novo até 2026. A lista das situações varia entre fontes secundárias, e doenças ultrarraras ficaram **fora** da regra. | A lista literal só entra depois de aberta no documento oficial. O texto do original ("R$ 120 mil para doenças raras") será corrigido. |
+| "≈ 1 PIB per capita" | Vale para 2021 (R$ 40.688 na primeira estimativa do IBGE). Em 2025 o PIB per capita foi R$ 59.687: o valor fixo de R$ 40 mil equivale hoje a cerca de 0,67. | O site explica que o valor não foi corrigido e o que isso significa. |
+| Diretriz de Avaliação Econômica | Existe 3ª edição (2026). A taxa de desconto de 5% está confirmada só para a 2ª edição (2014). | A taxa do interativo só é fixada depois de aberta a 3ª edição. |
+| NICE | A faixa do limiar passou de £20–30 mil para £25–35 mil por QALY em abril de 2026; modificador de gravidade com pesos 1,2 e 1,7. | O site usa a faixa nova, se confirmada na fonte oficial. |
+| ANS | Nenhum limiar numérico; o tema voltou à pauta em 2026. | Uma frase, sem número. |
+| Lei americana | Não "proíbe o QALY": veda, no Medicare, usar custo por QALY como limiar; a lei de 2022 não cita o QALY pelo nome. O projeto que ampliaria a vedação passou na Câmara em 2024 e parou no Senado. | A limitação 3 descreve isso com precisão, sem o atalho "os EUA baniram o QALY". |
+| Correções a ideias comuns | Williams (*fair innings*) conclui por mais prioridade aos jovens; Singer et al. concluem que o defensor do QALY tem resposta à "dupla penalização"; o EQ-5D funciona em transtornos mentais comuns e falha mais na esquizofrenia; o público britânico não apoiou prêmio para fim de vida nem para doenças raras, mas apoiou para gravidade. | Entram como contra-argumentos, o que ajuda o equilíbrio pedido pelo Juiz C. |
+| Site original | No ar em `https://felkfouri.github.io/saudepraquem/` (conferido). | O link "para ir além" usa esse endereço. |
 
 ## 6. O que vem do original
 

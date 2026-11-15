@@ -19,6 +19,12 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 
 **D6. Pesquisa de fatos antes do plano.** A verificação de fontes foi adiantada para a Fase 0 porque o desenho de um interativo depende dela (os coeficientes da tarifa brasileira do EQ-5D-3L existem em fonte aberta ou não?). As notas brutas ficam em `docs/pesquisa/`; a lista consolidada, em `docs/FONTES.md`.
 
+**D6a. Rede bloqueada e ambiente novo.** As três primeiras pesquisas não conseguiram abrir fontes primárias (a rede do ambiente padrão só permitia PubMed e buscas). Com aprovação do autor, foi criado o ambiente pessoal `saudepraquem2`, com acesso a 20 sites oficiais ou acadêmicos (Conitec/gov.br, Rebrats, IBGE, NICE, PMC, EuroQol, ICER, Congresso e leis dos EUA, entre outros). Continuam inacessíveis: `planalto.gov.br`, `bvsms.saude.gov.br` e `journals.sagepub.com` (o artigo de Santos et al. é de acesso fechado). O que depender só deles fica com status "parcialmente verificada" em `FONTES.md`.
+
+**D6b. URL do site original confirmada:** `https://felkfouri.github.io/saudepraquem/` respondeu com a página "Saúde para Quem?". Substitui a ressalva de D4.
+
+**D6c. Aviso automático de push.** O ambiente emite um aviso pedindo commit e push a cada pausa. A regra 6 do autor (push só no final, com OK) prevalece: os commits são locais.
+
 ## Fase 1 — plano
 
 **D7. Um arquivo só.** O site continua sendo um único `index.html` (CSS e JS embutidos), como o original: abre com duplo clique, sem servidor, e funciona no GitHub Pages. Os testes em Node extraem o bloco de cálculo do próprio `index.html` entre dois comentários marcadores, para testar o código que de fato roda na página.
@@ -34,3 +40,61 @@ Registro do que foi decidido sem perguntar (por não ser bloqueante), dos confli
 **D12. Jogo: sem nota única.** Os três jurados dão notas separadas e não há soma nem ranking. O título da gestão descreve o estilo de decisão, não diz quem "ganhou". Motivo: o critério do Juiz C (o leitor forma a própria opinião) e a mensagem do produto (a régua ajuda, mas não decide sozinha).
 
 **D13. Números do jogo e dos cenários prontos são ilustrativos.** As tecnologias são fictícias, "inspiradas em" casos reais citados. São reais, com fonte: a tarifa brasileira do EQ-5D-3L, os valores de referência da Conitec, a taxa de desconto das diretrizes e os pesos do modificador de gravidade do NICE. A nota de transparência lista os dois grupos.
+
+## Rodada 1 — construção (13 nov. 2026)
+
+**D14. Ouvidora: desvio do plano aprovado.** O plano previa a Ouvidora como soma dos QALYs com pesos de gravidade (1; 1,2; 1,7). Na simulação com seis estratégias, essa Ouvidora deu sempre a mesma ordem que o Contador (notas 9,9 e 9,9 para a estratégia "só a régua"): pesos dessa ordem não revertem diferenças de 5 a 10 vezes no custo por QALY. Um jurado que repete o outro derruba a regra "os jurados discordam". A Ouvidora passou a contar os pedidos atendidos de quem estava em pior situação (2 pontos para prioridade alta, 1 para alguma), menos os episódios de tratamento desigual. As categorias de prioridade continuam as mesmas. O achado numérico entrou no guia (limitação 6: "mesmo com peso 1,7, um tratamento que custa seis vezes a referência continua acima dela"). Detalhe em `JOGO.md`.
+
+**D15. Título.** Aprovada a opção A: "A régua da saúde".
+
+**D16. Convenção do desconto.** O primeiro ano não é descontado (`1 / (1 + r)^(t − 1)`). A 3ª edição da diretriz não fixa a convenção; a escolha é didática e está em `MODELO.md`.
+
+**D17. Valor do pior estado: −0,177.** É o que sai do código oficial da EuroQol para a tarifa de Santos et al. A literatura cita −0,176; a diferença não foi resolvida porque o artigo é de acesso fechado.
+
+**D18. O que ficou de fora por não estar verificado na fonte primária:** os valores do PIB per capita do IBGE (o site do IBGE não abriu); o andamento dos projetos de lei americanos; o valor em libras do WELLBY; os limiares em coroas e euros da Noruega e da Holanda; o prazo de 20 dias da consulta pública da Conitec. O site não afirma nenhum deles.
+
+**D19. Playwright.** O ambiente já traz Playwright e Chromium; o `npm install` do projeto baixa outra versão, sem navegador. A cópia local foi removida de `node_modules` para o teste usar a instalada. Em outra máquina: `npm install` e `npx playwright install chromium`, ou `CHROMIUM_PATH`. O axe-core foi instalado sem problema.
+
+**D20. Como citar e autoria.** O site traz só "Felipe", como no original. O sobrenome e o endereço público definitivo (GitHub Pages) dependem do autor; a citação aponta para o repositório, que existe.
+
+## Rodada 1 — triagem (13 nov. 2026)
+
+**D21. Conflito A × C: jogo curto × os dois lados em cada caso.** A Juíza A reprovou o jogo por não caber em 10 minutos; o Juiz C quer que cada caso mostre o que a régua viu e o que não viu. Pela ordem de prioridade (compreensão do leigo acima do equilíbrio), a partida padrão passou a 3 reuniões e a ata mostra um parágrafo por caso: "fora da conta", quando há, ou "o que a régua mostrou". A revisão completa, com os dois lados e a inspiração de cada caso, fica recolhida na tela final. O equilíbrio é preservado pelo sorteio (todo jogo tem casos dos dois tipos) e pelo teste de equilíbrio.
+
+**D22. Parecer rejeitado (B4).** O Juiz B considerou sem lastro a frase sobre os desfechos importantes para o paciente. O Juiz D encontrou o trecho literal no Quadro 1 do relatório da Conitec. A frase ficou, com redação mais próxima do original; o erro estava no Mapa de `FONTES.md`.
+
+**D23. Teto por reunião e partida de 3 reuniões.** Duas regras novas no jogo, não previstas no plano, para resolver problemas apontados pela Juíza A (duração e falta de escolha no fim). Detalhe em `JOGO.md`.
+
+**D24. A Praça deixou de punir pelo critério do Contador.** A penalidade "as filas cresceram" foi retirada (pareceres B5 e C8).
+
+**D25. Autoria (B6) fica em aberto.** Nome completo, programa, docente ou orientador, contato e endereço público dependem do autor.
+
+**D26. Dominância estendida e outros instrumentos (SF-6D, HUI) não entram.** Sugeridos pela banca como polimento; aumentariam o texto para leigos. Ficam em `IDEIAS.md`.
+
+**D27. Instrução aos juízes na rodada 2.** Para a autoria (B6), o Juiz B foi orientado a registrar o item numa seção "PENDÊNCIA DO AUTOR", fora da lista que decide o veredito, porque só o autor pode fornecer esses dados. Os Juízes A, C e D receberam uma definição mais explícita do que conta como IMPORTANTE e do que é POLIMENTO. A instrução está registrada aqui para que a leitura dos vereditos da rodada 2 em diante leve isso em conta.
+
+## Rodada 3 — triagem (13 nov. 2026)
+
+**D28. Conflito A × C/D na limitação 3.** A Juíza A achou os parágrafos densos; os Juízes C e D pediram que o texto dissesse qual é o argumento da defesa e desse a fonte da réplica. Pela ordem de prioridade (correção factual acima da compreensão do leigo quando o trecho continua compreensível), entraram a descrição do argumento de imparcialidade e a referência à réplica de Harris (1995).
+
+**D29. Custo de oportunidade sempre pela referência de base.** No interativo de custo por QALY, a saúde deslocada usa R$ 40 mil mesmo quando o limiar escolhido é R$ 120 mil (parecer B, rodada 3). O limiar maior é escolha de prioridade, e a tela passou a dizer isso.
+
+**D30. Juízes na rodada 4.** Os quatro voltam, porque o site mudou depois dos pareceres de C e D.
+
+## Rodada 4 — triagem (13 nov. 2026)
+
+**D31. "Referência" e "limite".** Em todo o interativo de custo por QALY, "valor de referência" é só R$ 40 mil; R$ 120 mil é "limite de 3 vezes". A discordância entre a regra (com o limiar escolhido) e o saldo pela hipótese (com a referência de base) é apresentada como escolha de prioridade, nos dois sentidos (pareceres B e D, rodada 4).
+
+**D32. Rodada 5 é a última.** Pelo critério de saída, se os quatro não aprovarem na rodada 5, o trabalho para e o que ficou pendente vai para o relatório.
+
+## Rodada 5 — fechamento (13 nov. 2026)
+
+**D33. Critério de saída cumprido.** Os quatro juízes aprovaram a versão do commit `48c056b`, sem bloqueante nem importante, com o portão verde.
+
+**D34. Polimentos depois da aprovação.** Entraram só mudanças de redação e documentação apontadas por dois ou mais juízes, num commit separado. Não foram rejulgadas; o portão foi refeito (`review/final/`). O que não entrou está listado em `review/rodada-5/TRIAGEM.md`.
+
+## Autoria (14 nov. 2026)
+
+**D35. Autores informados.** Felipe Kfouri, Leonardo Pinho do Amaral, Marcos Vinícius Pereira Mota e Tainara Rodrigues Santos. Os nomes entraram no site, no README e no memorial. Os números USP entraram só no memorial, que é o documento entregue à disciplina; como o repositório é público, cabe aos autores decidir se eles ficam. A forma abreviada da citação (Kfouri F, Amaral LP, Mota MVP, Santos TR) é uma inferência sobre os sobrenomes e precisa ser conferida pelos autores. Continuam sem informação: programa, docente da disciplina ou orientador, contato e endereço público definitivo.
+
+**D36. Disciplina e docentes (14 nov. 2026).** O nome correto da disciplina é "MPR5762 – Avaliação Econômica de Tecnologias em Saúde (2026)", e não "Análise Econômica em Saúde", como constava desde o pedido inicial. Docentes: Alessandro Gonçalves Campolina, Hillegonda Maria Dutilh Novaes e Patrícia Coelho de Soárez. Corrigido no site, no README e no memorial. Os documentos de planejamento e os pareceres da bancada mantêm o nome antigo, como registro histórico.

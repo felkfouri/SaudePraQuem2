@@ -1,0 +1,17 @@
+{
+  "name": "a-regua-da-saude",
+  "private": true,
+  "description": "Guia interativo sobre o QALY (vantagens e limitações) e o jogo Plenário",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node tests/calc.js && node tests/dados.js && node tests/equilibrio.js",
+    "pagina": "node tests/pagina.js",
+    "portao": "npm test && node tests/pagina.js"
+  },
+  "devDependencies": {
+    "axe-core": "^4.14.0",
+    "playwright": "^1.63.0"
+  }
+}
