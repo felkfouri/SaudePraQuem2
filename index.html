@@ -1339,31 +1339,52 @@ const Calc=(function(){
     }
     return {minC,maxC,maxO};
   }
+  /* o que cada jurado teria preferido: joga de novo a partida com cada combinação de decisões que cabe no orçamento
+     e guarda a de maior nota para cada jurado (empates: maior Contador, depois maior Praça). Só para a tela final. */
+  function preferidos(G){
+    const L=limites(G),n=G.pautas.reduce((s,p)=>s+p.casos.length,0),melhor={};
+    for(let m=0;m<(1<<n);m++){
+      const H={cfg:G.cfg,B:G.B,orc:G.B,i:0,pautas:G.pautas,real:G.real,hist:[],praca:PRACA0,incoer:0,disc:0,fim:false};
+      let k=0,ok=true;
+      for(const p of G.pautas){const dec=p.casos.map(()=>!!(m>>k++&1));if(!cabe(H,dec)){ok=false;break;}fecharReuniao(H,dec);}
+      if(!ok)continue;
+      const S=placar(H),g={C:nota(S.C,L.minC,L.maxC),O:nota(S.O,0,L.maxO),P:pracaFinal(H).praca/10};
+      const x={g,ids:H.hist.filter(h=>h.ok).map(h=>h.c.id)};
+      for(const j of ['C','O','P']){const b=melhor[j],ord=[j,'C','P','O'];
+        if(!b||ord.some((q,i)=>ord.slice(0,i).every(r=>Math.abs(g[r]-b.g[r])<1e-9)&&g[q]>b.g[q]+1e-9))melhor[j]=x;}
+    }
+    return melhor;
+  }
   const nota=(x,a,b)=>b-a<1e-9?10:Math.max(0,Math.min(10,10*(x-a)/(b-a)));
   /* resultado final. Só depois da última reunião. Aplica à Praça o que só aparece no fim:
      a virada de casos com patrocínio escondido e a coerência. */
-  function resultado(G){
-    const S=placar(G),L=limites(G),fim=[];
-    let praca=G.praca;
+  // Praça no fim do mandato: a virada de casos com patrocínio escondido e o bônus de coerência
+  function pracaFinal(G){
+    const fim=[];let praca=G.praca;
     for(const h of G.hist)if(h.c.virada){const d=h.ok?h.c.virada.sim:h.c.virada.nao;praca+=d;fim.push({d,t:h.c.virada.t+(h.ok?' O comitê tinha aprovado.':' O comitê tinha recusado.')});}
-    const base=G.B*1e6/K_JOGO;
     const nOk=G.hist.filter(h=>h.ok).length,nNao=G.hist.length-nOk;
     if(G.incoer===0&&nOk>0&&nNao>0){praca+=8;fim.push({d:8,t:'O comitê foi coerente: nas reuniões com a régua, não aprovou um pedido acima da referência depois de recusar outro mais barato por QALY e de prioridade igual ou maior.'});}
-    praca=Math.max(0,Math.min(100,praca));
+    return {praca:Math.max(0,Math.min(100,praca)),fim,nOk,nNao};
+  }
+  function resultado(G){
+    const S=placar(G),L=limites(G),{praca,fim,nOk,nNao}=pracaFinal(G);
+    const base=G.B*1e6/K_JOGO;
     const gC=nota(S.C,L.minC,L.maxC),gO=nota(S.O,0,L.maxO),gP=praca/10;
+    const gCnada=nota(base,L.minC,L.maxC); // a nota do Contador se o comitê não incorporasse nada
     const acima=G.hist.filter(h=>h.ok&&rceiCaso(h.c)!==null&&rceiCaso(h.c)>K_JOGO).length;
     let titulo,desc;
     const mx=Math.max(gC,gO,gP),mn=Math.min(gC,gO,gP);
     if(nOk===0){titulo='Plenário de portas fechadas';desc='Você não incorporou nada. Todo o dinheiro ficou na rede.';}
+    else if(mx<5){titulo='Plenário sem rumo';desc='Nenhum jurado saiu satisfeito: as três notas ficaram abaixo de 5.';}
     else if(mx-mn<=2){titulo='Plenário equilibrista';desc='As três notas ficaram próximas: você não deixou nenhum jurado muito para trás.';}
     else if(acima===0){titulo='Plenário da régua';desc='Você só aprovou o que custava até a referência por QALY.';}
     else if(gP===mx){titulo='Plenário da praça';desc='Você ouviu sobretudo quem veio pedir.';}
     else if(gO===mx){titulo='Plenário de quem está pior';desc='Você deu prioridade aos casos mais graves e a quem tem menos.';}
     else{titulo='Plenário da conta';desc='Você buscou o maior total de saúde.';}
-    return {C:S.C,O:S.O,P:praca,gC,gO,gP,gasto:S.gasto,rede:S.rede,base,L,fim,titulo,desc,nOk,nNao,acima};
+    return {C:S.C,O:S.O,P:praca,gC,gO,gP,gCnada,gasto:S.gasto,rede:S.rede,base,L,fim,titulo,desc,nOk,nNao,acima};
   }
   return {TARIFA,eq5dIndice,eq5dTodos,fatorDesconto,qalyPerfil,anosVida,compararVidas,TTO_T,TTO_ESCADA,ttoPeso,REF,avaliar,
-    K_JOGO,ORC,SPREAD,PRACA0,TUTORIAL,PAUTAS,rng,shuffle,rceiCaso,curto,pontos,novaPartida,pautaAtual,semRegua,sobra,TETO,teto,gastoReuniao,cabe,semDinheiro,fecharReuniao,placar,limites,nota,resultado};
+    K_JOGO,ORC,SPREAD,PRACA0,TUTORIAL,PAUTAS,rng,shuffle,rceiCaso,curto,pontos,novaPartida,pautaAtual,semRegua,sobra,TETO,teto,gastoReuniao,cabe,semDinheiro,fecharReuniao,placar,limites,preferidos,pracaFinal,nota,resultado};
 })();
 /* CALC:FIM */
 (function(){
@@ -1644,7 +1665,21 @@ const Calc=(function(){
   difDesc();
   const DIFN={facil:'fácil',normal:'normal',dificil:'difícil'};
   const PRI={1.7:'prioridade alta',1.2:'alguma prioridade'};
+  // Praça: um grupo de três pessoas; todas mudam de expressão juntas
+  function crowd(mood){
+    const c='var(--good)';
+    const boca=(x,y,w)=>mood>0?'M'+(x-w)+' '+y+'q'+w+' '+(w*.8)+' '+(2*w)+' 0':mood<0?'M'+(x-w)+' '+(y+w*.5)+'q'+w+' '+(-w*.8)+' '+(2*w)+' 0':'M'+(x-w)+' '+(y+w*.2)+'h'+(2*w);
+    const pessoa=(x,y,r,corpo,cab)=>'<path d="M'+(x-corpo)+' 51q0-'+(51-y-r*.9)+' '+corpo+' -'+(51-y-r*.9)+'t'+corpo+' '+(51-y-r*.9)+'z" fill="'+c+'" stroke="var(--bg)" stroke-width="1.5"/>'+
+      cab+'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="var(--bg)" stroke="'+c+'" stroke-width="1.8"/>'+
+      '<circle cx="'+(x-r*.36)+'" cy="'+(y-r*.12)+'" r="'+(r*.14)+'" fill="var(--fg)"/><circle cx="'+(x+r*.36)+'" cy="'+(y-r*.12)+'" r="'+(r*.14)+'" fill="var(--fg)"/>'+
+      '<path d="'+boca(x,y+r*.38,r*.4)+'" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linecap="round"/>';
+    return '<svg viewBox="0 0 50 50" aria-hidden="true">'+
+      pessoa(11,19,6.5,10,'<path d="M4.5 18q0-8 6.5-8t6.5 8q-3-3-6.5-3t-6.5 3z" fill="'+c+'"/>')+
+      pessoa(39,19,6.5,10,'<path d="M32 21q-1-11 7-11t7 11l-1 4q-1-8-6-9-5 1-6 9z" fill="'+c+'"/>')+
+      pessoa(25,26,8.5,13,'<path d="M16 24q0-11 9-11t9 11q-4-5-9-5t-9 5z" fill="'+c+'"/>')+'</svg>';
+  }
   function face(who,mood){
+    if(who==='P')return crowd(mood);
     const c=who==='C'?'var(--loss)':who==='O'?'var(--accent)':'var(--good)';
     const mouth=mood>0?'M17 30q8 7 16 0':mood<0?'M17 33q8-7 16 0':'M18 31h14';
     const brow=who==='C'?'<path d="M14 17l7 2M36 17l-7 2" stroke="'+c+'" stroke-width="2" stroke-linecap="round" fill="none"/>':'<path d="M13 15q4-3 8 0M29 15q4-3 8 0" stroke="'+c+'" stroke-width="2" stroke-linecap="round" fill="none"/>';
@@ -1742,6 +1777,7 @@ const Calc=(function(){
     'Plenário de quem está pior':['Os mais graves primeiro: comitê fecha o mandato com essa marca','Comitê dá prioridade a quem estava em pior situação'],
     'Plenário da conta':['Comitê fecha o mandato de olho no total de saúde','Mais saúde no total: a escolha do plenário neste mandato'],
     'Plenário equilibrista':['Nem só a conta, nem só a comoção: comitê fecha o mandato no meio do caminho','Plenário tenta agradar a três jurados e quase consegue'],
+    'Plenário sem rumo':['Mandato termina sem agradar à conta, à ouvidoria nem à praça','Comitê fecha o mandato sem uma linha clara de decisão'],
     'Plenário de portas fechadas':['Comitê não incorpora nada e devolve o orçamento inteiro à rede']
   };
   const BREVES=[
@@ -1761,7 +1797,7 @@ const Calc=(function(){
     const just='<b>Quem estava pior.</b> De '+piorT+' pedidos de prioridade, '+pior+(pior===1?' foi atendido.':' foram atendidos.');
     const fim=R.fim.length?'<b>Repercussão.</b> '+R.fim.map(f=>esc(f.t)).join(' '):'';
     const cartas=[];
-    const a=ok.filter(h=>h.c.com>=2),b=nao.filter(h=>h.c.com>=2);
+    const a=ok.filter(h=>h.c.com>=2&&!h.c.virada),b=nao.filter(h=>h.c.com>=2&&!h.c.virada); // a campanha paga não escreve carta depois da reportagem
     if(a.length){const h=pick(a,r);cartas.push('“'+esc(h.c.dep.t)+'” Obrigado por terem ouvido. <span class="bk">'+esc(h.c.dep.q)+'</span>');}
     if(b.length){const h=pick(b,r);cartas.push('“'+esc(h.c.dep.t)+'” Responderam com uma planilha. <span class="bk">'+esc(h.c.dep.q)+'</span>');}
     if(R.C<R.base-1&&cartas.length<2)cartas.push('Minha mãe espera há dois anos por uma cirurgia de catarata. Ninguém fez campanha por ela. <span class="bk">leitora que não estava na plateia</span>');
@@ -1772,6 +1808,16 @@ const Calc=(function(){
       '<div class="cols"><p>'+lede+'</p><p>'+saude+'</p>'+(surp?'<p>'+surp+'</p>':'')+(fim?'<p>'+fim+'</p>':'')+'</div></div>'+
       '<aside class="side"><p class="kick">Cartas</p>'+cartas.slice(0,2).map(c=>'<p class="carta">'+c+'</p>').join('')+'<p class="kick">Breves</p>'+[BREVES[i1]].map(x=>'<p><span class="bk">'+x.k+'</span>'+x.t+'</p>').join('')+'</aside></div></div>';
   }
+  const JUR={C:'Contador',O:'Ouvidora',P:'Praça'};
+  function preferidosHtml(){
+    const M=Calc.preferidos(G),nome={};G.pautas.forEach(p=>p.casos.forEach(c=>{nome[c.id]=Calc.curto(c);}));
+    const meus=G.hist.filter(h=>h.ok).map(h=>h.c.id).sort().join();
+    return '<details class="pref"><summary>O que cada jurado teria escolhido</summary><p class="hint" style="margin-top:.5rem">Entre todas as combinações que cabiam no orçamento, a que dá a maior nota a cada jurado, e as notas que ela daria aos outros dois.</p>'+
+      ['C','O','P'].map(j=>{const x=M[j],ig=x.ids.slice().sort().join()===meus;
+        return '<div class="visto"><p class="vh"><b>A escolha '+(j==='C'?'do ':'da ')+JUR[j]+'</b>'+(ig?' <span class="sim">igual à sua</span>':'')+'</p><p>'+(x.ids.length?'Incorporar: '+x.ids.map(i=>esc(nome[i])).join('; ')+'.':'Não incorporar nada.')+'</p>'+
+          '<p class="mono" style="font-size:.85rem;margin:0">Contador '+fmt1.format(x.g.C)+' · Ouvidora '+fmt1.format(x.g.O)+' · Praça '+fmt1.format(x.g.P)+'</p></div>';}).join('')+
+      '<p class="hint">Compare as notas: a escolha que agrada a um jurado costuma desagradar a outro.</p></details>';
+  }
   function renderFinal(){
     const R=Calc.resultado(G),L=$('gameLeft');
     G.praca=R.P;acc.C=R.C-R.base;acc.O=R.O; // o painel passa a mostrar o resultado real, o mesmo do jornal
@@ -1780,7 +1826,8 @@ const Calc=(function(){
     L.innerHTML='<div class="yr"><h2 class="y">Fim do mandato</h2><span class="of">partida nº '+cfg.seed+' · '+DIFN[cfg.dif]+'</span></div>'+jornal(R)+
       '<div class="final"><p class="eyebrow" style="margin:1rem 0 0">Seu estilo de decisão</p><p class="n">'+R.titulo+'</p><p>'+R.desc+'</p>'+
       '<div class="grades"><div><div class="l">Contador</div><div class="g" id="fC">'+fmt1.format(R.gC)+'</div></div><div><div class="l">Ouvidora</div><div class="g" id="fO">'+fmt1.format(R.gO)+'</div></div><div><div class="l">Praça</div><div class="g" id="fP">'+fmt1.format(R.gP)+'</div></div></div>'+
-      '<p class="hint">Notas de 0 a 10. Não existe nota única: nenhuma decisão agrada aos três.</p>'+
+      '<p class="hint">Notas de 0 a 10. Não existe nota única: nenhuma decisão agrada aos três. Para comparar: sem incorporar nada, deixando todo o dinheiro na rede, o Contador daria '+fmt1.format(R.gCnada)+'. É o custo de oportunidade: cada real gasto deixa de render na rede.</p>'+
+      preferidosHtml()+
       '<details><summary>Rever caso a caso: o que a régua mostrou e o que ficou fora</summary><div class="vistos">'+
       (viu.length?viu.map(h=>'<div class="visto"><p class="vh"><span class="'+(h.ok?'sim':'nao')+'">'+(h.ok?'Incorporado':'Não incorporado')+'</span> '+esc(h.c.nm)+'</p><p>'+esc(h.c.viu)+(h.c.nao?' <b>Fora da conta:</b> '+esc(h.c.nao)+linkLim(h.c.lim):' <a href="#vantagens">Guia: vantagens</a>')+'</p><p class="hint">Caso fictício. Inspirado em: '+esc(h.c.insp)+'</p></div>').join(''):'<p>Nesta partida não apareceu nenhum caso em que a conta e o depoimento discordassem.</p>')+'</div></details>'+
       '<p style="margin-top:1rem">No guia, os dois lados: <a href="#vantagens">vantagens</a> e <a href="#limitacoes">limitações</a>.</p>'+

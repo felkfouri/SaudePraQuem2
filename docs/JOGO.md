@@ -95,6 +95,8 @@ Não há nota única (DECISOES D12).
 | Incoerência: aprovar um caso acima da referência depois de recusar outro com custo por QALY menor e prioridade igual ou maior | `−5` |
 | Aprovar para um grupo e negar ao "irmão" | `−10` |
 
+O "irmão" vale num sentido só: só o caso do grupo com deficiência (`p3a`) aponta para o outro (`irma: 'p3b'`). Negar o remédio a quem tem deficiência e aprová-lo para os demais é o que entidades chamam de discriminação, porque é o resultado que a própria régua produz (limitação 3). O contrário, aprovar só para quem tem deficiência, é uma escolha de prioridade e não é punido.
+
 No fim (`resultado`): virada do caso com campanha paga pelo fabricante (`−12` se aprovou, `+12` se recusou); `+8` se não houve nenhuma incoerência e houve ao menos uma aprovação e uma recusa. Nota = medidor / 10. Na rodada 1 havia uma penalidade de `−10` quando o Contador ficava abaixo do que a rede renderia ("as filas cresceram"); foi retirada, porque fazia a Praça julgar pelo critério do Contador e tratava como fato a hipótese de que a rede rende 1 QALY por R$ 40 mil.
 
 A reunião jogada sem a régua (tutorial) fica fora da regra de coerência, nos dois sentidos: o jogador não via o custo por QALY. A regra de incoerência aceita a exceção justificada: aprovar um caso mais caro por QALY não conta como incoerência se ele tem prioridade maior que o recusado. É a versão de jogo da ideia de "modificador" (gravidade, raridade).
@@ -105,7 +107,15 @@ O plano previa `Σ peso × QALYs`, com pesos 1 / 1,2 / 1,7 (os do modificador de
 
 ## Título da gestão
 
-Descritivo, sem ranking. Em ordem: nada incorporado → "de portas fechadas"; as três notas a até 2 pontos uma da outra → "equilibrista"; nenhum aprovado acima da referência → "da régua"; maior nota na Praça → "da praça"; maior na Ouvidora → "de quem está pior"; senão → "da conta".
+Descritivo, sem ranking. Em ordem: nada incorporado → "de portas fechadas"; as três notas abaixo de 5 → "sem rumo"; as três notas a até 2 pontos uma da outra → "equilibrista"; nenhum aprovado acima da referência → "da régua"; maior nota na Praça → "da praça"; maior na Ouvidora → "de quem está pior"; senão → "da conta".
+
+Antes, "equilibrista" saía também quando as três notas eram baixas (por exemplo 4,5 / 3,3 / 3,1), com a manchete "quase consegue"; em partidas ao acaso, um terço dos "equilibristas" era assim. Daí o título "sem rumo".
+
+## Tela final
+
+- **Nota do Contador sem incorporar nada.** Como o dinheiro que sobra rende na rede à razão da referência, não incorporar nada já dá uma nota razoável no Contador (de 5 a 8). A tela final mostra essa nota ao lado da do jogador, para que um 7 não seja lido como "fui bem" sem comparação.
+- **O que cada jurado teria escolhido** (`preferidos`). Joga de novo a partida com cada combinação de decisões que cabe no orçamento e nos tetos (até 2¹³) e guarda, para cada jurado, a de maior nota (empates: maior Contador, depois maior Praça), com as notas que ela daria aos outros dois. Só roda na tela final; leva menos de 0,2 s na partida de 6 reuniões.
+- **Cartas do jornal.** Casos com `virada` (campanha paga revelada) não entram no sorteio das cartas: o porta-voz da campanha não agradece nem reclama depois da reportagem.
 
 ## Equilíbrio
 

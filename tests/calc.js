@@ -90,4 +90,21 @@ igual(C.ttoPeso(7).fim,true);igual(C.ttoPeso(3).fim,false);perto(C.ttoPeso(7).ci
   perto(Math.round(7000*C.fatorDesconto(31,0.05)/10)*10,1620,0,'7.000 × 1,05^-30');
   const p9a=C.PAUTAS.find(p=>p.id==='p9').casos[0];igual(p9a.q,1620);
 }
+// ---- fim do mandato: título, nota do Contador sem incorporar nada, escolhas preferidas de cada jurado
+{ for(const s of [1,7,1234])for(const [reunioes,tutorial] of [[3,true],[4,false]]){
+    const G=C.novaPartida({seed:s,reunioes,dif:'normal',tutorial});
+    while(!G.fim)C.fecharReuniao(G,C.pautaAtual(G).casos.map(()=>false));
+    const R=C.resultado(G);n++;assert.ok(Math.abs(R.gC-R.gCnada)<1e-9,'sem incorporar nada, a nota do Contador é a de referência');
+    const M=C.preferidos(G);
+    for(const j of ['C','O']){n++;assert.ok(Math.abs(M[j].g[j]-10)<1e-9,'a escolha preferida do jurado '+j+' dá nota 10 a ele');}
+    n++;assert.ok(M.P.g.P>=Math.max(M.C.g.P,M.O.g.P)-1e-9,'a escolha da Praça é a de maior Praça');
+  }
+  // título "sem rumo": nenhuma nota chega a 5; "equilibrista" só com a maior nota a partir de 5
+  for(let s=1;s<=400;s++){const G=C.novaPartida({seed:s,reunioes:3,dif:'normal',tutorial:true}),r=C.rng(s);
+    while(!G.fim){const P=C.pautaAtual(G);let d;do{d=P.casos.map(c=>!C.semDinheiro(G,c)&&r()<.5);}while(!C.cabe(G,d));C.fecharReuniao(G,d);}
+    const R=C.resultado(G),mx=Math.max(R.gC,R.gO,R.gP);
+    if(R.titulo==='Plenário equilibrista'){n++;assert.ok(mx>=5,'equilibrista com todas as notas abaixo de 5 (semente '+s+')');}
+    if(R.titulo==='Plenário sem rumo'){n++;assert.ok(mx<5&&R.nOk>0);}
+  }
+}
 console.log('calc.js: '+n+' verificações, todas certas.');

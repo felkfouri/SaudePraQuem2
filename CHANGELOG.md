@@ -1,5 +1,14 @@
 # Registro de mudanças
 
+## Melhorias do Plenário (16 nov. 2026)
+
+- Novo título **"Plenário sem rumo"** quando as três notas ficam abaixo de 5; "equilibrista" deixa de aparecer em partidas fracas.
+- A tela final mostra a **nota que o Contador daria sem incorporar nada** (custo de oportunidade).
+- Nova seção **"O que cada jurado teria escolhido"**: a melhor combinação para cada jurado e as notas que ela daria aos outros dois.
+- O jornal não publica mais carta da campanha paga depois da reportagem que a revela.
+- A **Praça** passa a ser desenhada como um grupo de três pessoas, que mudam de expressão juntas.
+- `docs/JOGO.md` explica por que a regra do "irmão" vale num sentido só.
+
 ## Rodada 5 e fechamento (13 nov. 2026)
 
 **Os quatro juízes aprovaram** a versão do commit `48c056b`, sem item bloqueante ou importante, com o portão automático verde. Triagem em `review/rodada-5/TRIAGEM.md`.
