@@ -4,7 +4,7 @@
 
 Guia interativo para o público geral, com quatro interativos e o jogo **Plenário**. Produto técnico da disciplina MPR5762 – Avaliação Econômica de Tecnologias em Saúde, programa de pós-graduação da Faculdade de Medicina da USP, 2026.
 
-É a continuação de [Saúde para quem?](https://felkfouri.github.io/saudepraquem/), que trata da análise de custo-efetividade distributiva. Aqui, a análise distributiva aparece como resposta a uma das limitações do QALY.
+**Para ler e jogar:** https://felkfouri.github.io/SaudePraQuem2/
 
 ## Para quem é
 
@@ -44,7 +44,7 @@ docs/JOGO.md        regras, dados e jurados do Plenário; como acrescentar pauta
 docs/FONTES.md      cada afirmação factual do site, a fonte e o grau de verificação
 docs/pesquisa/      notas brutas da checagem de fatos
 docs/MEMORIAL.md    memorial descritivo do produto técnico
-docs/INVENTARIO.md  o que foi reaproveitado do site original
+docs/INVENTARIO.md  registro do reconhecimento inicial (fase 0)
 docs/BANCADA.md     critérios dos quatro avaliadores simulados
 docs/COMPREENSAO.md cinco perguntas de compreensão para leigos, com gabarito
 docs/DECISOES.md    decisões tomadas e por quê
@@ -102,7 +102,7 @@ Escrito com apoio de inteligência artificial (Claude, da Anthropic), sob direç
 
 ## Como citar
 
-> Kfouri F, Amaral LP, Mota MVP, Santos TR. *A régua da saúde: o que é o QALY, suas vantagens e limitações* [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://github.com/felkfouri/SaudePraQuem2
+> Kfouri F, Amaral LP, Mota MVP, Santos TR. *A régua da saúde: o que é o QALY, suas vantagens e limitações* [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://felkfouri.github.io/SaudePraQuem2/
 
 ## Autoria
 

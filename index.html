@@ -286,7 +286,7 @@ html{scroll-padding-top:4rem}
 .foot-nav{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin:0 0 .8rem}
 @media print{.barra{display:none}}
 
-/* ---------- A régua da saúde: acréscimos ao estilo do site original ---------- */
+/* ---------- A régua da saúde: estilos próprios deste site ---------- */
 :root{--good-t:#14603b;--bad-t:#8a2f26}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--good-t:#5fd08f;--bad-t:#f08a7a}}
 :root[data-theme="dark"]{--good-t:#5fd08f;--bad-t:#f08a7a}
@@ -760,7 +760,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <div class="lb"><h4>O problema</h4><p>A conta soma os QALYs sem olhar de quem são. Um ano de vida saudável vale o mesmo para quem tem muita saúde e para quem tem pouca.</p></div>
       <div class="lb"><h4>Um exemplo</h4><p>Dois programas contra a pressão alta custam o mesmo e rendem os mesmos QALYs. Um funciona por aplicativo de celular e chega primeiro a quem já tem bom acesso à saúde. O outro manda equipes a comunidades ribeirinhas. Para a conta, são iguais. Um aumenta a distância entre quem tem mais e quem tem menos saúde; o outro diminui.</p></div>
       <div class="lb def"><h4>O que responde quem defende</h4><p>Tratar todo QALY como igual é uma forma de igualdade: a saúde de ninguém vale mais que a de outra pessoa. Dar peso maior a alguns grupos exige escolher quais grupos e quanto, e essa escolha é política, não técnica.</p></div>
-      <div class="lb"><h4>O que se faz na prática</h4><p>Existe um método que faz a conta tradicional e depois mostra quem ganha e quem perde: a análise de custo-efetividade distributiva (<a href="#r-asaria">Asaria e colaboradores, 2016</a>; <a href="#r-cookson">Cookson e colaboradores, 2017</a>). No Brasil, uma das situações em que a Conitec admite um limiar maior é a de doença endêmica em populações de baixa renda. Este assunto tem um site só para ele, com laboratório e jogo: <a href="https://felkfouri.github.io/saudepraquem/">Saúde para quem?</a></p></div>
+      <div class="lb"><h4>O que se faz na prática</h4><p>Existe um método que faz a conta tradicional e depois mostra quem ganha e quem perde: a análise de custo-efetividade distributiva (<a href="#r-asaria">Asaria e colaboradores, 2016</a>; <a href="#r-cookson">Cookson e colaboradores, 2017</a>). No Brasil, uma das situações em que a Conitec admite um limiar maior é a de doença endêmica em populações de baixa renda.</p></div>
     </article>
 
     <article class="lim" id="lim-2">
@@ -837,7 +837,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <div><h3>DALY</h3><p>Sigla em inglês de "ano de vida ajustado por incapacidade". É o espelho do QALY: em vez de saúde ganha, mede saúde perdida, por morte precoce ou por doença. Muito usado para medir o peso das doenças em países inteiros (<a href="#r-murray">Murray, 1994</a>). Os pesos têm outra origem, e as críticas são parecidas.</p></div>
       <div><h3>WELLBY</h3><p>Sigla em inglês de "ano de vida ajustado pelo bem-estar". Mede bem-estar em vez de saúde: um ponto a mais na satisfação com a vida, numa escala de 0 a 10, por um ano (<a href="#r-frijters">Frijters e colaboradores, 2020</a>). Capta o que o questionário de saúde não vê, como solidão e renda. Em troca, depende de uma única pergunta, e as pessoas se adaptam também na satisfação com a vida.</p></div>
       <div><h3>Análise de decisão multicritério</h3><p>Em vez de um número, uma lista de critérios com pesos: gravidade, ganho de saúde, custo, inovação, justiça na distribuição (<a href="#r-thokala">Thokala e colaboradores, 2016</a>). Deixa os valores à mostra. Em troca, alguém precisa escolher os critérios e os pesos, e o custo de oportunidade pode sumir da conta.</p></div>
-      <div><h3>Pesos de justiça (equidade) e análise distributiva</h3><p>Equidade é justiça na distribuição: olhar quem ganha e quem perde. Estes métodos mantêm o QALY e acrescentam a pergunta "para quem?". É o tema do site <a href="https://felkfouri.github.io/saudepraquem/">Saúde para quem?</a> Em troca, alguém precisa escolher quais grupos pesam mais e quanto, e essa escolha é política.</p></div>
+      <div><h3>Pesos de justiça (equidade) e análise distributiva</h3><p>Equidade é justiça na distribuição: olhar quem ganha e quem perde. Estes métodos mantêm o QALY e acrescentam a pergunta "para quem?". Em troca, alguém precisa escolher quais grupos pesam mais e quanto, e essa escolha é política.</p></div>
       <div><h3>Deliberação com participação social</h3><p>Nenhuma conta substitui a discussão aberta. No Brasil, as recomendações da Conitec vão a consulta pública, e pacientes e cuidadores podem relatar sua experiência nas reuniões, na chamada Perspectiva do Paciente (<a href="#r-pp">Conitec</a>). A régua informa a conversa; não a encerra.</p></div>
     </div>
     <h3 style="margin-top:2rem">Para pensar</h3>
@@ -972,10 +972,10 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
     <h3 style="margin-top:1.4rem">Como foi feito e conferido</h3>
     <p>O site foi escrito com apoio de inteligência artificial (Claude, da Anthropic), sob direção e revisão dos autores. Os cálculos têm testes automáticos. O texto passou por rodadas de revisão com quatro avaliadores simulados por IA (uma leitora leiga, uma banca de economia da saúde, um crítico do QALY e um checador de fatos). Isso não substitui a leitura por pessoas reais. O código, os testes, as fontes e os pareceres estão no <a href="https://github.com/felkfouri/SaudePraQuem2">repositório do projeto</a>.</p>
     <h3 style="margin-top:1.4rem">Como citar</h3>
-    <p class="conta">Kfouri F, Amaral LP, Mota MVP, Santos TR. <i>A régua da saúde: o que é o QALY, suas vantagens e limitações</i> [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://github.com/felkfouri/SaudePraQuem2</p>
+    <p class="conta">Kfouri F, Amaral LP, Mota MVP, Santos TR. <i>A régua da saúde: o que é o QALY, suas vantagens e limitações</i> [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://felkfouri.github.io/SaudePraQuem2/</p>
     <p><strong>Licença.</strong> Texto e código sob <a href="https://creativecommons.org/licenses/by/4.0/deed.pt-br">CC BY 4.0</a>: pode copiar e adaptar, citando a fonte.</p>
     <footer style="margin-top:2rem;border-top:1px solid var(--line);padding-top:1rem">
-      <p class="foot-nav"><a href="#topo">↑ Voltar ao início</a><a href="#jogo">Jogar Plenário</a><a href="https://felkfouri.github.io/saudepraquem/">Site anterior: Saúde para quem?</a></p>
+      <p class="foot-nav"><a href="#topo">↑ Voltar ao início</a><a href="#jogo">Jogar Plenário</a></p>
     </footer>
   </div>
 </section>
