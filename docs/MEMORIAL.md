@@ -1,6 +1,6 @@
 # Memorial descritivo do produto técnico
 
-**Título:** A régua da saúde: o que é o QALY, suas vantagens e limitações
+**Título:** A régua da saúde: o que é o QALY e como ele ajuda o SUS a decidir
 **Tipo:** produto técnico para a sociedade (material didático interativo, de acesso aberto)
 **Autores:**
 
@@ -33,13 +33,11 @@ Pessoas sem formação em economia da saúde: usuários do SUS, conselheiros de 
 
 As recomendações de incorporação de tecnologias no SUS usam o custo por QALY e um valor de referência desde 2022. Essas decisões afetam a todos e passam por consulta pública, mas o vocabulário (QALY, RCEI, limiar, utilidade, desconto) afasta justamente quem é chamado a opinar. O material disponível em português é, na maior parte, técnico. Ao mesmo tempo, o QALY é alvo de críticas sérias (sobre idade, deficiência, gravidade, o que o instrumento capta), que costumam chegar ao público em versões simplificadas: ou "o governo põe preço na vida", ou "é só uma conta". Faltava um material que explicasse a medida e apresentasse as críticas com as respectivas respostas, sem conduzir o leitor.
 
-O produto dá continuidade a um trabalho anterior de um dos autores, "Saúde para quem?", sobre análise de custo-efetividade distributiva.
-
 ## 4. Conteúdo
 
 Site estático de um arquivo, com três camadas:
 
-- **Guia** em sete partes: o problema; o que é o QALY; de onde vem o peso (EQ-5D, métodos de valoração, tarifa brasileira); como vira decisão (RCEI, dominância, limiar da Conitec, desconto); cinco vantagens; oito limitações; alternativas e complementos. Cada limitação segue a mesma estrutura: o problema, um exemplo, a resposta de quem defende o QALY, o que se faz na prática. Glossário, referências e nota de transparência.
+- **Guia** em sete partes: o problema; o que é o QALY; de onde vem o peso (EQ-5D, métodos de valoração, tarifa brasileira); como vira decisão (RCEI, dominância, limiar da Conitec, desconto); cinco vantagens; sete limitações; alternativas e complementos. Cada limitação segue a mesma estrutura: o problema, um exemplo, a resposta de quem defende o QALY, o que se faz na prática. Glossário, referências e nota de transparência.
 - **Quatro interativos:** desenhar a curva de qualidade de vida e ver o QALY como área; converter um estado do EQ-5D em peso pela tarifa brasileira; responder a uma escada de time trade-off e comparar o próprio peso com o da tarifa; calcular o custo por QALY de uma tecnologia e vê-la no plano de custo-efetividade.
 - **Jogo Plenário:** o jogador integra um comitê de incorporação por três reuniões (partida padrão, cerca de 10 minutos), com orçamento fixo. A primeira reunião é jogada sem os QALYs, só com custo e depoimentos; em seguida o jogo mostra os mesmos pedidos na escala comum (a vantagem é sentida). Nas reuniões seguintes, cada pauta opõe a conta a um depoimento que expõe uma limitação, e há casos em que a conta acerta contra a pressão. Três jurados com critérios diferentes, sem nota única.
 
@@ -52,10 +50,10 @@ Site estático de um arquivo, com três camadas:
 
 ## 5. Método de construção
 
-1. **Reconhecimento:** inventário do site anterior, classificando cada parte como reutilizar, adaptar ou descartar (`INVENTARIO.md`).
+1. **Reconhecimento:** levantamento do material de partida e do que seria reutilizado, adaptado ou descartado (`INVENTARIO.md`).
 2. **Checagem de fatos antes da redação:** cada afirmação factual prevista foi buscada em fonte primária (relatório da Conitec de 2022; Diretriz de Avaliação Econômica, 3ª ed., 2026; manual do NICE; arquivos de cálculo da EuroQol; texto das leis americanas; registros do PubMed). O resultado é `FONTES.md`: 124 fatos e 121 referências, cada um com status "verificada", "parcial" ou "não verificada". O que não pôde ser verificado na fonte não é afirmado no site.
 3. **Plano** aprovado antes da construção (`PLANO.md`), com título, mapa, fórmulas, três conceitos de jogo e as perguntas de compreensão.
-4. **Construção** em HTML, CSS e JavaScript puros, sem bibliotecas, reaproveitando do site anterior o estilo, a navegação, o gerador com semente, o jornal e o tutorial.
+4. **Construção** em HTML, CSS e JavaScript puros, sem bibliotecas externas.
 5. **Ciclo de revisão** em rodadas (seção 6).
 
 O produto foi escrito com apoio de inteligência artificial generativa (Claude, da Anthropic), sob direção e revisão dos autores, que respondem pelo conteúdo.
@@ -98,5 +96,5 @@ Depois da aprovação entraram apenas polimentos de redação e documentação, 
 ## 8. Como acessar
 
 - Código, testes, fontes e pareceres: https://github.com/felkfouri/SaudePraQuem2
-- Para ler: abrir `index.html` em qualquer navegador (não precisa de internet nem de instalação). Depois de publicado no GitHub Pages, o endereço previsto é `https://felkfouri.github.io/SaudePraQuem2/`.
+- Para ler e jogar: https://felkfouri.github.io/SaudePraQuem2/ (publicado no GitHub Pages). Também funciona sem internet: basta abrir `index.html` em qualquer navegador.
 - Licença: CC BY 4.0.

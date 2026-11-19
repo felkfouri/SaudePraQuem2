@@ -20,7 +20,7 @@ for(const p of todas){
     if(![1,1.2,1.7].includes(c.w))bad(o,'w deve ser 1, 1.2 ou 1.7');
     if(![0,1,2,3].includes(c.com))bad(o,'com deve ser 0 a 3');
     if(!c.dep||!c.dep.t||!c.dep.q)bad(o,'depoimento incompleto');
-    if(!(Number.isInteger(c.lim)&&c.lim>=0&&c.lim<=8))bad(o,'lim deve ser 0 a 8');
+    if(!(Number.isInteger(c.lim)&&c.lim>=0&&c.lim<=7))bad(o,'lim deve ser 0 a 7');
     if(c.lim&&!html.includes('id="lim-'+c.lim+'"'))bad(o,'limitação '+c.lim+' não existe no guia');
     if(c.nao&&!c.lim)bad(o,'tem "nao" mas não aponta a limitação');
     if(c.virada&&!(c.virada.t&&Number.isFinite(c.virada.sim)&&Number.isFinite(c.virada.nao)))bad(o,'virada incompleta');
@@ -29,8 +29,8 @@ for(const p of todas){
 }
 if(C.TUTORIAL.casos.length!==3)bad('tut','o tutorial tem 3 casos');
 if(C.PAUTAS.length<5)bad('PAUTAS','são precisas ao menos 5 pautas para uma partida de 6 reuniões');
-// todas as oito limitações do guia... as que o jogo cobre: ao menos 1, 2, 3, 4, 6 e 7
-for(const l of [1,2,3,4,6,7])if(!todas.some(p=>p.casos.some(c=>c.lim===l)))bad('PAUTAS','nenhum caso ilustra a limitação '+l);
+// as sete limitações do guia... as que o jogo cobre: ao menos 1, 2, 3, 5 e 6
+for(const l of [1,2,3,5,6])if(!todas.some(p=>p.casos.some(c=>c.lim===l)))bad('PAUTAS','nenhum caso ilustra a limitação '+l);
 // há casos em que a régua acerta contra a pressão: comoção alta com custo por QALY muito acima, e um dominante
 if(!todas.some(p=>p.casos.some(c=>C.rceiCaso(c)===null)))bad('PAUTAS','falta um caso dominante');
 if(!todas.some(p=>p.casos.some(c=>c.virada)))bad('PAUTAS','falta o caso com virada');

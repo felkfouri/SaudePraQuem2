@@ -1,10 +1,10 @@
 # A régua da saúde
 
-**O que é o QALY, a medida que ajuda o SUS a decidir o que paga. Vantagens e limitações.**
+**O que é o QALY, como se calcula, como ajuda o SUS a decidir o que paga, e quais são suas vantagens e limitações.**
 
 Guia interativo para o público geral, com quatro interativos e o jogo **Plenário**. Produto técnico da disciplina MPR5762 – Avaliação Econômica de Tecnologias em Saúde, programa de pós-graduação da Faculdade de Medicina da USP, 2026.
 
-É a continuação de [Saúde para quem?](https://felkfouri.github.io/saudepraquem/), que trata da análise de custo-efetividade distributiva. Aqui, a análise distributiva aparece como resposta a uma das limitações do QALY.
+**Para ler e jogar:** https://felkfouri.github.io/SaudePraQuem2/
 
 ## Para quem é
 
@@ -12,7 +12,7 @@ Pessoas sem formação em economia da saúde: usuários do SUS, conselheiros de 
 
 ## O que tem
 
-- **Guia em sete partes:** o problema (orçamento finito e custo de oportunidade); o que é o QALY; de onde vem o peso (EQ-5D, valoração, tarifa brasileira); como vira decisão (custo por QALY, dominância, limiar da Conitec, desconto); cinco vantagens; oito limitações, cada uma com o problema, um exemplo, a resposta de quem defende o QALY e o que se faz na prática; alternativas e complementos. Mais glossário, referências e uma nota sobre o que é dado real e o que é ilustrativo.
+- **Guia em sete partes:** o problema (orçamento finito e custo de oportunidade); o que é o QALY; de onde vem o peso (EQ-5D, valoração, tarifa brasileira); como vira decisão (custo por QALY, dominância, limiar da Conitec, desconto); cinco vantagens; sete limitações, cada uma com o problema, um exemplo, a resposta de quem defende o QALY e o que se faz na prática; alternativas e complementos. Mais glossário, referências e uma nota sobre o que é dado real e o que é ilustrativo.
 - **Desenhe uma vida:** a qualidade de vida ano a ano, com e sem o tratamento; o QALY é a soma; opção de desconto.
 - **Um estado de saúde, um número:** cinco respostas viram o peso da tarifa brasileira do EQ-5D-3L (Santos et al., 2016).
 - **Qual é o seu peso?:** uma escada de troca de tempo (time trade-off) que compara o peso do leitor com o da tarifa.
@@ -44,7 +44,7 @@ docs/JOGO.md        regras, dados e jurados do Plenário; como acrescentar pauta
 docs/FONTES.md      cada afirmação factual do site, a fonte e o grau de verificação
 docs/pesquisa/      notas brutas da checagem de fatos
 docs/MEMORIAL.md    memorial descritivo do produto técnico
-docs/INVENTARIO.md  o que foi reaproveitado do site original
+docs/INVENTARIO.md  registro do reconhecimento inicial (fase 0)
 docs/BANCADA.md     critérios dos quatro avaliadores simulados
 docs/COMPREENSAO.md cinco perguntas de compreensão para leigos, com gabarito
 docs/DECISOES.md    decisões tomadas e por quê
@@ -102,7 +102,7 @@ Escrito com apoio de inteligência artificial (Claude, da Anthropic), sob direç
 
 ## Como citar
 
-> Kfouri F, Amaral LP, Mota MVP, Santos TR. *A régua da saúde: o que é o QALY, suas vantagens e limitações* [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://github.com/felkfouri/SaudePraQuem2
+> Kfouri F, Amaral LP, Mota MVP, Santos TR. *A régua da saúde: o que é o QALY e como ele ajuda o SUS a decidir* [guia interativo]. São Paulo: Faculdade de Medicina da Universidade de São Paulo; 2026. Disponível em: https://felkfouri.github.io/SaudePraQuem2/
 
 ## Autoria
 
