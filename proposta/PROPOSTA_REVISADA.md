@@ -9,7 +9,7 @@ Felipe Kfouri (Nº USP 15281489) · Leonardo Pinho do Amaral (Nº USP 16767089) 
 
 **"A régua da saúde: o que é o QALY e como ele ajuda o SUS a decidir"** é um site gratuito, que reúne um guia curto, exercícios interativos e um jogo educativo, o **Plenário**.
 
-Atendendo ao parecer, o foco agora é explicar ao público **o que é o QALY, como ele é calculado e como é usado nas avaliações econômicas e nas decisões sobre o que o SUS oferece**. Saíram do produto a discussão ampla sobre o SUS e a aversão à desigualdade. Outras medidas, como o DALY, aparecem apenas numa seção final, como contexto.
+Atendendo ao parecer, o foco agora é explicar ao público **o que é o QALY, como ele é calculado e como é usado nas avaliações econômicas e nas decisões sobre o que o SUS oferece**. Saíram do produto a discussão ampla sobre o SUS e a aversão à desigualdade.
 
 **Link:** https://felkfouri.github.io/SaudePraQuem2/
 
@@ -24,7 +24,7 @@ Atendendo ao parecer, o foco agora é explicar ao público **o que é o QALY, co
 
 **2.2 Como o QALY é usado nas decisões.**
 
-- **Custo por QALY:** divide-se quanto o tratamento novo custa a mais pelos QALYs que ele ganha a mais. Por exemplo, R$ 60 mil ÷ 2 QALYs = R$ 30 mil por QALY [3,4].
+- **Custo por QALY:** é a razão de custo-efetividade incremental (RCEI). Divide-se quanto o tratamento novo custa a mais pelos QALYs que ele ganha a mais. Por exemplo, R$ 60 mil ÷ 2 QALYs = R$ 30 mil por QALY [3,4].
 - **Comparação com a referência:** a Conitec usa R$ 40 mil por QALY como referência e aceita até 3 vezes esse valor em situações específicas [9]. O valor representa a saúde que deixaria de ser produzida em outros serviços com o mesmo dinheiro (custo de oportunidade) [10].
 - **Um critério entre outros:** o custo por QALY pesa muito, mas a decisão também considera a evidência, o orçamento e a consulta pública.
 
@@ -72,10 +72,9 @@ Ao final, o participante deverá ser capaz de:
 | Data | Etapa |
 |---|---|
 | 20/11 | Proposta revisada |
-| até 10/12 | Testes com usuários |
-| 11/12 | Apresentação |
-| 12 a 17/12 | Ajustes finais |
-| 18/12 | Entrega final: produto, relatório e slide |
+| 21/11 a 27/11 | Testes com usuários |
+| 28/11 a 03/12 | Ajustes finais |
+| 04/12 | Entrega final: produto, relatório e slide |
 
 # 8. Referências
 
