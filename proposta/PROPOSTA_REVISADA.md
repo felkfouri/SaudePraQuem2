@@ -7,7 +7,7 @@ Felipe Kfouri (Nº USP 15281489) · Leonardo Pinho do Amaral (Nº USP 16767089) 
 
 # 1. Proposta do produto
 
-**"A régua da saúde: o que é o QALY e como ele ajuda o SUS a decidir"** é uma plataforma digital gratuita, com um guia curto, quatro interativos de cálculo e o jogo educativo **Plenário**. Atendendo ao parecer, o foco passou a ser **o conceito de QALY, seus métodos de cálculo e seu uso em avaliações econômicas e na tomada de decisão**. Saíram do produto a discussão ampla sobre o SUS, a aversão à desigualdade e as abordagens alternativas ou distributivas.
+**"A régua da saúde: o que é o QALY e como ele ajuda o SUS a decidir"** é uma plataforma digital gratuita, com um guia curto, quatro interativos de cálculo e o jogo educativo **Plenário**. Atendendo ao parecer, o foco passou a ser **o conceito de QALY, seus métodos de cálculo e seu uso em avaliações econômicas e na tomada de decisão**. Saíram do produto a discussão ampla sobre o SUS e a aversão à desigualdade; outras medidas (como DALY e anos de vida ganhos) aparecem só numa seção final, de contexto.
 
 - **Site e jogo:** https://felkfouri.github.io/SaudePraQuem2/ (jogo direto: …/#jogo)
 - **Código e documentação:** https://github.com/felkfouri/SaudePraQuem2

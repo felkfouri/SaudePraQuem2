@@ -12,7 +12,7 @@ Pessoas sem formação em economia da saúde: usuários do SUS, conselheiros de 
 
 ## O que tem
 
-- **Guia em seis partes:** o problema (orçamento finito e custo de oportunidade); o que é o QALY; de onde vem o peso (EQ-5D, valoração, tarifa brasileira); como vira decisão (custo por QALY, dominância, limiar da Conitec, desconto); cinco vantagens; sete limitações, cada uma com o problema, um exemplo, a resposta de quem defende o QALY e o que se faz na prática. Mais glossário, referências e uma nota sobre o que é dado real e o que é ilustrativo.
+- **Guia em sete partes:** o problema (orçamento finito e custo de oportunidade); o que é o QALY; de onde vem o peso (EQ-5D, valoração, tarifa brasileira); como vira decisão (custo por QALY, dominância, limiar da Conitec, desconto); cinco vantagens; sete limitações, cada uma com o problema, um exemplo, a resposta de quem defende o QALY e o que se faz na prática; alternativas e complementos. Mais glossário, referências e uma nota sobre o que é dado real e o que é ilustrativo.
 - **Desenhe uma vida:** a qualidade de vida ano a ano, com e sem o tratamento; o QALY é a soma; opção de desconto.
 - **Um estado de saúde, um número:** cinco respostas viram o peso da tarifa brasileira do EQ-5D-3L (Santos et al., 2016).
 - **Qual é o seu peso?:** uma escada de troca de tempo (time trade-off) que compara o peso do leitor com o da tarifa.
