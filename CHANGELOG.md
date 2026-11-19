@@ -1,5 +1,15 @@
 # Registro de mudanças
 
+## Ajuste ao parecer do docente (19 nov. 2026)
+
+O parecer pediu foco no conceito, no cálculo e no uso do QALY em avaliação econômica, sem abordagens mais amplas como a aversão à desigualdade.
+
+- Saiu a Parte 7, "Alternativas e complementos" (anos de vida, evLY, DALY, WELLBY, decisão multicritério, pesos de equidade e análise distributiva, deliberação), com as perguntas "Para pensar", os verbetes Equidade, DALY e WELLBY e as sete referências citadas só ali.
+- Saiu a limitação 1 ("a conta não vê quem ganha", com a análise de custo-efetividade distributiva). As demais foram renumeradas de 1 a 7.
+- Jogo: saiu a pauta "Mesma conta, pessoas diferentes"; a Ouvidora passa a ser descrita como prioridade aos casos graves (critério que a Conitec admite com o limite de 3 vezes), sem "acesso".
+- Proposta revisada do trabalho em `proposta/`.
+- Testes: 168 verificações de cálculo, 9 pautas, 32.400 partidas sem falhas; portão na página real verde.
+
 ## Rodada 5 e fechamento (13 nov. 2026)
 
 **Os quatro juízes aprovaram** a versão do commit `48c056b`, sem item bloqueante ou importante, com o portão automático verde. Triagem em `review/rodada-5/TRIAGEM.md`.

@@ -19,7 +19,7 @@ const AXE=fs.readFileSync(require.resolve('axe-core/axe.min.js'),'utf8');
 fs.mkdirSync(OUT,{recursive:true});
 const log=[],falhas=[];
 const ok=(c,msg)=>{log.push((c?'- [x] ':'- [ ] **FALHA** ')+msg);if(!c)falhas.push(msg);};
-const SECOES=['topo','problema','qaly','desenhe','peso','eq5d','meu-peso','decisao','rcei','vantagens','limitacoes','alternativas','plenario','glossario','refs','sobre'];
+const SECOES=['topo','problema','qaly','desenhe','peso','eq5d','meu-peso','decisao','rcei','vantagens','limitacoes','plenario','glossario','refs','sobre'];
 const SEEDS=[1234,2718,4242];
 
 async function axe(page,nome){

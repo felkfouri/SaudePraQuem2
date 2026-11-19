@@ -63,15 +63,14 @@ Cada pauta (`PAUTAS`, mais a `TUTORIAL`) tem tema, introdução e dois ou três 
 | Pauta | Casos | O que está em jogo |
 |---|---|---|
 | Tutorial: três pedidos, uma verba | proteção de bebês (R$ 110 milhões, 20 mil/QALY), próteses de quadril (90 milhões, 20 mil), remédio de câncer (150 milhões, 200 mil); o teto deixa aprovar no máximo dois na maioria das configurações | **Vantagem:** sem a régua, não há como comparar; ganha a história mais forte |
-| Mesma conta, pessoas diferentes | dois programas idênticos em custo e QALYs | Limitação 1 (distribuição) |
-| Quantos anos pela frente | válvula para maiores de 85 (80 mil); reabilitação pós-AVC (35 mil) | Limitação 2 (idade) |
-| O mesmo remédio, duas contas | mesmo remédio, 2 anos a mais: 60 mil/QALY em quem tem peso 0,5; 35 mil em quem tem 0,85 | Limitação 3 (deficiência) |
-| O que cabe em cinco perguntas | aparelhos auditivos (83 mil); terapia para depressão (25 mil) | Limitação 4; e um caso em que o instrumento enxerga bem |
-| Quem cuida | centro-dia para demência (100 mil, evidência fraca); anticoagulante (40 mil) | Limitação 4 (cuidadores); vantagem: o pedido sem plateia |
-| A campanha na TV | terapia gênica (400 mil); teste de HPV (15 mil) | Limitação 6 (resgate); vantagem: quem não está na sala |
-| O fim da vida | remédio de 3 meses (250 mil); cuidados paliativos (100 mil) | Limitações 6 e 4 |
+| Quantos anos pela frente | válvula para maiores de 85 (80 mil); reabilitação pós-AVC (35 mil) | Limitação 1 (idade) |
+| O mesmo remédio, duas contas | mesmo remédio, 2 anos a mais: 60 mil/QALY em quem tem peso 0,5; 35 mil em quem tem 0,85 | Limitação 2 (deficiência) |
+| O que cabe em cinco perguntas | aparelhos auditivos (83 mil); terapia para depressão (25 mil) | Limitação 3; e um caso em que o instrumento enxerga bem |
+| Quem cuida | centro-dia para demência (100 mil, evidência fraca); anticoagulante (40 mil) | Limitação 3 (cuidadores); vantagem: o pedido sem plateia |
+| A campanha na TV | terapia gênica (400 mil); teste de HPV (15 mil) | Limitação 5 (resgate); vantagem: quem não está na sala |
+| O fim da vida | remédio de 3 meses (250 mil); cuidados paliativos (100 mil) | Limitações 5 e 3 |
 | A novidade | remédio "eu também" com lobby (400 mil); caneta mais barata e melhor (dominante) | **Vantagem:** a régua acerta contra a pressão |
-| Agora ou daqui a trinta anos | vacina com ganho em 30 anos (43 mil com desconto; 10 mil sem); stent (40 mil) | Limitação 7 (desconto) |
+| Agora ou daqui a trinta anos | vacina com ganho em 30 anos (43 mil com desconto; 10 mil sem); stent (40 mil) | Limitação 6 (desconto) |
 
 ## Evidência e ganho real
 
@@ -83,7 +82,7 @@ Não há nota única (DECISOES D12).
 
 **Contador (saúde total).** `C = Σ ganho real dos aprovados + (B − gasto) × 10⁶ / 40.000`. O segundo termo é o dinheiro que sobrou, convertido em saúde "na rede" (hipótese do jogo). Nota: `10 × (C − C_pior) / (C_melhor − C_pior)`, com o pior e o melhor resultados possíveis na partida, por enumeração (até 2¹³ combinações).
 
-**Ouvidora (quem estava pior).** Soma `pontos(caso)` dos aprovados: 2 para `w = 1.7`, 1 para `w = 1.2`, 0 para `w = 1`. Perde 2 pontos (`DISC`) quando o mesmo tratamento é aprovado para um grupo e negado ao "irmão". Nota: `10 × pontos / máximo possível no orçamento`.
+**Ouvidora (prioridade aos casos graves).** Soma `pontos(caso)` dos aprovados: 2 para `w = 1.7`, 1 para `w = 1.2`, 0 para `w = 1`. Perde 2 pontos (`DISC`) quando o mesmo tratamento é aprovado para um grupo e negado ao "irmão". Nota: `10 × pontos / máximo possível no orçamento`.
 
 **Praça (confiança).** Medidor de 0 a 100, começa em 60 (`PRACA0`). Em cada reunião:
 
