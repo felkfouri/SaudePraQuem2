@@ -1,6 +1,6 @@
 # Memorial descritivo do produto técnico
 
-**Título:** A régua da saúde: o que é o QALY, suas vantagens e limitações
+**Título:** A régua da saúde: o que é o QALY e como ele ajuda o SUS a decidir
 **Tipo:** produto técnico para a sociedade (material didático interativo, de acesso aberto)
 **Autores:**
 
@@ -37,7 +37,7 @@ As recomendações de incorporação de tecnologias no SUS usam o custo por QALY
 
 Site estático de um arquivo, com três camadas:
 
-- **Guia** em sete partes: o problema; o que é o QALY; de onde vem o peso (EQ-5D, métodos de valoração, tarifa brasileira); como vira decisão (RCEI, dominância, limiar da Conitec, desconto); cinco vantagens; oito limitações; alternativas e complementos. Cada limitação segue a mesma estrutura: o problema, um exemplo, a resposta de quem defende o QALY, o que se faz na prática. Glossário, referências e nota de transparência.
+- **Guia** em sete partes: o problema; o que é o QALY; de onde vem o peso (EQ-5D, métodos de valoração, tarifa brasileira); como vira decisão (RCEI, dominância, limiar da Conitec, desconto); cinco vantagens; sete limitações; alternativas e complementos. Cada limitação segue a mesma estrutura: o problema, um exemplo, a resposta de quem defende o QALY, o que se faz na prática. Glossário, referências e nota de transparência.
 - **Quatro interativos:** desenhar a curva de qualidade de vida e ver o QALY como área; converter um estado do EQ-5D em peso pela tarifa brasileira; responder a uma escada de time trade-off e comparar o próprio peso com o da tarifa; calcular o custo por QALY de uma tecnologia e vê-la no plano de custo-efetividade.
 - **Jogo Plenário:** o jogador integra um comitê de incorporação por três reuniões (partida padrão, cerca de 10 minutos), com orçamento fixo. A primeira reunião é jogada sem os QALYs, só com custo e depoimentos; em seguida o jogo mostra os mesmos pedidos na escala comum (a vantagem é sentida). Nas reuniões seguintes, cada pauta opõe a conta a um depoimento que expõe uma limitação, e há casos em que a conta acerta contra a pressão. Três jurados com critérios diferentes, sem nota única.
 
