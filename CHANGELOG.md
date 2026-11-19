@@ -4,7 +4,7 @@
 
 O parecer pediu foco no conceito, no cálculo e no uso do QALY em avaliação econômica, sem abordagens mais amplas como a aversão à desigualdade.
 
-- A Parte 7, "Alternativas e complementos" (anos de vida, evLY, DALY, WELLBY, decisão multicritério, pesos de equidade e análise distributiva, deliberação, perguntas "Para pensar"), chegou a ser retirada e foi restaurada a pedido dos autores, com os verbetes Equidade, DALY e WELLBY e as referências citadas nela.
+- A Parte 7, "Alternativas e complementos" (anos de vida, evLY, DALY, WELLBY, decisão multicritério, pesos de equidade e análise distributiva, deliberação, perguntas "Para pensar"), chegou a ser retirada e foi restaurada a pedido dos autores, com os verbetes DALY e WELLBY e as referências citadas nela, mas sem o bloco "Pesos de justiça (equidade) e análise distributiva", sem a pergunta sobre dar mais valor a quem está em pior situação e sem o verbete Equidade (temas que o parecer pediu para não abordar). Os textos da Ouvidora no jogo passam a falar só em casos graves.
 - Saiu a limitação 1 ("a conta não vê quem ganha", com a análise de custo-efetividade distributiva). As demais foram renumeradas de 1 a 7.
 - Jogo: saiu a pauta "Mesma conta, pessoas diferentes"; a Ouvidora passa a ser descrita como prioridade aos casos graves (critério que a Conitec admite com o limite de 3 vezes), sem "acesso".
 - Novo quadro "A conta completa, passo a passo" no fim da Parte 4: um caso com EQ-5D → peso pela tarifa brasileira → QALYs → QALYs ganhos → desconto → custo por QALY → comparação com a referência; chamada na Parte 2; 10 verificações novas em `tests/calc.js`.

@@ -104,7 +104,7 @@ O plano previa `Σ peso × QALYs`, com pesos 1 / 1,2 / 1,7 (os do modificador de
 
 ## Título da gestão
 
-Descritivo, sem ranking. Em ordem: nada incorporado → "de portas fechadas"; as três notas a até 2 pontos uma da outra → "equilibrista"; nenhum aprovado acima da referência → "da régua"; maior nota na Praça → "da praça"; maior na Ouvidora → "de quem está pior"; senão → "da conta".
+Descritivo, sem ranking. Em ordem: nada incorporado → "de portas fechadas"; as três notas a até 2 pontos uma da outra → "equilibrista"; nenhum aprovado acima da referência → "da régua"; maior nota na Praça → "da praça"; maior na Ouvidora → "dos casos graves"; senão → "da conta".
 
 ## Equilíbrio
 

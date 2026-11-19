@@ -843,13 +843,11 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <div><h3>DALY</h3><p>Sigla em inglês de "ano de vida ajustado por incapacidade". É o espelho do QALY: em vez de saúde ganha, mede saúde perdida, por morte precoce ou por doença. Muito usado para medir o peso das doenças em países inteiros (<a href="#r-murray">Murray, 1994</a>). Os pesos têm outra origem, e as críticas são parecidas.</p></div>
       <div><h3>WELLBY</h3><p>Sigla em inglês de "ano de vida ajustado pelo bem-estar". Mede bem-estar em vez de saúde: um ponto a mais na satisfação com a vida, numa escala de 0 a 10, por um ano (<a href="#r-frijters">Frijters e colaboradores, 2020</a>). Capta o que o questionário de saúde não vê, como solidão e renda. Em troca, depende de uma única pergunta, e as pessoas se adaptam também na satisfação com a vida.</p></div>
       <div><h3>Análise de decisão multicritério</h3><p>Em vez de um número, uma lista de critérios com pesos: gravidade, ganho de saúde, custo, inovação, justiça na distribuição (<a href="#r-thokala">Thokala e colaboradores, 2016</a>). Deixa os valores à mostra. Em troca, alguém precisa escolher os critérios e os pesos, e o custo de oportunidade pode sumir da conta.</p></div>
-      <div><h3>Pesos de justiça (equidade) e análise distributiva</h3><p>Equidade é justiça na distribuição: olhar quem ganha e quem perde. Estes métodos mantêm o QALY e acrescentam a pergunta "para quem?". Em troca, alguém precisa escolher quais grupos pesam mais e quanto, e essa escolha é política.</p></div>
       <div><h3>Deliberação com participação social</h3><p>Nenhuma conta substitui a discussão aberta. No Brasil, as recomendações da Conitec vão a consulta pública, e pacientes e cuidadores podem relatar sua experiência nas reuniões, na chamada Perspectiva do Paciente (<a href="#r-pp">Conitec</a>). A régua informa a conversa; não a encerra.</p></div>
     </div>
     <h3 style="margin-top:2rem">Para pensar</h3>
     <p>Este guia não tem conclusão. Tem perguntas, e as respostas são suas.</p>
     <ul class="pergs">
-      <li>Um ano de vida saudável deve valer o mesmo para todos, ou mais para quem está em pior situação? Se mais, quanto?</li>
       <li>Quem deve dizer quanto vale viver com uma doença: quem vive com ela, a população em geral, ou os dois?</li>
       <li>Quando o dever de socorrer uma pessoa em perigo e o maior benefício para o maior número apontam para lados opostos, qual deve pesar mais?</li>
       <li>Quanto peso a conta deve ter na decisão final, e quem deve decidir isso?</li>
@@ -879,7 +877,6 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
     <dl class="gloss">
       <dt>QALY (AVAQ)</dt><dd>Ano de vida ajustado pela qualidade. Um ano com saúde plena vale 1; um ano com peso 0,5 vale meio QALY.</dd>
       <dt>Peso (utilidade)</dt><dd>Número que diz quanto vale um estado de saúde, numa escala em que 1 é a saúde plena e 0 é a morte. Pode ser negativo em estados avaliados como piores que a morte.</dd>
-      <dt>Equidade</dt><dd>Justiça na distribuição: olhar quem ganha e quem perde. Para muita gente, quer dizer dar mais atenção a quem tem menos saúde ou menos acesso.</dd>
       <dt>EQ-5D</dt><dd>Questionário de cinco perguntas (mobilidade, cuidados pessoais, atividades habituais, dor ou mal-estar, ansiedade ou depressão) usado para descrever a saúde de uma pessoa. Tem versões com três (3L) e com cinco (5L) respostas por pergunta.</dd>
       <dt>Valoração</dt><dd>Pesquisa em que pessoas dizem quanto vale cada estado de saúde, comparando-o com a saúde plena e com a morte.</dd>
       <dt>Tarifa</dt><dd>Tabela com o peso de cada estado de saúde de um questionário, obtida numa pesquisa de valoração com a população de um país.</dd>
@@ -1052,7 +1049,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
         <div class="tiles" aria-live="polite">
           <div class="tile"><div class="t">Orçamento</div><div class="n" id="jOrc"></div><div class="s" id="jOrcS"></div></div>
           <div class="tile"><div class="t">Contador</div><div class="n" id="jC"></div><div class="s">QALYs a mais (ou a menos) do que a rede de saúde renderia, pela hipótese do jogo</div></div>
-          <div class="tile"><div class="t">Ouvidora</div><div class="n" id="jO"></div><div class="s">pontos por atender quem estava pior</div></div>
+          <div class="tile"><div class="t">Ouvidora</div><div class="n" id="jO"></div><div class="s">pontos por atender casos graves</div></div>
           <div class="tile"><div class="t">Praça</div><div class="n" id="jP"></div><div class="meter" aria-hidden="true"><i id="jPbar"></i></div><div class="s">confiança, de 0 a 100</div></div>
         </div>
         <h4 style="margin:.4rem 0 .5rem">Decisões</h4>
@@ -1251,7 +1248,7 @@ const Calc=(function(){
   function shuffle(a,r){for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
   const rceiCaso=c=>c.cost>0?c.cost*1e6/c.q:null; // null = dominante (não custa mais)
   const curto=c=>c.nm.split(',')[0]; // nome curto, para as frases da Praça
-  const pontos=c=>c.w>=1.7?2:c.w>=1.2?1:0; // Ouvidora: pedidos de quem está pior valem mais
+  const pontos=c=>c.w>=1.7?2:c.w>=1.2?1:0; // Ouvidora: pedidos de casos graves valem mais
   const DISC=2; // pontos que a Ouvidora tira quando o mesmo tratamento é aprovado para um grupo e negado ao outro
   // cfg: {seed, reunioes (3, 4 ou 6), dif ('facil','normal','dificil'), tutorial (true/false)}
   function novaPartida(cfg){
@@ -1280,7 +1277,7 @@ const Calc=(function(){
   const semDinheiro=(G,c)=>c.cost>teto(G)+1e-9;
   /* fecha a reunião: dec[k] = true (incorpora) ou false. Devolve a ata:
      dC = QALYs da reunião além do que o mesmo dinheiro renderia na rede (estimativa do dossiê);
-     dO = pontos da Ouvidora (pedidos atendidos de quem está pior); dP = variação da Praça; motivos = textos da Praça. */
+     dO = pontos da Ouvidora (pedidos atendidos de casos graves); dP = variação da Praça; motivos = textos da Praça. */
   function fecharReuniao(G,dec){
     const P=pautaAtual(G);
     if(!cabe(G,dec))throw new Error('as decisões não cabem no orçamento ou no teto da reunião');
@@ -1311,7 +1308,7 @@ const Calc=(function(){
     return ata;
   }
   // Contador: ganho real dos aprovados + o que sobrou, convertido à razão de 1 QALY por K_JOGO.
-  // Ouvidora: pontos dos pedidos atendidos de quem está pior, menos os episódios de tratamento desigual.
+  // Ouvidora: pontos dos pedidos atendidos de casos graves, menos os episódios de tratamento desigual.
   function placar(G){
     let gasto=0,C=0,O=0;
     for(const h of G.hist){if(h.ok){gasto+=h.c.cost;C+=G.real[h.c.id];O+=pontos(h.c);}}
@@ -1352,7 +1349,7 @@ const Calc=(function(){
     else if(mx-mn<=2){titulo='Plenário equilibrista';desc='As três notas ficaram próximas: você não deixou nenhum jurado muito para trás.';}
     else if(acima===0){titulo='Plenário da régua';desc='Você só aprovou o que custava até a referência por QALY.';}
     else if(gP===mx){titulo='Plenário da praça';desc='Você ouviu sobretudo quem veio pedir.';}
-    else if(gO===mx){titulo='Plenário de quem está pior';desc='Você deu prioridade aos casos mais graves e a quem tem menos.';}
+    else if(gO===mx){titulo='Plenário dos casos graves';desc='Você deu prioridade aos casos mais graves.';}
     else{titulo='Plenário da conta';desc='Você buscou o maior total de saúde.';}
     return {C:S.C,O:S.O,P:praca,gC,gO,gP,gasto:S.gasto,rede:S.rede,base,L,fim,titulo,desc,nOk,nNao,acima};
   }
@@ -1719,7 +1716,7 @@ const Calc=(function(){
     const dC=Math.round(ata.dC),dP=ata.dP;
     h+='<div class="react">'+
       '<div class="jury">'+face('C',dC)+'<p><b>Contador:</b> '+(dC>0?'+'+fmt.format(dC)+' QALYs em relação à rede de saúde (hipótese do jogo).':dC<0?'−'+fmt.format(-dC)+' QALYs em relação à rede de saúde (hipótese do jogo).':'empate.')+'</p></div>'+
-      '<div class="jury">'+face('O',ata.dO)+'<p><b>Ouvidora:</b> '+(ata.dO>0?'+'+ata.dO+(ata.dO===1?' ponto':' pontos')+' por atender quem estava pior.':ata.dO<0?ata.dO+' pontos: tratamento desigual.':'ninguém em pior situação foi atendido.')+'</p></div>'+
+      '<div class="jury">'+face('O',ata.dO)+'<p><b>Ouvidora:</b> '+(ata.dO>0?'+'+ata.dO+(ata.dO===1?' ponto':' pontos')+' por atender casos graves.':ata.dO<0?ata.dO+' pontos: tratamento desigual.':'nenhum caso grave foi atendido.')+'</p></div>'+
       '<div class="jury">'+face('P',dP)+'<div><p style="margin:0"><b>Praça:</b> '+(dP>0?'confiança +'+dP+'.':dP<0?'confiança −'+(-dP)+'.':'confiança igual.')+'</p>'+
       (ata.motivos.length?'<ul class="mot">'+ata.motivos.map(m=>'<li>'+esc(m.t)+' <span class="mono">('+sgn(m.d)+')</span></li>').join('')+'</ul>':'')+'</div></div></div>';
     h+='<button class="btn" id="gNext" type="button">'+(ult?'Ler o jornal do fim do mandato':'Próxima reunião')+'</button>';
@@ -1733,7 +1730,7 @@ const Calc=(function(){
   const MANCH={
     'Plenário da régua':['Comitê segue a régua à risca e deixa a comoção do lado de fora','Plenário só aprova o que cabe na referência; pacientes protestam, a rede agradece'],
     'Plenário da praça':['Comitê ouve a plateia e aprova os pedidos de maior comoção','Plenário atende quem veio pedir e fecha o mandato com a praça ao lado'],
-    'Plenário de quem está pior':['Os mais graves primeiro: comitê fecha o mandato com essa marca','Comitê dá prioridade a quem estava em pior situação'],
+    'Plenário dos casos graves':['Os mais graves primeiro: comitê fecha o mandato com essa marca','Comitê dá prioridade aos casos mais graves'],
     'Plenário da conta':['Comitê fecha o mandato de olho no total de saúde','Mais saúde no total: a escolha do plenário neste mandato'],
     'Plenário equilibrista':['Nem só a conta, nem só a comoção: comitê fecha o mandato no meio do caminho','Plenário tenta agradar a três jurados e quase consegue'],
     'Plenário de portas fechadas':['Comitê não incorpora nada e devolve o orçamento inteiro à rede']
@@ -1752,7 +1749,7 @@ const Calc=(function(){
     const sur=ok.filter(h=>Math.abs(G.real[h.c.id]/h.c.q-1)>0.15).map(h=>'"'+esc(Calc.curto(h.c))+'" rendeu '+(G.real[h.c.id]<h.c.q?'menos':'mais')+' do que prometia ('+fmt.format(G.real[h.c.id])+' QALYs, contra '+fmt.format(h.c.q)+')');
     const surp=sur.length?'<b>Na prática.</b> '+sur.slice(0,1).join('; ')+'. Quanto menos firmes os estudos, maior a surpresa.':'';
     const pior=ok.filter(h=>Calc.pontos(h.c)>0).length,piorT=G.hist.filter(h=>Calc.pontos(h.c)>0).length;
-    const just='<b>Quem estava pior.</b> De '+piorT+' pedidos de prioridade, '+pior+(pior===1?' foi atendido.':' foram atendidos.');
+    const just='<b>Casos graves.</b> De '+piorT+' pedidos de prioridade, '+pior+(pior===1?' foi atendido.':' foram atendidos.');
     const fim=R.fim.length?'<b>Repercussão.</b> '+R.fim.map(f=>esc(f.t)).join(' '):'';
     const cartas=[];
     const a=ok.filter(h=>h.c.com>=2),b=nao.filter(h=>h.c.com>=2);
