@@ -7,6 +7,7 @@ O parecer pediu foco no conceito, no cálculo e no uso do QALY em avaliação ec
 - Saiu a Parte 7, "Alternativas e complementos" (anos de vida, evLY, DALY, WELLBY, decisão multicritério, pesos de equidade e análise distributiva, deliberação), com as perguntas "Para pensar", os verbetes Equidade, DALY e WELLBY e as sete referências citadas só ali.
 - Saiu a limitação 1 ("a conta não vê quem ganha", com a análise de custo-efetividade distributiva). As demais foram renumeradas de 1 a 7.
 - Jogo: saiu a pauta "Mesma conta, pessoas diferentes"; a Ouvidora passa a ser descrita como prioridade aos casos graves (critério que a Conitec admite com o limite de 3 vezes), sem "acesso".
+- Novo quadro "A conta completa, passo a passo" no fim da Parte 4: um caso com EQ-5D → peso pela tarifa brasileira → QALYs → QALYs ganhos → desconto → custo por QALY → comparação com a referência; chamada na Parte 2; 10 verificações novas em `tests/calc.js`.
 - Proposta revisada do trabalho em `proposta/`.
 - Testes: 168 verificações de cálculo, 9 pautas, 32.400 partidas sem falhas; portão na página real verde.
 

@@ -491,7 +491,7 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <p>Um QALY é, portanto, "um ano de vida com saúde plena", ou qualquer combinação de tempo e qualidade que dê o mesmo resultado.</p>
       <p><strong>Existe peso abaixo de zero.</strong> Nas pesquisas que geram os pesos (a Parte 3 explica), as pessoas avaliam alguns estados de saúde muito graves como piores que a morte. Esses estados recebem peso negativo: um ano neles <em>tira</em> QALYs da conta.</p>
       <h3 style="margin-top:1.6rem">O que um tratamento "ganha"</h3>
-      <p>Para saber quanto um tratamento vale em QALYs, comparam-se dois futuros: a vida da pessoa <em>sem</em> o tratamento e <em>com</em> ele. A diferença entre os dois são os <strong>QALYs ganhos</strong>. Um tratamento pode ganhar QALYs de dois jeitos: fazendo a pessoa viver <strong>mais</strong> ou fazendo-a viver <strong>melhor</strong>. Muitos fazem um pouco de cada. Essa é a principal qualidade da medida: ela junta as duas coisas num número só.</p>
+      <p>Para saber quanto um tratamento vale em QALYs, comparam-se dois futuros: a vida da pessoa <em>sem</em> o tratamento e <em>com</em> ele. A diferença entre os dois são os <strong>QALYs ganhos</strong>. Um tratamento pode ganhar QALYs de dois jeitos: fazendo a pessoa viver <strong>mais</strong> ou fazendo-a viver <strong>melhor</strong>. Muitos fazem um pouco de cada. Essa é a principal qualidade da medida: ela junta as duas coisas num número só. Um caso completo, do questionário ao custo por QALY, está em <a href="#passo-a-passo">"A conta completa, passo a passo"</a>, no fim da Parte 4.</p>
       <p>A ideia tomou forma nos anos 1970, em trabalhos que propunham ajustar os anos de vida pela qualidade para comparar tratamentos diferentes (<a href="#r-weinstein">Weinstein e Stason, 1977</a>).</p>
     </div>
 
@@ -678,6 +678,20 @@ table.tut{font-size:.88rem}table.tut th,table.tut td{padding:.35rem .3rem}
       <h3 style="margin-top:1.6rem">O desconto: saúde agora e saúde depois</h3>
       <p>Muitos tratamentos custam hoje e rendem saúde daqui a anos. As análises aplicam uma <strong>taxa de desconto</strong>: custos e ganhos no futuro contam um pouco menos que os de agora. <span class="tag-real">dado real</span> A diretriz brasileira manda usar 5% ao ano, para custos e para saúde (<a href="#r-diretriz">Ministério da Saúde, 2026</a>). O NICE usa 3,5% (<a href="#r-nice">NICE, 2026</a>).</p>
       <p>Com 5% ao ano, 1 QALY ganho daqui a 10 anos conta como 0,61 hoje. Daqui a 30 anos, como 0,23. Isso pesa contra a prevenção, cujos ganhos demoram a aparecer (<a href="#lim-6">limitação 6</a>). A própria diretriz sugere mostrar também o resultado sem desconto.</p>
+
+      <h3 id="passo-a-passo" style="margin-top:1.6rem">A conta completa, passo a passo</h3>
+      <p>Agora tudo junto, num só caso: do questionário ao custo por QALY. <span class="tag-ilu">caso ilustrativo</span> <span class="tag-real">pesos da tarifa brasileira real</span></p>
+      <p>Seu Antônio tem uma doença do coração. Com o tratamento atual, a expectativa é que viva mais <strong>2 anos</strong>. Um remédio novo promete <strong>3 anos</strong>, e com menos sintomas. Os dois tratamentos são comparados assim:</p>
+      <p><strong>1. Descrever a saúde com o EQ-5D.</strong> Com o tratamento atual, ele tem algum problema para andar, algum problema nas atividades habituais e alguma dor; cuida de si e não tem ansiedade (estado 21221). Com o remédio novo, sobra só alguma dor (estado 11121).</p>
+      <p><strong>2. Transformar cada estado em peso, pela tarifa brasileira.</strong> Parte-se de 1, desconta-se 0,149 por haver algum problema e mais o valor de cada problema:</p>
+      <p class="conta">21221: 1 − 0,149 − 0,120 (andar) − 0,097 (atividades) − 0,064 (dor) = <b>0,570</b><br>11121: 1 − 0,149 − 0,064 (dor) = <b>0,787</b></p>
+      <p><strong>3. Multiplicar o tempo pelo peso.</strong></p>
+      <p class="conta">tratamento atual: 2 anos × 0,570 = <b>1,140 QALY</b><br>remédio novo: 3 anos × 0,787 = <b>2,361 QALYs</b><br>QALYs ganhos = 2,361 − 1,140 = <b>1,221</b></p>
+      <p><strong>4. Aplicar o desconto de 5% ao ano.</strong> O primeiro ano conta inteiro; o segundo é multiplicado por 1 ÷ 1,05 = 0,952; o terceiro, por 1 ÷ 1,05² = 0,907 (a mesma regra do interativo "Desenhe uma vida").</p>
+      <p class="conta">tratamento atual: 0,570 + 0,570 × 0,952 = <b>1,113 QALY</b><br>remédio novo: 0,787 + 0,787 × 0,952 + 0,787 × 0,907 = <b>2,250 QALYs</b><br>QALYs ganhos, com desconto = 2,250 − 1,113 = <b>1,137</b></p>
+      <p><strong>5. Dividir o custo a mais pelos QALYs a mais.</strong> Suponha que o remédio novo custe, ao todo, R$ 45 mil a mais por paciente (já com desconto).</p>
+      <p class="conta">custo por QALY = 45.000 ÷ 1,137 = <b>cerca de R$ 39,6 mil por QALY</b></p>
+      <p><strong>6. Comparar com a referência.</strong> O resultado fica logo abaixo dos R$ 40 mil por QALY da Conitec. Repare no efeito do desconto: sem ele, a conta daria 45.000 ÷ 1,221, cerca de R$ 36,9 mil por QALY. Num caso real, a recomendação também olharia a qualidade da evidência, o impacto no orçamento e a consulta pública.</p>
     </div>
 
     <div class="inter" id="rcei">

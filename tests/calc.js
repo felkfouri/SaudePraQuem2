@@ -5,6 +5,16 @@ const assert=require('assert'),{Calc:C}=require('./carregar.js');
 let n=0;const perto=(a,b,tol,msg)=>{n++;assert.ok(Math.abs(a-b)<=(tol||1e-9),(msg||'')+' esperado '+b+', obtido '+a);};
 const igual=(a,b,msg)=>{n++;assert.strictEqual(a,b,msg);};
 
+// ---- Quadro "A conta completa, passo a passo" (Parte 4): os números do texto
+{ const a=C.eq5dIndice([2,1,2,2,1]),b=C.eq5dIndice([1,1,1,2,1]);
+  perto(a,0.570,1e-9,'passo a passo: 21221');perto(b,0.787,1e-9,'passo a passo: 11121');
+  const s=C.compararVidas({q:[a,a],vive:2},{q:[b,b,b],vive:3},0);
+  perto(s.qalySem,1.140,1e-9);perto(s.qalyCom,2.361,1e-9);perto(s.ganhoQaly,1.221,1e-9);
+  const d=C.compararVidas({q:[a,a],vive:2},{q:[b,b,b],vive:3},0.05);
+  perto(d.qalySem,1.113,5e-4);perto(d.qalyCom,2.250,5e-4);perto(d.ganhoQaly,1.137,5e-4);
+  perto(45000/d.ganhoQaly,39600,50,'passo a passo: custo por QALY com desconto');
+  perto(45000/s.ganhoQaly,36900,50,'passo a passo: custo por QALY sem desconto'); }
+
 // ---- Desenhe uma vida
 perto(C.qalyPerfil([.5,.5],2,0),1,0,'2 anos a 0,5');
 perto(C.qalyPerfil(Array(10).fill(1),10,0),10,0,'10 anos a 1');
